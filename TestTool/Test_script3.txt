@@ -1,0 +1,34 @@
+%EXP:T400000000091\x0d\x0a: datalogic
+%DLY:10:s
+
+%EXP:R400000000091
+%STR:$T1:$CST
+%DLY:10:s
+
+%WAT:R400000000091:datalogic
+;store current system time to T2
+%STR:$T2:$CST
+;store current transmit time to T3
+%STR:$T3:$TCT
+;store current Receive time to T4
+%STR:$T4:$RCT
+;copy T1 --> T5
+%STR:$T5:$T1
+%DLY:10:s
+
+; Print data
+%DTA:$P1:$T4:$T3 
+%PRN:$RCV
+%PRN:$T1
+%PRN:\x0d
+%PRN:$T2
+%PRN:\x0d
+%PRN:$T3
+%PRN:\x0d
+%PRN:$T4
+%PRN:\x0d
+%PRN:$T5
+%PRN:\x0d
+%PRN:$P1
+%PRN:\x0d
+%DLY:10:s
