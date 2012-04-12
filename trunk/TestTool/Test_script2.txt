@@ -1,0 +1,8 @@
+;Test string process
+%SST:$S1:DATALOGIC\x0d
+%SST:$S2:$RCV
+%DLY:10:s
+%SST:$S3:$S2
+%CAT:$S3:$S1
+%DLY:2:s
+%PRN:$S3

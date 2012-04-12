@@ -1,0 +1,26 @@
+Feb 09, 2012
+    + Change format of Report:
+    + Change Key word for Print function (%PRN) & Report Pass Fail (%RPT)
+    + SVN 1550: Release 05
+
+Feb 08, 2012: Release 05
+    + add seprate for reset frame
+
+Feb 08, 2012: 
+    + Add %GTO for respond action
+    + Change log format
+    + SVN1545: Release 04
+
+Feb 08, 2012: 
+    + Fix bug: auto save log file
+    + Change error message for check counter
+    + release 03
+
+Feb 07, 2012: 
+    + Add Check Frame feature
+    + Add %GTO function
+    + SVN1535: release 02
+
+Jan 18,2012: 
+    SVN 1530: First Release for Test
+    
