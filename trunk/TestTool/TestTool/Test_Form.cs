@@ -86,6 +86,7 @@ namespace WindowsFormsApplication1
                     // Init for Tab1 & Tab3
                     Tab1ComPortSelect.Items.Add(portName);
                     Tab3_Set_Port.Items.Add(portName);
+                    SnifPort_Name.Items.Add(portName);
 
                     // Init for Tab2
                     Tab2ComPortInit(ComControlArray, index, portName);
@@ -162,5 +163,7 @@ namespace WindowsFormsApplication1
             log_mess += "Release Date     : Feb 08 2012\n";
             MessageBox.Show(log_mess, "About");
         }
+
+
     }
 }

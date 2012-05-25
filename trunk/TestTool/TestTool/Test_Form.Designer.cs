@@ -167,6 +167,20 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.Tab3_richText = new System.Windows.Forms.RichTextBox();
+            this.RF_Snif_Tab = new System.Windows.Forms.TabPage();
+            this.groupBox39 = new System.Windows.Forms.GroupBox();
+            this.SnifPort_Parity = new System.Windows.Forms.ComboBox();
+            this.SnifPort_StopBit = new System.Windows.Forms.ComboBox();
+            this.SnifPort_Threshold = new System.Windows.Forms.ComboBox();
+            this.SnifPort_DataBit = new System.Windows.Forms.ComboBox();
+            this.SnifPort_Baud = new System.Windows.Forms.ComboBox();
+            this.SnifPort_Name = new System.Windows.Forms.ComboBox();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label97 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
             this.ComControl = new System.Windows.Forms.TabPage();
             this.Tab3Setting = new System.Windows.Forms.GroupBox();
             this.Tab4_restore_bt = new System.Windows.Forms.Button();
@@ -492,6 +506,12 @@
             this.Pack_Timer = new System.Windows.Forms.Timer(this.components);
             this.InterChar_Timer = new System.Windows.Forms.Timer(this.components);
             this.Receive_timer = new System.Windows.Forms.Timer(this.components);
+            this.SnifPortReceive_Text = new System.Windows.Forms.RichTextBox();
+            this.SnifPortReceive_Frame = new System.Windows.Forms.RichTextBox();
+            this.button47 = new System.Windows.Forms.Button();
+            this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.button48 = new System.Windows.Forms.Button();
+            this.SnifPort = new System.IO.Ports.SerialPort(this.components);
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
             this.groupBox38.SuspendLayout();
@@ -515,6 +535,8 @@
             this.Tab3_Protocol.SuspendLayout();
             this.Tab3Device.SuspendLayout();
             this.Tab3_Setting.SuspendLayout();
+            this.RF_Snif_Tab.SuspendLayout();
+            this.groupBox39.SuspendLayout();
             this.ComControl.SuspendLayout();
             this.Tab3Setting.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -561,6 +583,7 @@
             this.groupBox34.SuspendLayout();
             this.groupBox35.SuspendLayout();
             this.groupBox36.SuspendLayout();
+            this.groupBox40.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tab1SerOption
@@ -592,6 +615,7 @@
             this.ControlTab.Controls.Add(this.CountPage);
             this.ControlTab.Controls.Add(this.InOutPage);
             this.ControlTab.Controls.Add(this.PrescanDemoPage);
+            this.ControlTab.Controls.Add(this.RF_Snif_Tab);
             this.ControlTab.Controls.Add(this.ComControl);
             this.ControlTab.Location = new System.Drawing.Point(0, 27);
             this.ControlTab.Name = "ControlTab";
@@ -2100,6 +2124,181 @@
             this.Tab3_richText.Size = new System.Drawing.Size(639, 404);
             this.Tab3_richText.TabIndex = 0;
             this.Tab3_richText.Text = "";
+            // 
+            // RF_Snif_Tab
+            // 
+            this.RF_Snif_Tab.Controls.Add(this.groupBox40);
+            this.RF_Snif_Tab.Controls.Add(this.SnifPortReceive_Frame);
+            this.RF_Snif_Tab.Controls.Add(this.SnifPortReceive_Text);
+            this.RF_Snif_Tab.Controls.Add(this.groupBox39);
+            this.RF_Snif_Tab.Location = new System.Drawing.Point(4, 22);
+            this.RF_Snif_Tab.Name = "RF_Snif_Tab";
+            this.RF_Snif_Tab.Size = new System.Drawing.Size(992, 839);
+            this.RF_Snif_Tab.TabIndex = 4;
+            this.RF_Snif_Tab.Text = "RF Sniffer";
+            this.RF_Snif_Tab.UseVisualStyleBackColor = true;
+            // 
+            // groupBox39
+            // 
+            this.groupBox39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox39.Controls.Add(this.SnifPort_Parity);
+            this.groupBox39.Controls.Add(this.SnifPort_StopBit);
+            this.groupBox39.Controls.Add(this.SnifPort_Threshold);
+            this.groupBox39.Controls.Add(this.SnifPort_DataBit);
+            this.groupBox39.Controls.Add(this.SnifPort_Baud);
+            this.groupBox39.Controls.Add(this.SnifPort_Name);
+            this.groupBox39.Controls.Add(this.label95);
+            this.groupBox39.Controls.Add(this.label96);
+            this.groupBox39.Controls.Add(this.label97);
+            this.groupBox39.Controls.Add(this.label98);
+            this.groupBox39.Controls.Add(this.label99);
+            this.groupBox39.Controls.Add(this.label100);
+            this.groupBox39.Location = new System.Drawing.Point(649, 3);
+            this.groupBox39.Name = "groupBox39";
+            this.groupBox39.Size = new System.Drawing.Size(205, 194);
+            this.groupBox39.TabIndex = 2;
+            this.groupBox39.TabStop = false;
+            this.groupBox39.Text = "Setting";
+            // 
+            // SnifPort_Parity
+            // 
+            this.SnifPort_Parity.FormattingEnabled = true;
+            this.SnifPort_Parity.Items.AddRange(new object[] {
+            "None",
+            "Odd",
+            "Even",
+            "Mark",
+            "Space"});
+            this.SnifPort_Parity.Location = new System.Drawing.Point(88, 127);
+            this.SnifPort_Parity.Name = "SnifPort_Parity";
+            this.SnifPort_Parity.Size = new System.Drawing.Size(75, 21);
+            this.SnifPort_Parity.TabIndex = 12;
+            this.SnifPort_Parity.Text = "None";
+            // 
+            // SnifPort_StopBit
+            // 
+            this.SnifPort_StopBit.FormattingEnabled = true;
+            this.SnifPort_StopBit.Items.AddRange(new object[] {
+            "One",
+            "Two",
+            "OnePointFive"});
+            this.SnifPort_StopBit.Location = new System.Drawing.Point(88, 100);
+            this.SnifPort_StopBit.Name = "SnifPort_StopBit";
+            this.SnifPort_StopBit.Size = new System.Drawing.Size(75, 21);
+            this.SnifPort_StopBit.TabIndex = 12;
+            this.SnifPort_StopBit.Text = "One";
+            // 
+            // SnifPort_Threshold
+            // 
+            this.SnifPort_Threshold.FormattingEnabled = true;
+            this.SnifPort_Threshold.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.SnifPort_Threshold.Location = new System.Drawing.Point(86, 154);
+            this.SnifPort_Threshold.Name = "SnifPort_Threshold";
+            this.SnifPort_Threshold.Size = new System.Drawing.Size(77, 21);
+            this.SnifPort_Threshold.TabIndex = 7;
+            this.SnifPort_Threshold.Text = "1";
+            // 
+            // SnifPort_DataBit
+            // 
+            this.SnifPort_DataBit.FormattingEnabled = true;
+            this.SnifPort_DataBit.Items.AddRange(new object[] {
+            "8",
+            "7",
+            "6",
+            "5"});
+            this.SnifPort_DataBit.Location = new System.Drawing.Point(88, 73);
+            this.SnifPort_DataBit.Name = "SnifPort_DataBit";
+            this.SnifPort_DataBit.Size = new System.Drawing.Size(75, 21);
+            this.SnifPort_DataBit.TabIndex = 11;
+            this.SnifPort_DataBit.Tag = "";
+            this.SnifPort_DataBit.Text = "8";
+            // 
+            // SnifPort_Baud
+            // 
+            this.SnifPort_Baud.FormattingEnabled = true;
+            this.SnifPort_Baud.Items.AddRange(new object[] {
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.SnifPort_Baud.Location = new System.Drawing.Point(88, 46);
+            this.SnifPort_Baud.Name = "SnifPort_Baud";
+            this.SnifPort_Baud.Size = new System.Drawing.Size(75, 21);
+            this.SnifPort_Baud.TabIndex = 10;
+            this.SnifPort_Baud.Text = "9600";
+            // 
+            // SnifPort_Name
+            // 
+            this.SnifPort_Name.FormattingEnabled = true;
+            this.SnifPort_Name.Location = new System.Drawing.Point(88, 19);
+            this.SnifPort_Name.Name = "SnifPort_Name";
+            this.SnifPort_Name.Size = new System.Drawing.Size(75, 21);
+            this.SnifPort_Name.TabIndex = 2;
+            this.SnifPort_Name.Text = "NONE";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(9, 157);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(54, 13);
+            this.label95.TabIndex = 1;
+            this.label95.Text = "Threshold";
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.Location = new System.Drawing.Point(9, 130);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(33, 13);
+            this.label96.TabIndex = 1;
+            this.label96.Text = "Parity";
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Location = new System.Drawing.Point(9, 103);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(49, 13);
+            this.label97.TabIndex = 1;
+            this.label97.Text = "Stop Bits";
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.Location = new System.Drawing.Point(9, 76);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(50, 13);
+            this.label98.TabIndex = 1;
+            this.label98.Text = "Data Bits";
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(9, 49);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(58, 13);
+            this.label99.TabIndex = 1;
+            this.label99.Text = "Baud Rate";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(9, 22);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(59, 13);
+            this.label100.TabIndex = 1;
+            this.label100.Text = "COM Port: ";
             // 
             // ComControl
             // 
@@ -5434,6 +5633,55 @@
             this.Receive_timer.Tag = "Receive_timer";
             this.Receive_timer.Tick += new System.EventHandler(this.Tab3_Timer_Tick);
             // 
+            // SnifPortReceive_Text
+            // 
+            this.SnifPortReceive_Text.Location = new System.Drawing.Point(4, 6);
+            this.SnifPortReceive_Text.Name = "SnifPortReceive_Text";
+            this.SnifPortReceive_Text.Size = new System.Drawing.Size(639, 195);
+            this.SnifPortReceive_Text.TabIndex = 3;
+            this.SnifPortReceive_Text.Text = "";
+            // 
+            // SnifPortReceive_Frame
+            // 
+            this.SnifPortReceive_Frame.Location = new System.Drawing.Point(4, 209);
+            this.SnifPortReceive_Frame.Name = "SnifPortReceive_Frame";
+            this.SnifPortReceive_Frame.Size = new System.Drawing.Size(639, 195);
+            this.SnifPortReceive_Frame.TabIndex = 3;
+            this.SnifPortReceive_Frame.Text = "";
+            // 
+            // button47
+            // 
+            this.button47.Location = new System.Drawing.Point(6, 165);
+            this.button47.Name = "button47";
+            this.button47.Size = new System.Drawing.Size(75, 23);
+            this.button47.TabIndex = 4;
+            this.button47.Text = "Start";
+            this.button47.UseVisualStyleBackColor = true;
+            // 
+            // groupBox40
+            // 
+            this.groupBox40.Controls.Add(this.button48);
+            this.groupBox40.Controls.Add(this.button47);
+            this.groupBox40.Location = new System.Drawing.Point(649, 209);
+            this.groupBox40.Name = "groupBox40";
+            this.groupBox40.Size = new System.Drawing.Size(205, 195);
+            this.groupBox40.TabIndex = 5;
+            this.groupBox40.TabStop = false;
+            this.groupBox40.Text = "groupBox40";
+            // 
+            // button48
+            // 
+            this.button48.Location = new System.Drawing.Point(123, 165);
+            this.button48.Name = "button48";
+            this.button48.Size = new System.Drawing.Size(75, 23);
+            this.button48.TabIndex = 4;
+            this.button48.Text = "Stop";
+            this.button48.UseVisualStyleBackColor = true;
+            // 
+            // SnifPort
+            // 
+            this.SnifPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Snif_receiveData);
+            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5491,6 +5739,9 @@
             this.Tab3Device.PerformLayout();
             this.Tab3_Setting.ResumeLayout(false);
             this.Tab3_Setting.PerformLayout();
+            this.RF_Snif_Tab.ResumeLayout(false);
+            this.groupBox39.ResumeLayout(false);
+            this.groupBox39.PerformLayout();
             this.ComControl.ResumeLayout(false);
             this.Tab3Setting.ResumeLayout(false);
             this.Tab3Setting.PerformLayout();
@@ -5568,6 +5819,7 @@
             this.groupBox34.PerformLayout();
             this.groupBox35.ResumeLayout(false);
             this.groupBox36.ResumeLayout(false);
+            this.groupBox40.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6038,6 +6290,26 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Tab2_Total_Fail_Lbl;
         private System.Windows.Forms.Label Tab2_Total_Pass_Lbl;
+        private System.Windows.Forms.TabPage RF_Snif_Tab;
+        private System.Windows.Forms.GroupBox groupBox39;
+        private System.Windows.Forms.ComboBox SnifPort_Parity;
+        private System.Windows.Forms.ComboBox SnifPort_StopBit;
+        private System.Windows.Forms.ComboBox SnifPort_Threshold;
+        private System.Windows.Forms.ComboBox SnifPort_DataBit;
+        private System.Windows.Forms.ComboBox SnifPort_Baud;
+        private System.Windows.Forms.ComboBox SnifPort_Name;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.RichTextBox SnifPortReceive_Text;
+        private System.Windows.Forms.Button button47;
+        private System.Windows.Forms.RichTextBox SnifPortReceive_Frame;
+        private System.Windows.Forms.GroupBox groupBox40;
+        private System.Windows.Forms.Button button48;
+        private System.IO.Ports.SerialPort SnifPort;
 
     }
 }
