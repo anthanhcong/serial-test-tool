@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
 
             // Init Value
             AppInit();
-
+            // ControlTab.TabPages.RemoveAt(3);
         }
 
 

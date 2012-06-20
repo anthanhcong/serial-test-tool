@@ -40,3 +40,11 @@ D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\ResolveAssemblyRe
 D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\WindowsFormsApplication1.Test_Form.resources
 D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\TestTool.csproj.GenerateResource.Cache
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\obj\Debug\TestTool.exe
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\obj\Debug\TestTool.pdb
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\obj\Debug\ResolveAssemblyReference.cache
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\obj\Debug\WindowsFormsApplication1.Test_Form.resources
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\obj\Debug\TestTool.csproj.GenerateResource.Cache
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\bin\Debug\TestTool.exe
+D:\DVP\TestTool\SerialTestTool_GC\TestTool\TestTool\bin\Debug\TestTool.pdb
