@@ -40,6 +40,7 @@ namespace WindowsFormsApplication1
             byte[] indata = new byte[BUF_LEN];
             int len;
             int i,index;
+            bool end_frame = false;
 
             SerialPort thisCom = (SerialPort)sender;
             portName = thisCom.PortName.ToString();
@@ -66,7 +67,22 @@ namespace WindowsFormsApplication1
                 {
                     Tab2_Receive_Buf[index][Tab2_Receive_index[index]] = indata[i];
                     Tab2_Receive_index[index]++;
+                    if (Tab2_Receive_index[index] >= MAX_BUF_LEN)
+                    {
+                        Tab2_Receive_index[index] = 0;
+                    }
+
+                    ///@TODO (Kien ##): in case don not have check frame. End of lable by <CR> <LF>
+                    if (i < len)
+                    {
+                        if ((indata[i] == 0x0D) && (indata[i + 1] == 0x0A))
+                        {
+                            end_frame = true;
+                        }
+                    }
                 }
+
+                
 
                 // Update Time Check
                 Tab2_RCT[index] = DateTime.Now;
@@ -93,7 +109,17 @@ namespace WindowsFormsApplication1
                 {
                     Tab2_RxFrame(index, indata, len);
                 }
+                else
+                {
+                    ///@TODO (Kien ##): in case don not have check frame. End of lable by <CR> <LF>
+                    if (end_frame == true)
+                    {
+                        First_Receive[index] = true;
+                        Reset_Buffer(index);
+                    }
+                }
 #endif
+                
             }else{
                 MessageBox.Show("Can not find log file for " + portName, "Error");
             }
