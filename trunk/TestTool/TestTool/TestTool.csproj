@@ -66,16 +66,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ASSERT_Manage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Format_data.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RF_CheckFrame_Class_Define.cs">
+    <Compile Include="SS20_Class_Define.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RF_CheckFrame_L1.cs">
+    <Compile Include="SS20_L1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RF_CheckFrame_L2.cs">
+    <Compile Include="SS20_L2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SnifControl.cs">

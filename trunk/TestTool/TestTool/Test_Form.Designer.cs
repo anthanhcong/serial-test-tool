@@ -168,6 +168,11 @@
             this.label16 = new System.Windows.Forms.Label();
             this.Tab3_richText = new System.Windows.Forms.RichTextBox();
             this.RF_Snif_Tab = new System.Windows.Forms.TabPage();
+            this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.button48 = new System.Windows.Forms.Button();
+            this.button47 = new System.Windows.Forms.Button();
+            this.SnifPortReceive_Frame = new System.Windows.Forms.RichTextBox();
+            this.SnifPortReceive_Text = new System.Windows.Forms.RichTextBox();
             this.groupBox39 = new System.Windows.Forms.GroupBox();
             this.SnifPort_Parity = new System.Windows.Forms.ComboBox();
             this.SnifPort_StopBit = new System.Windows.Forms.ComboBox();
@@ -506,12 +511,8 @@
             this.Pack_Timer = new System.Windows.Forms.Timer(this.components);
             this.InterChar_Timer = new System.Windows.Forms.Timer(this.components);
             this.Receive_timer = new System.Windows.Forms.Timer(this.components);
-            this.SnifPortReceive_Text = new System.Windows.Forms.RichTextBox();
-            this.SnifPortReceive_Frame = new System.Windows.Forms.RichTextBox();
-            this.button47 = new System.Windows.Forms.Button();
-            this.groupBox40 = new System.Windows.Forms.GroupBox();
-            this.button48 = new System.Windows.Forms.Button();
             this.SnifPort = new System.IO.Ports.SerialPort(this.components);
+            this.SnifTimer_1 = new System.Windows.Forms.Timer(this.components);
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
             this.groupBox38.SuspendLayout();
@@ -536,6 +537,7 @@
             this.Tab3Device.SuspendLayout();
             this.Tab3_Setting.SuspendLayout();
             this.RF_Snif_Tab.SuspendLayout();
+            this.groupBox40.SuspendLayout();
             this.groupBox39.SuspendLayout();
             this.ComControl.SuspendLayout();
             this.Tab3Setting.SuspendLayout();
@@ -583,7 +585,6 @@
             this.groupBox34.SuspendLayout();
             this.groupBox35.SuspendLayout();
             this.groupBox36.SuspendLayout();
-            this.groupBox40.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tab1SerOption
@@ -2137,6 +2138,51 @@
             this.RF_Snif_Tab.TabIndex = 4;
             this.RF_Snif_Tab.Text = "RF Sniffer";
             this.RF_Snif_Tab.UseVisualStyleBackColor = true;
+            // 
+            // groupBox40
+            // 
+            this.groupBox40.Controls.Add(this.button48);
+            this.groupBox40.Controls.Add(this.button47);
+            this.groupBox40.Location = new System.Drawing.Point(649, 209);
+            this.groupBox40.Name = "groupBox40";
+            this.groupBox40.Size = new System.Drawing.Size(205, 195);
+            this.groupBox40.TabIndex = 5;
+            this.groupBox40.TabStop = false;
+            this.groupBox40.Text = "Control";
+            // 
+            // button48
+            // 
+            this.button48.Location = new System.Drawing.Point(123, 165);
+            this.button48.Name = "button48";
+            this.button48.Size = new System.Drawing.Size(75, 23);
+            this.button48.TabIndex = 4;
+            this.button48.Text = "Stop";
+            this.button48.UseVisualStyleBackColor = true;
+            // 
+            // button47
+            // 
+            this.button47.Location = new System.Drawing.Point(6, 165);
+            this.button47.Name = "button47";
+            this.button47.Size = new System.Drawing.Size(75, 23);
+            this.button47.TabIndex = 4;
+            this.button47.Text = "Start";
+            this.button47.UseVisualStyleBackColor = true;
+            // 
+            // SnifPortReceive_Frame
+            // 
+            this.SnifPortReceive_Frame.Location = new System.Drawing.Point(4, 209);
+            this.SnifPortReceive_Frame.Name = "SnifPortReceive_Frame";
+            this.SnifPortReceive_Frame.Size = new System.Drawing.Size(639, 195);
+            this.SnifPortReceive_Frame.TabIndex = 3;
+            this.SnifPortReceive_Frame.Text = "";
+            // 
+            // SnifPortReceive_Text
+            // 
+            this.SnifPortReceive_Text.Location = new System.Drawing.Point(4, 6);
+            this.SnifPortReceive_Text.Name = "SnifPortReceive_Text";
+            this.SnifPortReceive_Text.Size = new System.Drawing.Size(639, 195);
+            this.SnifPortReceive_Text.TabIndex = 3;
+            this.SnifPortReceive_Text.Text = "";
             // 
             // groupBox39
             // 
@@ -5633,54 +5679,13 @@
             this.Receive_timer.Tag = "Receive_timer";
             this.Receive_timer.Tick += new System.EventHandler(this.Tab3_Timer_Tick);
             // 
-            // SnifPortReceive_Text
-            // 
-            this.SnifPortReceive_Text.Location = new System.Drawing.Point(4, 6);
-            this.SnifPortReceive_Text.Name = "SnifPortReceive_Text";
-            this.SnifPortReceive_Text.Size = new System.Drawing.Size(639, 195);
-            this.SnifPortReceive_Text.TabIndex = 3;
-            this.SnifPortReceive_Text.Text = "";
-            // 
-            // SnifPortReceive_Frame
-            // 
-            this.SnifPortReceive_Frame.Location = new System.Drawing.Point(4, 209);
-            this.SnifPortReceive_Frame.Name = "SnifPortReceive_Frame";
-            this.SnifPortReceive_Frame.Size = new System.Drawing.Size(639, 195);
-            this.SnifPortReceive_Frame.TabIndex = 3;
-            this.SnifPortReceive_Frame.Text = "";
-            // 
-            // button47
-            // 
-            this.button47.Location = new System.Drawing.Point(6, 165);
-            this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(75, 23);
-            this.button47.TabIndex = 4;
-            this.button47.Text = "Start";
-            this.button47.UseVisualStyleBackColor = true;
-            // 
-            // groupBox40
-            // 
-            this.groupBox40.Controls.Add(this.button48);
-            this.groupBox40.Controls.Add(this.button47);
-            this.groupBox40.Location = new System.Drawing.Point(649, 209);
-            this.groupBox40.Name = "groupBox40";
-            this.groupBox40.Size = new System.Drawing.Size(205, 195);
-            this.groupBox40.TabIndex = 5;
-            this.groupBox40.TabStop = false;
-            this.groupBox40.Text = "groupBox40";
-            // 
-            // button48
-            // 
-            this.button48.Location = new System.Drawing.Point(123, 165);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(75, 23);
-            this.button48.TabIndex = 4;
-            this.button48.Text = "Stop";
-            this.button48.UseVisualStyleBackColor = true;
-            // 
             // SnifPort
             // 
             this.SnifPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Snif_receiveData);
+            // 
+            // SnifTimer_1
+            // 
+            this.SnifTimer_1.Tick += new System.EventHandler(this.PKB_rxTimer);
             // 
             // Test_Form
             // 
@@ -5740,6 +5745,7 @@
             this.Tab3_Setting.ResumeLayout(false);
             this.Tab3_Setting.PerformLayout();
             this.RF_Snif_Tab.ResumeLayout(false);
+            this.groupBox40.ResumeLayout(false);
             this.groupBox39.ResumeLayout(false);
             this.groupBox39.PerformLayout();
             this.ComControl.ResumeLayout(false);
@@ -5819,7 +5825,6 @@
             this.groupBox34.PerformLayout();
             this.groupBox35.ResumeLayout(false);
             this.groupBox36.ResumeLayout(false);
-            this.groupBox40.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6310,6 +6315,7 @@
         private System.Windows.Forms.GroupBox groupBox40;
         private System.Windows.Forms.Button button48;
         private System.IO.Ports.SerialPort SnifPort;
+        private System.Windows.Forms.Timer SnifTimer_1;
 
     }
 }

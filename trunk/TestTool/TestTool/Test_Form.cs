@@ -163,7 +163,5 @@ namespace WindowsFormsApplication1
             log_mess += "Release Date     : Feb 08 2012\n";
             MessageBox.Show(log_mess, "About");
         }
-
-
     }
 }
