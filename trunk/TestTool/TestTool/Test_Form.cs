@@ -50,6 +50,7 @@ namespace WindowsFormsApplication1
 
             // Init Value
             AppInit();
+            Lost_Frame_Check_Load();
             // ControlTab.TabPages.RemoveAt(3);
         }
 
@@ -117,6 +118,7 @@ namespace WindowsFormsApplication1
 
         private void Test_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Lost_Frame_Check_Close();
             App_close();
         }
 
