@@ -169,6 +169,8 @@
             this.Tab3_richText = new System.Windows.Forms.RichTextBox();
             this.RF_Snif_Tab = new System.Windows.Forms.TabPage();
             this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.Snif_SS20_Selct = new System.Windows.Forms.RadioButton();
+            this.Snif_SS10_Selct = new System.Windows.Forms.RadioButton();
             this.button48 = new System.Windows.Forms.Button();
             this.button47 = new System.Windows.Forms.Button();
             this.SnifPortReceive_Frame = new System.Windows.Forms.RichTextBox();
@@ -186,6 +188,24 @@
             this.label98 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
             this.label100 = new System.Windows.Forms.Label();
+            this.LostDataCheck = new System.Windows.Forms.TabPage();
+            this.groupBox41 = new System.Windows.Forms.GroupBox();
+            this.Lost_Display = new System.Windows.Forms.RichTextBox();
+            this.Lost_CmdTxt = new System.Windows.Forms.TextBox();
+            this.Lost_Enter_BT = new System.Windows.Forms.Button();
+            this.LostData_Group = new System.Windows.Forms.GroupBox();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.Lost_Tp_Cnt_Index_txt = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.Lost_Check_Tp_Cnt = new System.Windows.Forms.CheckBox();
+            this.label104 = new System.Windows.Forms.Label();
+            this.Lost_Check_Appl_Cnt = new System.Windows.Forms.CheckBox();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label102 = new System.Windows.Forms.Label();
+            this.label101 = new System.Windows.Forms.Label();
+            this.LostData_PathFile = new System.Windows.Forms.Label();
+            this.button49 = new System.Windows.Forms.Button();
             this.ComControl = new System.Windows.Forms.TabPage();
             this.Tab3Setting = new System.Windows.Forms.GroupBox();
             this.Tab4_restore_bt = new System.Windows.Forms.Button();
@@ -513,6 +533,9 @@
             this.Receive_timer = new System.Windows.Forms.Timer(this.components);
             this.SnifPort = new System.IO.Ports.SerialPort(this.components);
             this.SnifTimer_1 = new System.Windows.Forms.Timer(this.components);
+            this.Check_Lost_Frame_log = new System.Windows.Forms.RichTextBox();
+            this.Gun_Addr_Stamping_txt = new System.Windows.Forms.TextBox();
+            this.label105 = new System.Windows.Forms.Label();
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
             this.groupBox38.SuspendLayout();
@@ -539,6 +562,9 @@
             this.RF_Snif_Tab.SuspendLayout();
             this.groupBox40.SuspendLayout();
             this.groupBox39.SuspendLayout();
+            this.LostDataCheck.SuspendLayout();
+            this.groupBox41.SuspendLayout();
+            this.LostData_Group.SuspendLayout();
             this.ComControl.SuspendLayout();
             this.Tab3Setting.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -617,11 +643,12 @@
             this.ControlTab.Controls.Add(this.InOutPage);
             this.ControlTab.Controls.Add(this.PrescanDemoPage);
             this.ControlTab.Controls.Add(this.RF_Snif_Tab);
+            this.ControlTab.Controls.Add(this.LostDataCheck);
             this.ControlTab.Controls.Add(this.ComControl);
-            this.ControlTab.Location = new System.Drawing.Point(0, 27);
+            this.ControlTab.Location = new System.Drawing.Point(0, 30);
             this.ControlTab.Name = "ControlTab";
             this.ControlTab.SelectedIndex = 0;
-            this.ControlTab.Size = new System.Drawing.Size(1000, 865);
+            this.ControlTab.Size = new System.Drawing.Size(863, 865);
             this.ControlTab.TabIndex = 0;
             // 
             // CountPage
@@ -643,7 +670,7 @@
             this.CountPage.Location = new System.Drawing.Point(4, 22);
             this.CountPage.Name = "CountPage";
             this.CountPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CountPage.Size = new System.Drawing.Size(992, 839);
+            this.CountPage.Size = new System.Drawing.Size(855, 839);
             this.CountPage.TabIndex = 0;
             this.CountPage.Text = "Count Data";
             this.CountPage.UseVisualStyleBackColor = true;
@@ -1098,7 +1125,7 @@
             this.InOutPage.Location = new System.Drawing.Point(4, 22);
             this.InOutPage.Name = "InOutPage";
             this.InOutPage.Padding = new System.Windows.Forms.Padding(3);
-            this.InOutPage.Size = new System.Drawing.Size(992, 839);
+            this.InOutPage.Size = new System.Drawing.Size(855, 839);
             this.InOutPage.TabIndex = 1;
             this.InOutPage.Text = "Send & Receive";
             this.InOutPage.UseVisualStyleBackColor = true;
@@ -1609,7 +1636,7 @@
             this.PrescanDemoPage.Location = new System.Drawing.Point(4, 22);
             this.PrescanDemoPage.Name = "PrescanDemoPage";
             this.PrescanDemoPage.Padding = new System.Windows.Forms.Padding(3);
-            this.PrescanDemoPage.Size = new System.Drawing.Size(992, 839);
+            this.PrescanDemoPage.Size = new System.Drawing.Size(855, 839);
             this.PrescanDemoPage.TabIndex = 3;
             this.PrescanDemoPage.Text = "Prescan Demo";
             this.PrescanDemoPage.UseVisualStyleBackColor = true;
@@ -2134,13 +2161,15 @@
             this.RF_Snif_Tab.Controls.Add(this.groupBox39);
             this.RF_Snif_Tab.Location = new System.Drawing.Point(4, 22);
             this.RF_Snif_Tab.Name = "RF_Snif_Tab";
-            this.RF_Snif_Tab.Size = new System.Drawing.Size(992, 839);
+            this.RF_Snif_Tab.Size = new System.Drawing.Size(855, 839);
             this.RF_Snif_Tab.TabIndex = 4;
             this.RF_Snif_Tab.Text = "RF Sniffer";
             this.RF_Snif_Tab.UseVisualStyleBackColor = true;
             // 
             // groupBox40
             // 
+            this.groupBox40.Controls.Add(this.Snif_SS20_Selct);
+            this.groupBox40.Controls.Add(this.Snif_SS10_Selct);
             this.groupBox40.Controls.Add(this.button48);
             this.groupBox40.Controls.Add(this.button47);
             this.groupBox40.Location = new System.Drawing.Point(649, 209);
@@ -2149,6 +2178,28 @@
             this.groupBox40.TabIndex = 5;
             this.groupBox40.TabStop = false;
             this.groupBox40.Text = "Control";
+            // 
+            // Snif_SS20_Selct
+            // 
+            this.Snif_SS20_Selct.AutoSize = true;
+            this.Snif_SS20_Selct.Location = new System.Drawing.Point(138, 20);
+            this.Snif_SS20_Selct.Name = "Snif_SS20_Selct";
+            this.Snif_SS20_Selct.Size = new System.Drawing.Size(51, 17);
+            this.Snif_SS20_Selct.TabIndex = 5;
+            this.Snif_SS20_Selct.TabStop = true;
+            this.Snif_SS20_Selct.Text = "SS20";
+            this.Snif_SS20_Selct.UseVisualStyleBackColor = true;
+            // 
+            // Snif_SS10_Selct
+            // 
+            this.Snif_SS10_Selct.AutoSize = true;
+            this.Snif_SS10_Selct.Location = new System.Drawing.Point(6, 19);
+            this.Snif_SS10_Selct.Name = "Snif_SS10_Selct";
+            this.Snif_SS10_Selct.Size = new System.Drawing.Size(51, 17);
+            this.Snif_SS10_Selct.TabIndex = 5;
+            this.Snif_SS10_Selct.TabStop = true;
+            this.Snif_SS10_Selct.Text = "SS10";
+            this.Snif_SS10_Selct.UseVisualStyleBackColor = true;
             // 
             // button48
             // 
@@ -2199,7 +2250,7 @@
             this.groupBox39.Controls.Add(this.label98);
             this.groupBox39.Controls.Add(this.label99);
             this.groupBox39.Controls.Add(this.label100);
-            this.groupBox39.Location = new System.Drawing.Point(649, 3);
+            this.groupBox39.Location = new System.Drawing.Point(647, 4);
             this.groupBox39.Name = "groupBox39";
             this.groupBox39.Size = new System.Drawing.Size(205, 194);
             this.groupBox39.TabIndex = 2;
@@ -2346,6 +2397,181 @@
             this.label100.TabIndex = 1;
             this.label100.Text = "COM Port: ";
             // 
+            // LostDataCheck
+            // 
+            this.LostDataCheck.Controls.Add(this.groupBox41);
+            this.LostDataCheck.Controls.Add(this.LostData_Group);
+            this.LostDataCheck.Location = new System.Drawing.Point(4, 22);
+            this.LostDataCheck.Name = "LostDataCheck";
+            this.LostDataCheck.Size = new System.Drawing.Size(855, 839);
+            this.LostDataCheck.TabIndex = 5;
+            this.LostDataCheck.Text = "Lost Data Check";
+            this.LostDataCheck.UseVisualStyleBackColor = true;
+            // 
+            // groupBox41
+            // 
+            this.groupBox41.Controls.Add(this.Lost_Display);
+            this.groupBox41.Controls.Add(this.Lost_CmdTxt);
+            this.groupBox41.Controls.Add(this.Lost_Enter_BT);
+            this.groupBox41.Location = new System.Drawing.Point(8, 424);
+            this.groupBox41.Name = "groupBox41";
+            this.groupBox41.Size = new System.Drawing.Size(842, 282);
+            this.groupBox41.TabIndex = 1;
+            this.groupBox41.TabStop = false;
+            this.groupBox41.Text = "Console";
+            // 
+            // Lost_Display
+            // 
+            this.Lost_Display.Location = new System.Drawing.Point(9, 48);
+            this.Lost_Display.Name = "Lost_Display";
+            this.Lost_Display.Size = new System.Drawing.Size(827, 227);
+            this.Lost_Display.TabIndex = 5;
+            this.Lost_Display.Text = "";
+            // 
+            // Lost_CmdTxt
+            // 
+            this.Lost_CmdTxt.Location = new System.Drawing.Point(9, 22);
+            this.Lost_CmdTxt.Name = "Lost_CmdTxt";
+            this.Lost_CmdTxt.Size = new System.Drawing.Size(622, 20);
+            this.Lost_CmdTxt.TabIndex = 4;
+            // 
+            // Lost_Enter_BT
+            // 
+            this.Lost_Enter_BT.Location = new System.Drawing.Point(663, 19);
+            this.Lost_Enter_BT.Name = "Lost_Enter_BT";
+            this.Lost_Enter_BT.Size = new System.Drawing.Size(75, 23);
+            this.Lost_Enter_BT.TabIndex = 0;
+            this.Lost_Enter_BT.Text = "Enter";
+            this.Lost_Enter_BT.UseVisualStyleBackColor = true;
+            this.Lost_Enter_BT.Click += new System.EventHandler(this.Lost_Enter_BT_Click);
+            // 
+            // LostData_Group
+            // 
+            this.LostData_Group.Controls.Add(this.Check_Lost_Frame_log);
+            this.LostData_Group.Controls.Add(this.textBox21);
+            this.LostData_Group.Controls.Add(this.Lost_Tp_Cnt_Index_txt);
+            this.LostData_Group.Controls.Add(this.textBox19);
+            this.LostData_Group.Controls.Add(this.Gun_Addr_Stamping_txt);
+            this.LostData_Group.Controls.Add(this.textBox18);
+            this.LostData_Group.Controls.Add(this.Lost_Check_Tp_Cnt);
+            this.LostData_Group.Controls.Add(this.label104);
+            this.LostData_Group.Controls.Add(this.Lost_Check_Appl_Cnt);
+            this.LostData_Group.Controls.Add(this.label103);
+            this.LostData_Group.Controls.Add(this.label102);
+            this.LostData_Group.Controls.Add(this.label105);
+            this.LostData_Group.Controls.Add(this.label101);
+            this.LostData_Group.Controls.Add(this.LostData_PathFile);
+            this.LostData_Group.Controls.Add(this.button49);
+            this.LostData_Group.Location = new System.Drawing.Point(8, 12);
+            this.LostData_Group.Name = "LostData_Group";
+            this.LostData_Group.Size = new System.Drawing.Size(839, 409);
+            this.LostData_Group.TabIndex = 0;
+            this.LostData_Group.TabStop = false;
+            this.LostData_Group.Text = "Control";
+            // 
+            // textBox21
+            // 
+            this.textBox21.Location = new System.Drawing.Point(400, 68);
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(100, 20);
+            this.textBox21.TabIndex = 3;
+            // 
+            // Lost_Tp_Cnt_Index_txt
+            // 
+            this.Lost_Tp_Cnt_Index_txt.Location = new System.Drawing.Point(209, 68);
+            this.Lost_Tp_Cnt_Index_txt.Name = "Lost_Tp_Cnt_Index_txt";
+            this.Lost_Tp_Cnt_Index_txt.Size = new System.Drawing.Size(100, 20);
+            this.Lost_Tp_Cnt_Index_txt.TabIndex = 3;
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(400, 45);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(100, 20);
+            this.textBox19.TabIndex = 3;
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(209, 45);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(100, 20);
+            this.textBox18.TabIndex = 3;
+            // 
+            // Lost_Check_Tp_Cnt
+            // 
+            this.Lost_Check_Tp_Cnt.AutoSize = true;
+            this.Lost_Check_Tp_Cnt.Location = new System.Drawing.Point(6, 71);
+            this.Lost_Check_Tp_Cnt.Name = "Lost_Check_Tp_Cnt";
+            this.Lost_Check_Tp_Cnt.Size = new System.Drawing.Size(92, 17);
+            this.Lost_Check_Tp_Cnt.TabIndex = 2;
+            this.Lost_Check_Tp_Cnt.Text = "Check Tp Cnt";
+            this.Lost_Check_Tp_Cnt.UseVisualStyleBackColor = true;
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(338, 72);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(37, 13);
+            this.label104.TabIndex = 1;
+            this.label104.Text = "Lengh";
+            // 
+            // Lost_Check_Appl_Cnt
+            // 
+            this.Lost_Check_Appl_Cnt.AutoSize = true;
+            this.Lost_Check_Appl_Cnt.Location = new System.Drawing.Point(6, 48);
+            this.Lost_Check_Appl_Cnt.Name = "Lost_Check_Appl_Cnt";
+            this.Lost_Check_Appl_Cnt.Size = new System.Drawing.Size(100, 17);
+            this.Lost_Check_Appl_Cnt.TabIndex = 2;
+            this.Lost_Check_Appl_Cnt.Text = "Check Appl Cnt";
+            this.Lost_Check_Appl_Cnt.UseVisualStyleBackColor = true;
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(127, 72);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(70, 13);
+            this.label103.TabIndex = 1;
+            this.label103.Text = "Index of Start";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(338, 49);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(37, 13);
+            this.label102.TabIndex = 1;
+            this.label102.Text = "Lengh";
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(127, 49);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(70, 13);
+            this.label101.TabIndex = 1;
+            this.label101.Text = "Index of Start";
+            // 
+            // LostData_PathFile
+            // 
+            this.LostData_PathFile.AutoSize = true;
+            this.LostData_PathFile.Location = new System.Drawing.Point(127, 24);
+            this.LostData_PathFile.Name = "LostData_PathFile";
+            this.LostData_PathFile.Size = new System.Drawing.Size(48, 13);
+            this.LostData_PathFile.TabIndex = 1;
+            this.LostData_PathFile.Text = "File Path";
+            // 
+            // button49
+            // 
+            this.button49.Location = new System.Drawing.Point(6, 19);
+            this.button49.Name = "button49";
+            this.button49.Size = new System.Drawing.Size(75, 23);
+            this.button49.TabIndex = 0;
+            this.button49.Text = "File Check";
+            this.button49.UseVisualStyleBackColor = true;
+            this.button49.Click += new System.EventHandler(this.Lost_OpenFile_Click);
+            // 
             // ComControl
             // 
             this.ComControl.Controls.Add(this.Tab3Setting);
@@ -2354,7 +2580,7 @@
             this.ComControl.Location = new System.Drawing.Point(4, 22);
             this.ComControl.Name = "ComControl";
             this.ComControl.Padding = new System.Windows.Forms.Padding(3);
-            this.ComControl.Size = new System.Drawing.Size(992, 839);
+            this.ComControl.Size = new System.Drawing.Size(855, 839);
             this.ComControl.TabIndex = 2;
             this.ComControl.Text = "ComControl";
             this.ComControl.UseVisualStyleBackColor = true;
@@ -5687,6 +5913,30 @@
             // 
             this.SnifTimer_1.Tick += new System.EventHandler(this.PKB_rxTimer);
             // 
+            // Check_Lost_Frame_log
+            // 
+            this.Check_Lost_Frame_log.Location = new System.Drawing.Point(6, 120);
+            this.Check_Lost_Frame_log.Name = "Check_Lost_Frame_log";
+            this.Check_Lost_Frame_log.Size = new System.Drawing.Size(827, 283);
+            this.Check_Lost_Frame_log.TabIndex = 4;
+            this.Check_Lost_Frame_log.Text = "";
+            // 
+            // Gun_Addr_Stamping_txt
+            // 
+            this.Gun_Addr_Stamping_txt.Location = new System.Drawing.Point(209, 90);
+            this.Gun_Addr_Stamping_txt.Name = "Gun_Addr_Stamping_txt";
+            this.Gun_Addr_Stamping_txt.Size = new System.Drawing.Size(100, 20);
+            this.Gun_Addr_Stamping_txt.TabIndex = 3;
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Location = new System.Drawing.Point(105, 93);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(92, 13);
+            this.label105.TabIndex = 1;
+            this.label105.Text = "Address Stamping";
+            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5746,8 +5996,14 @@
             this.Tab3_Setting.PerformLayout();
             this.RF_Snif_Tab.ResumeLayout(false);
             this.groupBox40.ResumeLayout(false);
+            this.groupBox40.PerformLayout();
             this.groupBox39.ResumeLayout(false);
             this.groupBox39.PerformLayout();
+            this.LostDataCheck.ResumeLayout(false);
+            this.groupBox41.ResumeLayout(false);
+            this.groupBox41.PerformLayout();
+            this.LostData_Group.ResumeLayout(false);
+            this.LostData_Group.PerformLayout();
             this.ComControl.ResumeLayout(false);
             this.Tab3Setting.ResumeLayout(false);
             this.Tab3Setting.PerformLayout();
@@ -6316,6 +6572,29 @@
         private System.Windows.Forms.Button button48;
         private System.IO.Ports.SerialPort SnifPort;
         private System.Windows.Forms.Timer SnifTimer_1;
+        private System.Windows.Forms.RadioButton Snif_SS10_Selct;
+        private System.Windows.Forms.RadioButton Snif_SS20_Selct;
+        private System.Windows.Forms.TabPage LostDataCheck;
+        private System.Windows.Forms.GroupBox LostData_Group;
+        private System.Windows.Forms.Button button49;
+        private System.Windows.Forms.Label LostData_PathFile;
+        private System.Windows.Forms.CheckBox Lost_Check_Tp_Cnt;
+        private System.Windows.Forms.CheckBox Lost_Check_Appl_Cnt;
+        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox Lost_Tp_Cnt_Index_txt;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label102;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.TextBox Lost_CmdTxt;
+        private System.Windows.Forms.GroupBox groupBox41;
+        private System.Windows.Forms.RichTextBox Lost_Display;
+        private System.Windows.Forms.Button Lost_Enter_BT;
+        private System.Windows.Forms.RichTextBox Check_Lost_Frame_log;
+        private System.Windows.Forms.TextBox Gun_Addr_Stamping_txt;
+        private System.Windows.Forms.Label label105;
 
     }
 }

@@ -72,32 +72,35 @@
     <Compile Include="Format_data.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SS20_Class_Define.cs">
+    <Compile Include="LostDataCheck\CheckLostData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SS20_L1.cs">
+    <Compile Include="Sniffer\SS20_Class_Define.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SS20_L2.cs">
+    <Compile Include="Sniffer\SS20_L1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SnifControl.cs">
+    <Compile Include="Sniffer\SS20_L2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tab1EventHandler.cs">
+    <Compile Include="Sniffer\SnifControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tab1Control.cs">
+    <Compile Include="Tab1\Tab1EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tab2Comport.cs" />
-    <Compile Include="Tab2Parser.cs">
+    <Compile Include="Tab1\Tab1Control.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tab3Control.cs">
+    <Compile Include="Tab2\Tab2Comport.cs" />
+    <Compile Include="Tab2\Tab2Parser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tab3EventHandler.cs">
+    <Compile Include="Tab3\Tab3Control.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tab3\Tab3EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Test_Form.cs">
@@ -106,7 +109,7 @@
     <Compile Include="Test_Form.Designer.cs">
       <DependentUpon>Test_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tab2Control.cs">
+    <Compile Include="Tab2\Tab2Control.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -138,7 +141,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tab2EventHandler.cs">
+    <Compile Include="Tab2\Tab2EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

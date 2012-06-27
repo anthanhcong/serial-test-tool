@@ -1,0 +1,7 @@
+
+%COM:BAD:38400
+%DLY:2:s
+
+%LBL1
+%DLY:100:s
+%GTO1
