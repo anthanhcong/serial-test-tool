@@ -194,15 +194,18 @@
             this.Lost_CmdTxt = new System.Windows.Forms.TextBox();
             this.Lost_Enter_BT = new System.Windows.Forms.Button();
             this.LostData_Group = new System.Windows.Forms.GroupBox();
+            this.Check_Lost_Frame_log = new System.Windows.Forms.RichTextBox();
             this.textBox21 = new System.Windows.Forms.TextBox();
             this.Lost_Tp_Cnt_Index_txt = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
+            this.Gun_Addr_Stamping_txt = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.Lost_Check_Tp_Cnt = new System.Windows.Forms.CheckBox();
             this.label104 = new System.Windows.Forms.Label();
             this.Lost_Check_Appl_Cnt = new System.Windows.Forms.CheckBox();
             this.label103 = new System.Windows.Forms.Label();
             this.label102 = new System.Windows.Forms.Label();
+            this.label105 = new System.Windows.Forms.Label();
             this.label101 = new System.Windows.Forms.Label();
             this.LostData_PathFile = new System.Windows.Forms.Label();
             this.button49 = new System.Windows.Forms.Button();
@@ -533,9 +536,6 @@
             this.Receive_timer = new System.Windows.Forms.Timer(this.components);
             this.SnifPort = new System.IO.Ports.SerialPort(this.components);
             this.SnifTimer_1 = new System.Windows.Forms.Timer(this.components);
-            this.Check_Lost_Frame_log = new System.Windows.Forms.RichTextBox();
-            this.Gun_Addr_Stamping_txt = new System.Windows.Forms.TextBox();
-            this.label105 = new System.Windows.Forms.Label();
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
             this.groupBox38.SuspendLayout();
@@ -2469,6 +2469,14 @@
             this.LostData_Group.TabStop = false;
             this.LostData_Group.Text = "Control";
             // 
+            // Check_Lost_Frame_log
+            // 
+            this.Check_Lost_Frame_log.Location = new System.Drawing.Point(6, 120);
+            this.Check_Lost_Frame_log.Name = "Check_Lost_Frame_log";
+            this.Check_Lost_Frame_log.Size = new System.Drawing.Size(827, 283);
+            this.Check_Lost_Frame_log.TabIndex = 4;
+            this.Check_Lost_Frame_log.Text = "";
+            // 
             // textBox21
             // 
             this.textBox21.Location = new System.Drawing.Point(400, 68);
@@ -2489,6 +2497,13 @@
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(100, 20);
             this.textBox19.TabIndex = 3;
+            // 
+            // Gun_Addr_Stamping_txt
+            // 
+            this.Gun_Addr_Stamping_txt.Location = new System.Drawing.Point(209, 90);
+            this.Gun_Addr_Stamping_txt.Name = "Gun_Addr_Stamping_txt";
+            this.Gun_Addr_Stamping_txt.Size = new System.Drawing.Size(100, 20);
+            this.Gun_Addr_Stamping_txt.TabIndex = 3;
             // 
             // textBox18
             // 
@@ -2543,6 +2558,15 @@
             this.label102.Size = new System.Drawing.Size(37, 13);
             this.label102.TabIndex = 1;
             this.label102.Text = "Lengh";
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Location = new System.Drawing.Point(105, 93);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(92, 13);
+            this.label105.TabIndex = 1;
+            this.label105.Text = "Address Stamping";
             // 
             // label101
             // 
@@ -5913,30 +5937,6 @@
             // 
             this.SnifTimer_1.Tick += new System.EventHandler(this.PKB_rxTimer);
             // 
-            // Check_Lost_Frame_log
-            // 
-            this.Check_Lost_Frame_log.Location = new System.Drawing.Point(6, 120);
-            this.Check_Lost_Frame_log.Name = "Check_Lost_Frame_log";
-            this.Check_Lost_Frame_log.Size = new System.Drawing.Size(827, 283);
-            this.Check_Lost_Frame_log.TabIndex = 4;
-            this.Check_Lost_Frame_log.Text = "";
-            // 
-            // Gun_Addr_Stamping_txt
-            // 
-            this.Gun_Addr_Stamping_txt.Location = new System.Drawing.Point(209, 90);
-            this.Gun_Addr_Stamping_txt.Name = "Gun_Addr_Stamping_txt";
-            this.Gun_Addr_Stamping_txt.Size = new System.Drawing.Size(100, 20);
-            this.Gun_Addr_Stamping_txt.TabIndex = 3;
-            // 
-            // label105
-            // 
-            this.label105.AutoSize = true;
-            this.label105.Location = new System.Drawing.Point(105, 93);
-            this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(92, 13);
-            this.label105.TabIndex = 1;
-            this.label105.Text = "Address Stamping";
-            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5948,7 +5948,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test_Form";
-            this.Text = "Test Tool          Ver: 0.0.0.6";
+            this.Text = "Test Tool          Ver: 0.0.0.7";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_Form_FormClosing);
             this.ControlTab.ResumeLayout(false);
