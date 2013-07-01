@@ -12,9 +12,13 @@ namespace WindowsFormsApplication1
     partial class Test_Form
     {
         #region Public Enumerations
-        public int count_data;
-        public int right_num;
-        public int wrong_num;
+        private int count_data;
+        private int Right_num;
+        private int Wrong_num;
+        private int NotRead_num;
+        private int ReadSpeed;
+
+        private string TAB1_RECEIVE_BUFFER;
         #endregion
 
         /*
@@ -34,8 +38,12 @@ namespace WindowsFormsApplication1
          */
         private void Tab1SerialPort_ISR(object sender, SerialDataReceivedEventArgs e)
         {
-            string InData = Tab1serialPort.ReadExisting();
+            int len = Tab1serialPort.BytesToRead;
+            byte[] data_read = new byte[len];
+            Tab1serialPort.Read(data_read, 0, len);
+            string InData = Convert_Bytes_to_String(data_read, 0, len);
             string OutData;
+            LogMsgType type = LogMsgType.Error;
 
             // Update Time Check
             tab1_last_receive = tab1_curr_receive;
@@ -46,42 +54,60 @@ namespace WindowsFormsApplication1
                 tab1_first_receive = tab1_curr_receive;
             }
 
-            // Change to Hex string
-            OutData = FormatData(InData, DataType.Receive, tab1_curr_receive, TabNum.Tab1, Tab1_wait_receive);
-
-            if ((InData != "") && (InData.Length >= 2))
+            TAB1_RECEIVE_BUFFER += InData;
+            if ((TAB1_RECEIVE_BUFFER != "") && (TAB1_RECEIVE_BUFFER.Length >= 2))
             {
-                if (InData.Substring(InData.Length-2, 2) != "\r\n")
+                if ((TAB1_RECEIVE_BUFFER.Substring(TAB1_RECEIVE_BUFFER.Length - 2, 2) == "\r\n") || (TAB1_RECEIVE_BUFFER.Substring(TAB1_RECEIVE_BUFFER.Length - 1, 1) == "\r"))
                 {
-                    Tab1_wait_receive = false;
-                }
-                else
-                {
-                    Tab1_wait_receive = true;
-                    OutData += "\n";
+                    // Change to Hex string for check correct data
+                    OutData = FormatData(TAB1_RECEIVE_BUFFER, DataType.Receive, tab1_curr_receive, TabNum.Tab1, false);
+                    Tab1DataReceiveLine.Invoke(new EventHandler(delegate
+                    {
+                        // Enable timer for check can not read
+                        Tab1_WaitNextLbl_Timer.Stop();
+                        if (Tab1_CheckNotRead.Checked == true)
+                        {
+                            try
+                            {
+                                Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
+                                Tab1_WaitNextLbl_Timer.Enabled = true;
+                                Tab1_WaitNextLbl_Timer.Start();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Can not start Check Not Read.", "Error");
+                            }
+                        }
+                        Tab1DataReceiveLine.Text = OutData.Trim();
+                        count_data++;
+                        // if (Tab1Data4Check.Text == OutData.Trim())
+                        if (Is_new_Item(OutData.Trim(), Tab1_Expect_Data_List) == false)
+                        {
+                            Right_num++;
+                            
+                            // Tab1NumCorrect.Text = Right_num.ToString();
+                            type = LogMsgType.Incoming;
+                        }
+                        else
+                        {
+                            Wrong_num++;
+                            // Tab1NumWrong.Text = Wrong_num.ToString();
+                            type = LogMsgType.Error;
+                        }
+                        Update_Statistic();
+                    }));
+
+                    // Add to logs
+                    OutData = FormatData(TAB1_RECEIVE_BUFFER, DataType.Receive, tab1_curr_receive, TabNum.Tab1, true);
+                    if (type == LogMsgType.Error)
+                    {
+                        Add_logs("Miss read\n", LogMsgType.Error, TabNum.Tab1);
+                    }
+                    // OutData += "\n";
+                    Add_logs(OutData, type, TabNum.Tab1);
+                    TAB1_RECEIVE_BUFFER = "";
                 }
             }
-
-            // Write data to an object of an other thread
-            Tab1DataReceiveLine.Invoke(new EventHandler(delegate
-            {
-                Tab1DataReceiveLine.SelectedText = string.Empty;
-                Tab1DataReceiveLine.Text = InData;
-                count_data++;
-                if (Tab1Data4Check.Text == InData)
-                {
-                    right_num++;
-                    Tab1NumCorrect.Text = right_num.ToString();
-                }
-                else
-                {
-                    wrong_num++;
-                    Tab1NumWrong.Text = wrong_num.ToString();
-                }
-            }));
-
-            // Add to logs
-            Add_logs(OutData, LogMsgType.Incoming, TabNum.Tab1);
         }
 
         /***************************************************************************/
@@ -109,16 +135,27 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void Tab1ClearBT_Click(object sender, EventArgs e)
         {
-            Tab1ComPortSelect.SelectedIndex = 0;
             Tab1Data4Check.Text = "";
             Tab1NumCorrect.Text = "";
             Tab1NumWrong.Text = "";
+            Tab1_NotRead.Text = "";
+            Tab1_TotalRead.Text = "";
+            Tab1_ReadSpeed.Text = "";
+            Tab1DataReceive.Text = "";
+            Tab1SendData.Text = "";
+            Tab1DataReceiveLine.Text = "";
+            Tab1_CircleRead.Text = "";
+        }
+
+
+        private void Tab1RestoreBT_Click(object sender, EventArgs e)
+        {
+            Tab1ComPortSelect.SelectedIndex = 0;
             Tab1SetBaudrate.SelectedIndex = 0;
             Tab1SetDatabit.SelectedIndex = 0;
             Tab1SetParity.SelectedIndex = 0;
             Tab1SetStopbit.SelectedIndex = 0;
             Tab1SetThreshold.Text = "1";
-            Tab1DataReceive.Text = "";
         }
 
         /// <summary>
@@ -155,6 +192,22 @@ namespace WindowsFormsApplication1
                             ResetTimeCheck();
                             Update_Status_bar(1, true);
                             Tab1_wait_receive = true;
+
+                            // Enable timer for check can not read
+                            if (Tab1_CheckNotRead.Checked == true)
+                            {
+                                try
+                                {
+                                    Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
+                                    Tab1_WaitNextLbl_Timer.Enabled = true;
+                                    Tab1_WaitNextLbl_Timer.Start();
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Can not start Check Not Read.", "Error");
+                                }
+                            }
+                            
                         }
                         // Stop Click
                         else
@@ -205,10 +258,11 @@ namespace WindowsFormsApplication1
                 default:
                     break;
             }
-
-            
-            right_num = 0;
-            wrong_num = 0;
+            Right_num = 0;
+            Wrong_num = 0;
+            NotRead_num = 0;
+            count_data = 0;
+            Update_Statistic();
         }
 
         /// <summary>
@@ -221,10 +275,21 @@ namespace WindowsFormsApplication1
         private void Tab1SendBT_Click(object sender, EventArgs e)
         {
             string Logmes;
+            string senddata;
+            byte[] data_converted;
+            int len;
+            
+
             if (Tab1InfStatus == Tab1Interface.Ser)
             {
+                senddata = Tab1SendData.Text;
+                len = senddata.Length;
+                data_converted = new byte[len + 5];
+                len = Change_Text2Bytes(senddata, ref data_converted);
+
                 // Send data
-                Tab1serialPort.Write(Tab1SendData.Text);
+                //Tab1serialPort.(Tab1SendData.Text);
+                Tab1serialPort.Write(data_converted, 0, len);
 
                 // Report Time Check (For last Transaction)
                 tab1_last_send = tab1_curr_send;
@@ -235,7 +300,9 @@ namespace WindowsFormsApplication1
                 }
 
                 // Add to log
-                Logmes = FormatData(Tab1SendData.Text, DataType.Send, tab1_curr_send, TabNum.Tab1, false);
+
+                senddata = Change_HexString2String(senddata);
+                Logmes = FormatData(senddata, DataType.Send, tab1_curr_send, TabNum.Tab1, false);
                 Tab1_wait_receive = true;
                 Add_logs(Logmes, LogMsgType.Outgoing, TabNum.Tab1);
             }
@@ -271,6 +338,23 @@ namespace WindowsFormsApplication1
                     Tab1DataReceive.SaveFile(fileName, RichTextBoxStreamType.RichText);
                 }
             }
+        }
+
+
+        private void Tab1_StatisticBT_Click(object sender, EventArgs e)
+        {
+            string statistic_mess;
+            DateTime currTime = DateTime.Now;
+            string TimeStamp = currTime.ToString("HH:mm:ss.fff");
+
+            statistic_mess = "Report Statistic at: " + TimeStamp + "\n";
+            statistic_mess += "Good Read  : " + Right_num.ToString() + "\n";
+            statistic_mess += "Miss Read  : " + Wrong_num.ToString() + "\n";
+            statistic_mess += "Not Read   : " + NotRead_num.ToString() + "\n";
+            statistic_mess += "Total Read : " + count_data.ToString() + "\n";
+
+            Add_logs(statistic_mess, LogMsgType.Normal, TabNum.Tab1);
+
         }
 
         /*******************************************************************
@@ -323,6 +407,52 @@ namespace WindowsFormsApplication1
             else if (Tab1ReportFirstRsp.Checked == true) Tab1CurrMode = Tab1ReportMode.FirstRSP;
             else if (Tab1ReportTransaction.Checked == true) Tab1CurrMode = Tab1ReportMode.Transaction;
             else Tab1CurrMode = Tab1ReportMode.Receive;
+        }
+
+        private void Tab1_Add_BT_Click(object sender, EventArgs e)
+        {
+            string item = Tab1Data4Check.Text.Trim();
+            if (Is_new_Item(item, Tab1_Expect_Data_List) == true)
+            {
+                Tab1_Expect_Data_List.Items.Add(item);
+            }
+        }
+
+        private void Tab1_Remove_BT_Click(object sender, EventArgs e)
+        {
+            if (Tab1_Expect_Data_List.Items.Count != 0)
+            {
+                if (Tab1_Expect_Data_List.SelectedIndex != -1)
+                {
+                    Tab1_Expect_Data_List.Items.RemoveAt(Tab1_Expect_Data_List.SelectedIndex);
+                }
+            }
+        }
+
+
+        private void Tab1_WaitNextLbl_Timer_Tick(object sender, EventArgs e)
+        {
+            // Enable timer for check can not read
+            Tab1_WaitNextLbl_Timer.Stop();
+            if (Tab1_CheckNotRead.Checked == true)
+            {
+                try
+                {
+                    Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
+                    Tab1_WaitNextLbl_Timer.Enabled = true;
+                    Tab1_WaitNextLbl_Timer.Start();
+                }
+                catch
+                {
+                    MessageBox.Show("Can not start Check Not Read.", "Error");
+                }
+            }
+
+            Add_logs("Not read\n", LogMsgType.Error, TabNum.Tab1);
+            NotRead_num ++;
+            count_data++;
+
+            Update_Statistic();
         }
     }
 }

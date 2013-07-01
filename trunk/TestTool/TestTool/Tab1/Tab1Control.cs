@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1
             Tab1TextView.Checked = true;
             Tab1ReportRun.Checked = true;
             Tab1_wait_receive = true;
+            TAB1_RECEIVE_BUFFER = "";
             return true;
         }
 
@@ -255,6 +256,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                currentBox.Focus();
                 // Set up message
                 switch (type)
                 {
@@ -359,6 +361,14 @@ namespace WindowsFormsApplication1
             Tab1ReportTransaction.Enabled = enable;
             Tab1ReportReceiving.Enabled = enable;
         }
+        private void Update_Statistic()
+        {
+            Tab1NumCorrect.Text = Right_num.ToString();
+            Tab1NumWrong.Text = Wrong_num.ToString();
+            Tab1_NotRead.Text = NotRead_num.ToString();
+            Tab1_TotalRead.Text = count_data.ToString();
+            Tab1_ReadSpeed.Text = ReadSpeed.ToString();
+        }
 
         private void Tab1DataReceiveLine_KeyDown(object sender, KeyEventArgs e)
         {
@@ -370,6 +380,21 @@ namespace WindowsFormsApplication1
                 Add_logs(Text, LogMsgType.Incoming, TabNum.Tab1);
                 Tab1DataReceiveLine.Text = "";
             }
+        }
+
+        private bool Is_new_Item (string text, ListBox list)
+        {
+            int num_item = list.Items.Count;
+            int i;
+            if (text == "") return false;
+            for (i = 0; i < num_item; i++)
+            {
+                if (text.Trim() == list.Items[i].ToString().Trim())
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

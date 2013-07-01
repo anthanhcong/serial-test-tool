@@ -39,9 +39,7 @@
             this.Tab1TextView = new System.Windows.Forms.RadioButton();
             this.Tab1HexView = new System.Windows.Forms.RadioButton();
             this.Tab1PromptText = new System.Windows.Forms.TextBox();
-            this.Tab1LogBT = new System.Windows.Forms.Button();
             this.Tab1PromptLabel = new System.Windows.Forms.Label();
-            this.Tab1SendBT = new System.Windows.Forms.Button();
             this.Tab1groupAppMode = new System.Windows.Forms.GroupBox();
             this.Tab1ReportReceiving = new System.Windows.Forms.RadioButton();
             this.Tab1ReportFirstRsp = new System.Windows.Forms.RadioButton();
@@ -60,20 +58,37 @@
             this.Tab1SetParityLabel = new System.Windows.Forms.Label();
             this.Tab1SetThresholdLabel = new System.Windows.Forms.Label();
             this.Tab1SetStopBitLabel = new System.Windows.Forms.Label();
-            this.Tab1ClearBT = new System.Windows.Forms.Button();
             this.Tab1groupSerCount = new System.Windows.Forms.GroupBox();
+            this.Tab1_CheckNotRead = new System.Windows.Forms.CheckBox();
+            this.Tab1_Remove_BT = new System.Windows.Forms.Button();
+            this.Tab1_Add_BT = new System.Windows.Forms.Button();
+            this.Tab1_Expect_Data_List = new System.Windows.Forms.ListBox();
+            this.Tab1LogBT = new System.Windows.Forms.Button();
             this.Tab1SendData = new System.Windows.Forms.RichTextBox();
             this.Tab1DataReceiveLine = new System.Windows.Forms.TextBox();
             this.Tab1DataReveiceLabel = new System.Windows.Forms.Label();
+            this.Tab1SendBT = new System.Windows.Forms.Button();
             this.Tab1SendDataLabel = new System.Windows.Forms.Label();
             this.Tab1Data4Check = new System.Windows.Forms.TextBox();
             this.Tab1CorrectLabel = new System.Windows.Forms.Label();
+            this.Tab1_StatisticBT = new System.Windows.Forms.Button();
+            this.label107 = new System.Windows.Forms.Label();
+            this.button50 = new System.Windows.Forms.Button();
+            this.Tab1ClearBT = new System.Windows.Forms.Button();
+            this.Tab1RunBT = new System.Windows.Forms.Button();
+            this.label110 = new System.Windows.Forms.Label();
+            this.label109 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.label106 = new System.Windows.Forms.Label();
             this.Tab1WrongLabel = new System.Windows.Forms.Label();
             this.Tab1Data4CheckLabel = new System.Windows.Forms.Label();
+            this.Tab1_TotalRead = new System.Windows.Forms.TextBox();
+            this.Tab1_ReadSpeed = new System.Windows.Forms.TextBox();
+            this.Tab1_CircleRead = new System.Windows.Forms.TextBox();
+            this.Tab1_NotRead = new System.Windows.Forms.TextBox();
             this.Tab1NumCorrect = new System.Windows.Forms.TextBox();
             this.Tab1NumWrong = new System.Windows.Forms.TextBox();
             this.Tab1DataReceive = new System.Windows.Forms.RichTextBox();
-            this.Tab1RunBT = new System.Windows.Forms.Button();
             this.InOutPage = new System.Windows.Forms.TabPage();
             this.Report = new System.Windows.Forms.GroupBox();
             this.label94 = new System.Windows.Forms.Label();
@@ -536,6 +551,7 @@
             this.Receive_timer = new System.Windows.Forms.Timer(this.components);
             this.SnifPort = new System.IO.Ports.SerialPort(this.components);
             this.SnifTimer_1 = new System.Windows.Forms.Timer(this.components);
+            this.Tab1_WaitNextLbl_Timer = new System.Windows.Forms.Timer(this.components);
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
             this.groupBox38.SuspendLayout();
@@ -656,17 +672,13 @@
             this.CountPage.Controls.Add(this.groupBox38);
             this.CountPage.Controls.Add(this.Tab1groupDataView);
             this.CountPage.Controls.Add(this.Tab1PromptText);
-            this.CountPage.Controls.Add(this.Tab1LogBT);
             this.CountPage.Controls.Add(this.Tab1PromptLabel);
-            this.CountPage.Controls.Add(this.Tab1SendBT);
             this.CountPage.Controls.Add(this.Tab1KeyOption);
             this.CountPage.Controls.Add(this.Tab1SerOption);
             this.CountPage.Controls.Add(this.Tab1groupAppMode);
             this.CountPage.Controls.Add(this.Tab1groupSerSetting);
-            this.CountPage.Controls.Add(this.Tab1ClearBT);
             this.CountPage.Controls.Add(this.Tab1groupSerCount);
             this.CountPage.Controls.Add(this.Tab1DataReceive);
-            this.CountPage.Controls.Add(this.Tab1RunBT);
             this.CountPage.Location = new System.Drawing.Point(4, 22);
             this.CountPage.Name = "CountPage";
             this.CountPage.Padding = new System.Windows.Forms.Padding(3);
@@ -737,16 +749,6 @@
             this.Tab1PromptText.Size = new System.Drawing.Size(250, 20);
             this.Tab1PromptText.TabIndex = 37;
             // 
-            // Tab1LogBT
-            // 
-            this.Tab1LogBT.Location = new System.Drawing.Point(778, 317);
-            this.Tab1LogBT.Name = "Tab1LogBT";
-            this.Tab1LogBT.Size = new System.Drawing.Size(63, 26);
-            this.Tab1LogBT.TabIndex = 15;
-            this.Tab1LogBT.Text = "Save To";
-            this.Tab1LogBT.UseVisualStyleBackColor = true;
-            this.Tab1LogBT.Click += new System.EventHandler(this.Tab1LogBT_Click);
-            // 
             // Tab1PromptLabel
             // 
             this.Tab1PromptLabel.AutoSize = true;
@@ -756,16 +758,6 @@
             this.Tab1PromptLabel.Size = new System.Drawing.Size(89, 13);
             this.Tab1PromptLabel.TabIndex = 36;
             this.Tab1PromptLabel.Text = "Prompt Message:";
-            // 
-            // Tab1SendBT
-            // 
-            this.Tab1SendBT.Location = new System.Drawing.Point(778, 476);
-            this.Tab1SendBT.Name = "Tab1SendBT";
-            this.Tab1SendBT.Size = new System.Drawing.Size(63, 26);
-            this.Tab1SendBT.TabIndex = 35;
-            this.Tab1SendBT.Text = "Send";
-            this.Tab1SendBT.UseVisualStyleBackColor = true;
-            this.Tab1SendBT.Click += new System.EventHandler(this.Tab1SendBT_Click);
             // 
             // Tab1groupAppMode
             // 
@@ -978,67 +970,134 @@
             this.Tab1SetStopBitLabel.TabIndex = 24;
             this.Tab1SetStopBitLabel.Text = "Stop Bits";
             // 
-            // Tab1ClearBT
-            // 
-            this.Tab1ClearBT.Location = new System.Drawing.Point(778, 350);
-            this.Tab1ClearBT.Name = "Tab1ClearBT";
-            this.Tab1ClearBT.Size = new System.Drawing.Size(63, 27);
-            this.Tab1ClearBT.TabIndex = 18;
-            this.Tab1ClearBT.Text = "Clear";
-            this.Tab1ClearBT.UseVisualStyleBackColor = true;
-            this.Tab1ClearBT.Click += new System.EventHandler(this.Tab1ClearBT_Click);
-            // 
             // Tab1groupSerCount
             // 
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_CheckNotRead);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_Remove_BT);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_Add_BT);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_Expect_Data_List);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1LogBT);
             this.Tab1groupSerCount.Controls.Add(this.Tab1SendData);
             this.Tab1groupSerCount.Controls.Add(this.Tab1DataReceiveLine);
             this.Tab1groupSerCount.Controls.Add(this.Tab1DataReveiceLabel);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1SendBT);
             this.Tab1groupSerCount.Controls.Add(this.Tab1SendDataLabel);
             this.Tab1groupSerCount.Controls.Add(this.Tab1Data4Check);
             this.Tab1groupSerCount.Controls.Add(this.Tab1CorrectLabel);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_StatisticBT);
+            this.Tab1groupSerCount.Controls.Add(this.label107);
+            this.Tab1groupSerCount.Controls.Add(this.button50);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1ClearBT);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1RunBT);
+            this.Tab1groupSerCount.Controls.Add(this.label110);
+            this.Tab1groupSerCount.Controls.Add(this.label109);
+            this.Tab1groupSerCount.Controls.Add(this.label108);
+            this.Tab1groupSerCount.Controls.Add(this.label106);
             this.Tab1groupSerCount.Controls.Add(this.Tab1WrongLabel);
             this.Tab1groupSerCount.Controls.Add(this.Tab1Data4CheckLabel);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_TotalRead);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_ReadSpeed);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_CircleRead);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_NotRead);
             this.Tab1groupSerCount.Controls.Add(this.Tab1NumCorrect);
             this.Tab1groupSerCount.Controls.Add(this.Tab1NumWrong);
-            this.Tab1groupSerCount.Location = new System.Drawing.Point(501, 318);
+            this.Tab1groupSerCount.Location = new System.Drawing.Point(510, 6);
             this.Tab1groupSerCount.Name = "Tab1groupSerCount";
-            this.Tab1groupSerCount.Size = new System.Drawing.Size(271, 231);
+            this.Tab1groupSerCount.Size = new System.Drawing.Size(331, 543);
             this.Tab1groupSerCount.TabIndex = 29;
             this.Tab1groupSerCount.TabStop = false;
             this.Tab1groupSerCount.Text = "Data";
+            // 
+            // Tab1_CheckNotRead
+            // 
+            this.Tab1_CheckNotRead.AutoSize = true;
+            this.Tab1_CheckNotRead.Location = new System.Drawing.Point(197, 172);
+            this.Tab1_CheckNotRead.Name = "Tab1_CheckNotRead";
+            this.Tab1_CheckNotRead.Size = new System.Drawing.Size(128, 17);
+            this.Tab1_CheckNotRead.TabIndex = 38;
+            this.Tab1_CheckNotRead.Text = "Check Can Not Read";
+            this.Tab1_CheckNotRead.UseVisualStyleBackColor = true;
+            // 
+            // Tab1_Remove_BT
+            // 
+            this.Tab1_Remove_BT.Location = new System.Drawing.Point(251, 63);
+            this.Tab1_Remove_BT.Name = "Tab1_Remove_BT";
+            this.Tab1_Remove_BT.Size = new System.Drawing.Size(75, 23);
+            this.Tab1_Remove_BT.TabIndex = 37;
+            this.Tab1_Remove_BT.Text = "Remove";
+            this.Tab1_Remove_BT.UseVisualStyleBackColor = true;
+            this.Tab1_Remove_BT.Click += new System.EventHandler(this.Tab1_Remove_BT_Click);
+            // 
+            // Tab1_Add_BT
+            // 
+            this.Tab1_Add_BT.Location = new System.Drawing.Point(250, 34);
+            this.Tab1_Add_BT.Name = "Tab1_Add_BT";
+            this.Tab1_Add_BT.Size = new System.Drawing.Size(75, 23);
+            this.Tab1_Add_BT.TabIndex = 37;
+            this.Tab1_Add_BT.Text = "Add";
+            this.Tab1_Add_BT.UseVisualStyleBackColor = true;
+            this.Tab1_Add_BT.Click += new System.EventHandler(this.Tab1_Add_BT_Click);
+            // 
+            // Tab1_Expect_Data_List
+            // 
+            this.Tab1_Expect_Data_List.FormattingEnabled = true;
+            this.Tab1_Expect_Data_List.Location = new System.Drawing.Point(15, 63);
+            this.Tab1_Expect_Data_List.Name = "Tab1_Expect_Data_List";
+            this.Tab1_Expect_Data_List.Size = new System.Drawing.Size(229, 95);
+            this.Tab1_Expect_Data_List.TabIndex = 36;
+            // 
+            // Tab1LogBT
+            // 
+            this.Tab1LogBT.Location = new System.Drawing.Point(170, 502);
+            this.Tab1LogBT.Name = "Tab1LogBT";
+            this.Tab1LogBT.Size = new System.Drawing.Size(63, 26);
+            this.Tab1LogBT.TabIndex = 15;
+            this.Tab1LogBT.Text = "Save To";
+            this.Tab1LogBT.UseVisualStyleBackColor = true;
+            this.Tab1LogBT.Click += new System.EventHandler(this.Tab1LogBT_Click);
             // 
             // Tab1SendData
             // 
             this.Tab1SendData.BackColor = System.Drawing.SystemColors.Info;
             this.Tab1SendData.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tab1SendData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Tab1SendData.Location = new System.Drawing.Point(15, 173);
+            this.Tab1SendData.Location = new System.Drawing.Point(16, 348);
             this.Tab1SendData.Name = "Tab1SendData";
-            this.Tab1SendData.Size = new System.Drawing.Size(221, 47);
+            this.Tab1SendData.Size = new System.Drawing.Size(310, 112);
             this.Tab1SendData.TabIndex = 13;
             this.Tab1SendData.Text = "";
             // 
             // Tab1DataReceiveLine
             // 
-            this.Tab1DataReceiveLine.Location = new System.Drawing.Point(16, 128);
+            this.Tab1DataReceiveLine.Location = new System.Drawing.Point(15, 214);
             this.Tab1DataReceiveLine.Name = "Tab1DataReceiveLine";
-            this.Tab1DataReceiveLine.Size = new System.Drawing.Size(224, 20);
+            this.Tab1DataReceiveLine.Size = new System.Drawing.Size(300, 20);
             this.Tab1DataReceiveLine.TabIndex = 12;
             this.Tab1DataReceiveLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tab1DataReceiveLine_KeyDown);
             // 
             // Tab1DataReveiceLabel
             // 
             this.Tab1DataReveiceLabel.AutoSize = true;
-            this.Tab1DataReveiceLabel.Location = new System.Drawing.Point(12, 112);
+            this.Tab1DataReveiceLabel.Location = new System.Drawing.Point(12, 198);
             this.Tab1DataReveiceLabel.Name = "Tab1DataReveiceLabel";
-            this.Tab1DataReveiceLabel.Size = new System.Drawing.Size(68, 13);
+            this.Tab1DataReveiceLabel.Size = new System.Drawing.Size(73, 13);
             this.Tab1DataReveiceLabel.TabIndex = 11;
-            this.Tab1DataReveiceLabel.Text = "Receivedata";
+            this.Tab1DataReveiceLabel.Text = "Receive Data";
+            // 
+            // Tab1SendBT
+            // 
+            this.Tab1SendBT.Location = new System.Drawing.Point(262, 464);
+            this.Tab1SendBT.Name = "Tab1SendBT";
+            this.Tab1SendBT.Size = new System.Drawing.Size(63, 26);
+            this.Tab1SendBT.TabIndex = 35;
+            this.Tab1SendBT.Text = "Send";
+            this.Tab1SendBT.UseVisualStyleBackColor = true;
+            this.Tab1SendBT.Click += new System.EventHandler(this.Tab1SendBT_Click);
             // 
             // Tab1SendDataLabel
             // 
             this.Tab1SendDataLabel.AutoSize = true;
-            this.Tab1SendDataLabel.Location = new System.Drawing.Point(12, 157);
+            this.Tab1SendDataLabel.Location = new System.Drawing.Point(18, 330);
             this.Tab1SendDataLabel.Name = "Tab1SendDataLabel";
             this.Tab1SendDataLabel.Size = new System.Drawing.Size(73, 13);
             this.Tab1SendDataLabel.TabIndex = 10;
@@ -1047,23 +1106,109 @@
             // Tab1Data4Check
             // 
             this.Tab1Data4Check.Location = new System.Drawing.Point(15, 37);
+            this.Tab1Data4Check.Multiline = true;
             this.Tab1Data4Check.Name = "Tab1Data4Check";
-            this.Tab1Data4Check.Size = new System.Drawing.Size(225, 20);
+            this.Tab1Data4Check.Size = new System.Drawing.Size(229, 20);
             this.Tab1Data4Check.TabIndex = 5;
             // 
             // Tab1CorrectLabel
             // 
             this.Tab1CorrectLabel.AutoSize = true;
-            this.Tab1CorrectLabel.Location = new System.Drawing.Point(13, 60);
+            this.Tab1CorrectLabel.Location = new System.Drawing.Point(16, 278);
             this.Tab1CorrectLabel.Name = "Tab1CorrectLabel";
             this.Tab1CorrectLabel.Size = new System.Drawing.Size(78, 13);
             this.Tab1CorrectLabel.TabIndex = 3;
             this.Tab1CorrectLabel.Text = "Num of Correct";
             // 
+            // Tab1_StatisticBT
+            // 
+            this.Tab1_StatisticBT.Location = new System.Drawing.Point(88, 467);
+            this.Tab1_StatisticBT.Name = "Tab1_StatisticBT";
+            this.Tab1_StatisticBT.Size = new System.Drawing.Size(63, 27);
+            this.Tab1_StatisticBT.TabIndex = 18;
+            this.Tab1_StatisticBT.Text = "Statistic";
+            this.Tab1_StatisticBT.UseVisualStyleBackColor = true;
+            this.Tab1_StatisticBT.Click += new System.EventHandler(this.Tab1_StatisticBT_Click);
+            // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Location = new System.Drawing.Point(183, 302);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(60, 13);
+            this.label107.TabIndex = 4;
+            this.label107.Text = "Total Read";
+            // 
+            // button50
+            // 
+            this.button50.Location = new System.Drawing.Point(88, 502);
+            this.button50.Name = "button50";
+            this.button50.Size = new System.Drawing.Size(63, 27);
+            this.button50.TabIndex = 18;
+            this.button50.Text = "Restore";
+            this.button50.UseVisualStyleBackColor = true;
+            this.button50.Click += new System.EventHandler(this.Tab1RestoreBT_Click);
+            // 
+            // Tab1ClearBT
+            // 
+            this.Tab1ClearBT.Location = new System.Drawing.Point(16, 467);
+            this.Tab1ClearBT.Name = "Tab1ClearBT";
+            this.Tab1ClearBT.Size = new System.Drawing.Size(63, 27);
+            this.Tab1ClearBT.TabIndex = 18;
+            this.Tab1ClearBT.Text = "Clear";
+            this.Tab1ClearBT.UseVisualStyleBackColor = true;
+            this.Tab1ClearBT.Click += new System.EventHandler(this.Tab1ClearBT_Click);
+            // 
+            // Tab1RunBT
+            // 
+            this.Tab1RunBT.Location = new System.Drawing.Point(16, 503);
+            this.Tab1RunBT.Name = "Tab1RunBT";
+            this.Tab1RunBT.Size = new System.Drawing.Size(63, 28);
+            this.Tab1RunBT.TabIndex = 13;
+            this.Tab1RunBT.Text = "Run";
+            this.Tab1RunBT.UseVisualStyleBackColor = true;
+            this.Tab1RunBT.Click += new System.EventHandler(this.Tab1RunBT_Click);
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(159, 255);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(33, 13);
+            this.label110.TabIndex = 4;
+            this.label110.Text = "(lbl/s)";
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Location = new System.Drawing.Point(18, 255);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(70, 13);
+            this.label109.TabIndex = 4;
+            this.label109.Text = "Read Speed:";
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(15, 173);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(84, 13);
+            this.label108.TabIndex = 4;
+            this.label108.Text = "Read Circel (ms)";
+            // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.Location = new System.Drawing.Point(183, 278);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(53, 13);
+            this.label106.TabIndex = 4;
+            this.label106.Text = "Not Read";
+            // 
             // Tab1WrongLabel
             // 
             this.Tab1WrongLabel.AutoSize = true;
-            this.Tab1WrongLabel.Location = new System.Drawing.Point(164, 60);
+            this.Tab1WrongLabel.Location = new System.Drawing.Point(16, 304);
             this.Tab1WrongLabel.Name = "Tab1WrongLabel";
             this.Tab1WrongLabel.Size = new System.Drawing.Size(76, 13);
             this.Tab1WrongLabel.TabIndex = 4;
@@ -1078,18 +1223,51 @@
             this.Tab1Data4CheckLabel.TabIndex = 6;
             this.Tab1Data4CheckLabel.Text = "Data For Check";
             // 
+            // Tab1_TotalRead
+            // 
+            this.Tab1_TotalRead.Enabled = false;
+            this.Tab1_TotalRead.Location = new System.Drawing.Point(263, 301);
+            this.Tab1_TotalRead.Name = "Tab1_TotalRead";
+            this.Tab1_TotalRead.Size = new System.Drawing.Size(52, 20);
+            this.Tab1_TotalRead.TabIndex = 8;
+            // 
+            // Tab1_ReadSpeed
+            // 
+            this.Tab1_ReadSpeed.Enabled = false;
+            this.Tab1_ReadSpeed.Location = new System.Drawing.Point(101, 250);
+            this.Tab1_ReadSpeed.Name = "Tab1_ReadSpeed";
+            this.Tab1_ReadSpeed.Size = new System.Drawing.Size(52, 20);
+            this.Tab1_ReadSpeed.TabIndex = 8;
+            // 
+            // Tab1_CircleRead
+            // 
+            this.Tab1_CircleRead.Location = new System.Drawing.Point(101, 171);
+            this.Tab1_CircleRead.Name = "Tab1_CircleRead";
+            this.Tab1_CircleRead.Size = new System.Drawing.Size(83, 20);
+            this.Tab1_CircleRead.TabIndex = 8;
+            // 
+            // Tab1_NotRead
+            // 
+            this.Tab1_NotRead.Enabled = false;
+            this.Tab1_NotRead.Location = new System.Drawing.Point(263, 275);
+            this.Tab1_NotRead.Name = "Tab1_NotRead";
+            this.Tab1_NotRead.Size = new System.Drawing.Size(52, 20);
+            this.Tab1_NotRead.TabIndex = 8;
+            // 
             // Tab1NumCorrect
             // 
-            this.Tab1NumCorrect.Location = new System.Drawing.Point(16, 78);
+            this.Tab1NumCorrect.Enabled = false;
+            this.Tab1NumCorrect.Location = new System.Drawing.Point(101, 275);
             this.Tab1NumCorrect.Name = "Tab1NumCorrect";
-            this.Tab1NumCorrect.Size = new System.Drawing.Size(93, 20);
+            this.Tab1NumCorrect.Size = new System.Drawing.Size(52, 20);
             this.Tab1NumCorrect.TabIndex = 7;
             // 
             // Tab1NumWrong
             // 
-            this.Tab1NumWrong.Location = new System.Drawing.Point(140, 77);
+            this.Tab1NumWrong.Enabled = false;
+            this.Tab1NumWrong.Location = new System.Drawing.Point(101, 301);
             this.Tab1NumWrong.Name = "Tab1NumWrong";
-            this.Tab1NumWrong.Size = new System.Drawing.Size(100, 20);
+            this.Tab1NumWrong.Size = new System.Drawing.Size(52, 20);
             this.Tab1NumWrong.TabIndex = 8;
             // 
             // Tab1DataReceive
@@ -1099,19 +1277,9 @@
             this.Tab1DataReceive.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.Tab1DataReceive.Location = new System.Drawing.Point(3, 3);
             this.Tab1DataReceive.Name = "Tab1DataReceive";
-            this.Tab1DataReceive.Size = new System.Drawing.Size(835, 309);
+            this.Tab1DataReceive.Size = new System.Drawing.Size(492, 309);
             this.Tab1DataReceive.TabIndex = 19;
             this.Tab1DataReceive.Text = "";
-            // 
-            // Tab1RunBT
-            // 
-            this.Tab1RunBT.Location = new System.Drawing.Point(778, 442);
-            this.Tab1RunBT.Name = "Tab1RunBT";
-            this.Tab1RunBT.Size = new System.Drawing.Size(63, 28);
-            this.Tab1RunBT.TabIndex = 13;
-            this.Tab1RunBT.Text = "Run";
-            this.Tab1RunBT.UseVisualStyleBackColor = true;
-            this.Tab1RunBT.Click += new System.EventHandler(this.Tab1RunBT_Click);
             // 
             // InOutPage
             // 
@@ -5937,6 +6105,10 @@
             // 
             this.SnifTimer_1.Tick += new System.EventHandler(this.PKB_rxTimer);
             // 
+            // Tab1_WaitNextLbl_Timer
+            // 
+            this.Tab1_WaitNextLbl_Timer.Tick += new System.EventHandler(this.Tab1_WaitNextLbl_Timer_Tick);
+            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5948,7 +6120,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test_Form";
-            this.Text = "Test Tool          Ver: 0.0.0.7";
+            this.Text = "Test Tool          Ver: 0.0.1.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_Form_FormClosing);
             this.ControlTab.ResumeLayout(false);
@@ -6595,6 +6767,22 @@
         private System.Windows.Forms.RichTextBox Check_Lost_Frame_log;
         private System.Windows.Forms.TextBox Gun_Addr_Stamping_txt;
         private System.Windows.Forms.Label label105;
+        private System.Windows.Forms.Label label106;
+        private System.Windows.Forms.TextBox Tab1_NotRead;
+        private System.Windows.Forms.Button Tab1_Remove_BT;
+        private System.Windows.Forms.Button Tab1_Add_BT;
+        private System.Windows.Forms.ListBox Tab1_Expect_Data_List;
+        private System.Windows.Forms.Label label107;
+        private System.Windows.Forms.TextBox Tab1_TotalRead;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.TextBox Tab1_CircleRead;
+        private System.Windows.Forms.Label label109;
+        private System.Windows.Forms.TextBox Tab1_ReadSpeed;
+        private System.Windows.Forms.Label label110;
+        private System.Windows.Forms.Timer Tab1_WaitNextLbl_Timer;
+        private System.Windows.Forms.CheckBox Tab1_CheckNotRead;
+        private System.Windows.Forms.Button button50;
+        private System.Windows.Forms.Button Tab1_StatisticBT;
 
     }
 }

@@ -98,10 +98,10 @@ namespace WindowsFormsApplication1
                 switch (type)
                 {
                     case DataType.Receive:
-                        OutData = "R <" + TimeStamp + ">: \n";
+                        OutData = "R <" + TimeStamp + ">: ";
                         break;
                     case DataType.Send:
-                        OutData = "T <" + TimeStamp + ">: \n";
+                        OutData = "T <" + TimeStamp + ">: ";
                         break;
                     default:
                         OutData = "Error: Can not format Message";
@@ -123,10 +123,10 @@ namespace WindowsFormsApplication1
                 }
             }
             // Add new line
-            if (type == DataType.Send)
-            {
-                OutData += "\n";
-            }
+            //if (type == DataType.Send)
+            //{
+            //    OutData += "\n";
+            //}
             return OutData;
         }
 
