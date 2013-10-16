@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Linq;
+using System.Data;
 using System.Text;
 using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace WindowsFormsApplication1
 {
     partial class Test_Form
     {
         #region Public Enumerations
-        private int count_data;
+        private int Total_read;
         private int Right_num;
         private int Wrong_num;
         private int NotRead_num;
         private int ReadSpeed;
+        public string Scan_info_Buf;
 
-        private string TAB1_RECEIVE_BUFFER;
+        private string Tab1_Receive_Buffer;
         #endregion
 
         /*
@@ -54,13 +57,28 @@ namespace WindowsFormsApplication1
                 tab1_first_receive = tab1_curr_receive;
             }
 
-            TAB1_RECEIVE_BUFFER += InData;
-            if ((TAB1_RECEIVE_BUFFER != "") && (TAB1_RECEIVE_BUFFER.Length >= 2))
+            Tab1_Receive_Buffer += InData;
+            if ((Tab1_Receive_Buffer != "") && (Tab1_Receive_Buffer.Length >= 2))
             {
-                if ((TAB1_RECEIVE_BUFFER.Substring(TAB1_RECEIVE_BUFFER.Length - 2, 2) == "\r\n") || (TAB1_RECEIVE_BUFFER.Substring(TAB1_RECEIVE_BUFFER.Length - 1, 1) == "\r"))
+                if ((Tab1_Receive_Buffer.Substring(Tab1_Receive_Buffer.Length - 2, 2) == "\r\n") || (Tab1_Receive_Buffer.Substring(Tab1_Receive_Buffer.Length - 1, 1) == "\r"))
                 {
-                    // Change to Hex string for check correct data
-                    OutData = FormatData(TAB1_RECEIVE_BUFFER, DataType.Receive, tab1_curr_receive, TabNum.Tab1, false);
+                    //@NOTE (Kien): Get Scan information for statistic report
+                    if ((Receive_State == TAB1_STATE.ENTER_SERVICE) || (Receive_State == TAB1_STATE.EXIT_SERVICE))
+                    {
+                        Scan_info_Buf = "";
+                        Tab1_Receive_Buffer = "";
+                        return;
+                    }
+                    else if (Receive_State == TAB1_STATE.SCAN_INFO)
+                    {
+                        Scan_info_Buf += Tab1_Receive_Buffer;
+                        Tab1_Receive_Buffer = "";
+                        return;
+                    }
+
+                    //@NOTE (Kien): Change to Hex string for check correct data - not add time stamp
+                    OutData = FormatData(Tab1_Receive_Buffer, DataType.Receive, tab1_curr_receive, TabNum.Tab1, false);
+                    OutData = OutData.Trim();
                     Tab1DataReceiveLine.Invoke(new EventHandler(delegate
                     {
                         // Enable timer for check can not read
@@ -78,34 +96,32 @@ namespace WindowsFormsApplication1
                                 MessageBox.Show("Can not start Check Not Read.", "Error");
                             }
                         }
-                        Tab1DataReceiveLine.Text = OutData.Trim();
-                        count_data++;
-                        // if (Tab1Data4Check.Text == OutData.Trim())
-                        if (Is_new_Item(OutData.Trim(), Tab1_Expect_Data_List) == false)
+                        Tab1DataReceiveLine.Text = OutData;
+                        Total_read++;
+                        if (Is_new_Item(OutData, Tab1_Expect_Data_List) == false)
                         {
                             Right_num++;
-                            
-                            // Tab1NumCorrect.Text = Right_num.ToString();
+                            Add_Goodread_statistic(OutData);
                             type = LogMsgType.Incoming;
                         }
                         else
                         {
                             Wrong_num++;
-                            // Tab1NumWrong.Text = Wrong_num.ToString();
+                            Add_Misread_statistic(OutData);
                             type = LogMsgType.Error;
                         }
                         Update_Statistic();
                     }));
 
-                    // Add to logs
-                    OutData = FormatData(TAB1_RECEIVE_BUFFER, DataType.Receive, tab1_curr_receive, TabNum.Tab1, true);
+                    //@NOTE (Kien): Add time stamp & add to log
+                    OutData = FormatData(Tab1_Receive_Buffer, DataType.Receive, tab1_curr_receive, TabNum.Tab1, true);
                     if (type == LogMsgType.Error)
                     {
-                        Add_logs("Miss read\n", LogMsgType.Error, TabNum.Tab1);
+                        Add_logs("Misread ", LogMsgType.Error, TabNum.Tab1);
                     }
                     // OutData += "\n";
                     Add_logs(OutData, type, TabNum.Tab1);
-                    TAB1_RECEIVE_BUFFER = "";
+                    Tab1_Receive_Buffer = "";
                 }
             }
         }
@@ -145,6 +161,12 @@ namespace WindowsFormsApplication1
             Tab1SendData.Text = "";
             Tab1DataReceiveLine.Text = "";
             Tab1_CircleRead.Text = "";
+
+            Right_num = 0;
+            Wrong_num = 0;
+            NotRead_num = 0;
+            Total_read = 0;
+            Update_Statistic();
         }
 
 
@@ -258,11 +280,11 @@ namespace WindowsFormsApplication1
                 default:
                     break;
             }
-            Right_num = 0;
-            Wrong_num = 0;
-            NotRead_num = 0;
-            count_data = 0;
-            Update_Statistic();
+            //Right_num = 0;
+            //Wrong_num = 0;
+            //NotRead_num = 0;
+            //Total_read = 0;
+            //Update_Statistic();
         }
 
         /// <summary>
@@ -340,20 +362,114 @@ namespace WindowsFormsApplication1
             }
         }
 
+        private void Tab1_Load_DataCheck_BT_Click(object sender, EventArgs e)
+        {
+            string file_name;
+            OpenFileDialog dialog = new OpenFileDialog();
+            System.IO.StreamReader readfile;
+            string line;
+            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                file_name = dialog.FileName;
+                readfile = new System.IO.StreamReader(file_name);
+                while ((line = readfile.ReadLine()) != null)
+                {
+                    if (line != "") line = line.Trim();
+                    if (line != "")
+                    {
+                        Tab1_Expect_Data_List.Items.Add(line);
+                    }
+                }
+                readfile.Close();
+            }
+        }
 
         private void Tab1_StatisticBT_Click(object sender, EventArgs e)
         {
             string statistic_mess;
             DateTime currTime = DateTime.Now;
+            TimeSpan duration = currTime - tab1_start;
             string TimeStamp = currTime.ToString("HH:mm:ss.fff");
+            bool last_com_isOpen = true;
+            int last_baud;
+           
 
-            statistic_mess = "Report Statistic at: " + TimeStamp + "\n";
-            statistic_mess += "Good Read  : " + Right_num.ToString() + "\n";
-            statistic_mess += "Miss Read  : " + Wrong_num.ToString() + "\n";
-            statistic_mess += "Not Read   : " + NotRead_num.ToString() + "\n";
-            statistic_mess += "Total Read : " + count_data.ToString() + "\n";
+            statistic_mess =  "|==================================================|\n";
+            statistic_mess += "  Report Statistic at: \t" + TimeStamp + "\n";
+            statistic_mess += "  Run Time   \t" + duration.ToString() + "\n";
+            statistic_mess += "  Good read  \t" + Right_num.ToString() + "\n";
+            statistic_mess += "  Misread    \t" + Wrong_num.ToString() + "\n";
+            statistic_mess += "  Not read   \t" + NotRead_num.ToString() + "\n";
+            statistic_mess += "  Total Read \t" + Total_read.ToString() + "\n";
+            statistic_mess += "|--------------------------------------------------|\n";
+
+            // Add Good Read label
+            statistic_mess += "  Good read Label \n";
+            foreach (DataRow row in Goodread_table.Rows)
+            {
+                statistic_mess += "     " + row["Data"] + ":\t" + row["Cnt"] + "\n";
+            }
+            statistic_mess += "|--------------------------------------------------|\n";
+
+            // Add Misread Label 
+            statistic_mess += "  Misread Label: \n";
+            foreach (DataRow row in Misread_table.Rows)
+            {
+                statistic_mess += "     " + row["Data"] + ": \t" + row["Cnt"] + "\n";
+            }
+            statistic_mess += "|==================================================|\n";
 
             Add_logs(statistic_mess, LogMsgType.Normal, TabNum.Tab1);
+
+            //@NOTE (Kien): get Statistic in Scanner:
+
+            if (Tab1InfStatus != Tab1Interface.Ser)
+            {
+                return;
+            }
+            last_baud = Tab1serialPort.BaudRate;
+            last_com_isOpen = Tab1serialPort.IsOpen;
+            if (Tab1serialPort.IsOpen == false)
+            {
+                Tab1serialPort.Open();
+            }
+            
+
+            Receive_State = TAB1_STATE.ENTER_SERVICE;
+            Tab1serialPort.Write("$S\r");
+            Thread.Sleep(500);
+            Application.DoEvents();
+
+            Tab1serialPort.Close();
+            Tab1serialPort.BaudRate = 115200;
+            Tab1serialPort.Open();
+            Receive_State = TAB1_STATE.SCAN_INFO;
+            Tab1serialPort.Write("$!\r");
+            Thread.Sleep(300);
+            Application.DoEvents();
+            Tab1serialPort.Write("$L00,L01,L02,L03,L04,L05,L06,L07,L08,L09\r");
+            Thread.Sleep(300);
+            Application.DoEvents();
+            Tab1serialPort.Write("$t00,t01,t02,t03\r");
+            Thread.Sleep(300);
+            Application.DoEvents();
+            Receive_State = TAB1_STATE.EXIT_SERVICE;
+
+            statistic_mess = "Scanner information: \n" + Scan_info_Buf;
+            Add_logs(statistic_mess, LogMsgType.Normal, TabNum.Tab1);
+            Tab1serialPort.Write("$s\r");
+            Thread.Sleep(300);
+            Application.DoEvents();
+            Receive_State = TAB1_STATE.NORMAL;
+
+            Tab1serialPort.Close();
+            Tab1serialPort.BaudRate = last_baud;
+            if (last_com_isOpen == true)
+            {
+                Tab1serialPort.Open();
+            }
 
         }
 
@@ -450,7 +566,7 @@ namespace WindowsFormsApplication1
 
             Add_logs("Not read\n", LogMsgType.Error, TabNum.Tab1);
             NotRead_num ++;
-            count_data++;
+            Total_read++;
 
             Update_Statistic();
         }
