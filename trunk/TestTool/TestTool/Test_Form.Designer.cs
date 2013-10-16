@@ -61,6 +61,7 @@
             this.Tab1groupSerCount = new System.Windows.Forms.GroupBox();
             this.Tab1_CheckNotRead = new System.Windows.Forms.CheckBox();
             this.Tab1_Remove_BT = new System.Windows.Forms.Button();
+            this.Tab1_Load_DataCheck_BT = new System.Windows.Forms.Button();
             this.Tab1_Add_BT = new System.Windows.Forms.Button();
             this.Tab1_Expect_Data_List = new System.Windows.Forms.ListBox();
             this.Tab1LogBT = new System.Windows.Forms.Button();
@@ -974,6 +975,7 @@
             // 
             this.Tab1groupSerCount.Controls.Add(this.Tab1_CheckNotRead);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Remove_BT);
+            this.Tab1groupSerCount.Controls.Add(this.Tab1_Load_DataCheck_BT);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Add_BT);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Expect_Data_List);
             this.Tab1groupSerCount.Controls.Add(this.Tab1LogBT);
@@ -1020,13 +1022,23 @@
             // 
             // Tab1_Remove_BT
             // 
-            this.Tab1_Remove_BT.Location = new System.Drawing.Point(251, 63);
+            this.Tab1_Remove_BT.Location = new System.Drawing.Point(251, 92);
             this.Tab1_Remove_BT.Name = "Tab1_Remove_BT";
             this.Tab1_Remove_BT.Size = new System.Drawing.Size(75, 23);
             this.Tab1_Remove_BT.TabIndex = 37;
             this.Tab1_Remove_BT.Text = "Remove";
             this.Tab1_Remove_BT.UseVisualStyleBackColor = true;
             this.Tab1_Remove_BT.Click += new System.EventHandler(this.Tab1_Remove_BT_Click);
+            // 
+            // Tab1_Load_DataCheck_BT
+            // 
+            this.Tab1_Load_DataCheck_BT.Location = new System.Drawing.Point(250, 63);
+            this.Tab1_Load_DataCheck_BT.Name = "Tab1_Load_DataCheck_BT";
+            this.Tab1_Load_DataCheck_BT.Size = new System.Drawing.Size(75, 23);
+            this.Tab1_Load_DataCheck_BT.TabIndex = 37;
+            this.Tab1_Load_DataCheck_BT.Text = "Load";
+            this.Tab1_Load_DataCheck_BT.UseVisualStyleBackColor = true;
+            this.Tab1_Load_DataCheck_BT.Click += new System.EventHandler(this.Tab1_Load_DataCheck_BT_Click);
             // 
             // Tab1_Add_BT
             // 
@@ -1052,7 +1064,7 @@
             this.Tab1LogBT.Name = "Tab1LogBT";
             this.Tab1LogBT.Size = new System.Drawing.Size(63, 26);
             this.Tab1LogBT.TabIndex = 15;
-            this.Tab1LogBT.Text = "Save To";
+            this.Tab1LogBT.Text = "Save Log";
             this.Tab1LogBT.UseVisualStyleBackColor = true;
             this.Tab1LogBT.Click += new System.EventHandler(this.Tab1LogBT_Click);
             // 
@@ -6120,7 +6132,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test_Form";
-            this.Text = "Test Tool          Ver: 0.0.1.1";
+            this.Text = "Test Tool          Ver: 0.0.1.3";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_Form_FormClosing);
             this.ControlTab.ResumeLayout(false);
@@ -6783,6 +6795,7 @@
         private System.Windows.Forms.CheckBox Tab1_CheckNotRead;
         private System.Windows.Forms.Button button50;
         private System.Windows.Forms.Button Tab1_StatisticBT;
+        private System.Windows.Forms.Button Tab1_Load_DataCheck_BT;
 
     }
 }

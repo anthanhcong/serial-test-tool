@@ -13,6 +13,14 @@ namespace WindowsFormsApplication1
     
     partial class Test_Form
     {
+        public enum TAB1_STATE
+        {
+            NORMAL,
+            ENTER_SERVICE,
+            SCAN_INFO,
+            EXIT_SERVICE,
+        }
+
         private Tab1Interface Tab1InfStatus = Tab1Interface.Ser;
 
         #region Public Tab1_Time_check
@@ -25,6 +33,11 @@ namespace WindowsFormsApplication1
         public DateTime tab1_curr_receive;
         public DateTime tab1_stop;
         public bool Tab1_wait_receive;
+        public TAB1_STATE Receive_State = TAB1_STATE.NORMAL;
+        
+
+        DataTable Misread_table;
+        DataTable Goodread_table;
         #endregion
 
         /***************************************************************
@@ -40,11 +53,25 @@ namespace WindowsFormsApplication1
         /*************************************************************/
         private bool Tab1_Init()
         {
+            //@Note (Kien): Init Misread Table
+            Misread_table = new DataTable();
+            Misread_table.Columns.Add("Data");
+            Misread_table.Columns.Add("Cnt");
+
+            //@Note (Kien): Init Good read Table
+            Goodread_table = new DataTable();
+            Goodread_table.Columns.Add("Data");
+            Goodread_table.Columns.Add("Cnt");
+
+            Receive_State = TAB1_STATE.NORMAL;
+            
+
             Tab1SerOption.Checked = true;
             Tab1TextView.Checked = true;
             Tab1ReportRun.Checked = true;
             Tab1_wait_receive = true;
-            TAB1_RECEIVE_BUFFER = "";
+            Tab1_Receive_Buffer = "";
+
             return true;
         }
 
@@ -66,7 +93,6 @@ namespace WindowsFormsApplication1
             Tab1serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), Tab1SetParity.Text);
             Tab1serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), Tab1SetStopbit.Text);
             Tab1serialPort.ReceivedBytesThreshold = int.Parse(Tab1SetThreshold.Text);
-            
         }
 
         /// <summary>
@@ -152,24 +178,24 @@ namespace WindowsFormsApplication1
 
                     // Run Time
                     duration = tab1_stop - tab1_start;
-                    report_mes = "Stop - Start = " + duration.Seconds + "s \n \n";
+                    report_mes = "Stop - Start = " + duration.ToString() + "s \n \n";
                     Add_logs(report_mes, LogMsgType.Normal, TabNum.Tab1);
                     break;
 
                 case Tab1ReportMode.Receive:
                     duration = tab1_curr_receive - tab1_first_receive;
-                    report_mes = "Current Receive - FirstReceive = " + duration.Seconds + " s \n";
+                    report_mes = "Current Receive - FirstReceive = " + duration.ToString() + " s \n";
                     Add_logs(report_mes, LogMsgType.Normal, TabNum.Tab1);
                     break;
 
                 case Tab1ReportMode.FirstRSP:
                     duration = tab1_curr_receive - tab1_curr_send;
-                    report_mes = "Current Receive - Current Send = " + duration.Seconds + " s \n";
+                    report_mes = "Current Receive - Current Send = " + duration.TotalSeconds + " s \n";
                     Add_logs(report_mes, LogMsgType.Normal, TabNum.Tab1);
                     break;
                 case Tab1ReportMode.Transaction:
                     duration = tab1_curr_receive - tab1_last_send;
-                    report_mes = "LastReceive - CurrSendTime = " + duration.Seconds + " s \n";
+                    report_mes = "LastReceive - CurrSendTime = " + duration.TotalSeconds + " s \n";
                     
                     // Add to logs
                     Add_logs(report_mes, LogMsgType.Normal, TabNum.Tab1);
@@ -366,7 +392,7 @@ namespace WindowsFormsApplication1
             Tab1NumCorrect.Text = Right_num.ToString();
             Tab1NumWrong.Text = Wrong_num.ToString();
             Tab1_NotRead.Text = NotRead_num.ToString();
-            Tab1_TotalRead.Text = count_data.ToString();
+            Tab1_TotalRead.Text = Total_read.ToString();
             Tab1_ReadSpeed.Text = ReadSpeed.ToString();
         }
 
@@ -396,5 +422,65 @@ namespace WindowsFormsApplication1
             }
             return true;
         }
+
+        private bool Add_Misread_statistic(string data_receive)
+        {
+            string data_check;
+            int cnt;
+            bool existed = false;
+            DataRow new_row;
+            foreach (DataRow row in Misread_table.Rows)
+            {
+                data_check = row["Data"].ToString();
+                cnt = Convert.ToInt32(row["Cnt"]);
+                if (data_receive == data_check)
+                {
+                    cnt++;
+                    row["Cnt"] = cnt.ToString();
+                    existed = true;
+                }
+            }
+
+            if (existed == false)
+            {
+                new_row = Misread_table.NewRow();
+                new_row["Data"] = data_receive;
+                new_row["Cnt"] = 1;
+                Misread_table.Rows.Add(new_row);
+            }
+
+            return true;
+        }
+
+        private bool Add_Goodread_statistic(string data_receive)
+        {
+            string data_check;
+            int cnt;
+            bool existed = false;
+            DataRow new_row;
+            foreach (DataRow row in Goodread_table.Rows)
+            {
+                data_check = row["Data"].ToString();
+                cnt = Convert.ToInt32(row["Cnt"]);
+                if (data_receive == data_check)
+                {
+                    cnt++;
+                    row["Cnt"] = cnt.ToString();
+                    existed = true;
+                }
+            }
+
+            if (existed == false)
+            {
+                new_row = Goodread_table.NewRow();
+                new_row["Data"] = data_receive;
+                new_row["Cnt"] = 1;
+                Goodread_table.Rows.Add(new_row);
+            }
+
+            return true;
+        }
+
+        
     }
 }

@@ -44,8 +44,6 @@ namespace WindowsFormsApplication1
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-
-                
                 address = Gun_Addr_Stamping_txt.Text.Trim();
                 if (address == "")
                 {
