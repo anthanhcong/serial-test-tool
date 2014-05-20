@@ -1,5 +1,5 @@
 
-%COM:BAD:38400
+%COM:BAD:115200
 %DLY:2:s
 
 %LBL1

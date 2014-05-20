@@ -128,20 +128,34 @@ namespace WindowsFormsApplication1
             string databit;
             string stopbit;
             string parity;
+            string promptMes;
 
-            baudrate = Tab1serialPort.BaudRate.ToString();
-            databit = Tab1serialPort.DataBits.ToString();
-            stopbit = Tab1serialPort.StopBits.ToString();
-            parity = Tab1serialPort.Parity.ToString();
+            if (Tab1InfStatus == Tab1Interface.Ser)
+            {
+                baudrate = Tab1serialPort.BaudRate.ToString();
+                databit = Tab1serialPort.DataBits.ToString();
+                stopbit = Tab1serialPort.StopBits.ToString();
+                parity = Tab1serialPort.Parity.ToString();
 
-            PortSelectStatus.Text = Tab1serialPort.PortName;
-            ConfigStatus.Text = baudrate + "," +
-                databit + "," +
-                stopbit + "," +
-                parity;
-            ProgressBar.Visible = false;
-            TotalPort.Text = "Total Port: " + totalPort.ToString();
-            TotalConnet.Text = "Total Connect:  0";
+                PortSelectStatus.Text = Tab1serialPort.PortName;
+                ConfigStatus.Text = baudrate + "," +
+                    databit + "," +
+                    stopbit + "," +
+                    parity;
+                ProgressBar.Visible = false;
+                TotalPort.Text = "Total Port: " + totalPort.ToString();
+                TotalConnet.Text = "Total Connect:  0";
+            }
+            else if (Tab1InfStatus == Tab1Interface.Key)
+            {
+                promptMes = "Runnning in KDB Interface";
+                Display_prompt(promptMes, LogMsgType.Normal);
+                PortSelectStatus.Text = "Runnning in KDB Interface";
+                ConfigStatus.Text = "";
+                ProgressBar.Visible = false;
+                TotalPort.Text = "";
+                TotalConnet.Text = "";
+            }
             return true;
         }
 

@@ -27,6 +27,9 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,6 +181,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.ico" />
+    <Content Include="2.ico" />
     <Content Include="bin\Debug\TestTool.exe" />
     <Content Include="bin\Debug\TestTool.pdb" />
     <Content Include="bin\Release\TestTool.exe" />
@@ -188,6 +193,7 @@
     <Content Include="obj\Release\TestTool.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Release\TestTool.exe" />
     <Content Include="obj\Release\TestTool.pdb" />
+    <Content Include="vspk-icon-48.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\Refactor\" />

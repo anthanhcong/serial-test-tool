@@ -133,7 +133,7 @@ namespace WindowsFormsApplication1
             Tab2_Stop = new DateTime[totalPort];
             First_Receive = new bool[totalPort];
             Has_data = new bool[totalPort];
-            fout = new StreamWriter[totalPort];
+            FileOut = new StreamWriter[totalPort];
             
             Tab2_RCT = new DateTime[totalPort];
             Tab2_TCT = new DateTime[totalPort];
@@ -179,7 +179,7 @@ namespace WindowsFormsApplication1
                 Tab2_Receive_Buf[i] = new byte[MAX_BUF_LEN];
                 Tab2_Receive_index[i] = 0;
                 Tab2_Status[i] = Tab2Stauts.Init;
-                fout[i] = null;
+                FileOut[i] = null;
 
                 // Check Frame
                 Check_Frame_Ena[i] = false;
@@ -239,7 +239,7 @@ namespace WindowsFormsApplication1
             Tab2groupComSet.Controls.Add(ComControlArray[i].ComCheckBox);
             Tab2groupComSet.Controls.Add(ComControlArray[i].DeviceNameText);
             Tab2groupComSet.Controls.Add(ComControlArray[i].DelayValueText);
-            Tab2groupComSet.Controls.Add(ComControlArray[i].FixTimeCheck);
+            // Tab2groupComSet.Controls.Add(ComControlArray[i].FixTimeCheck);
             Tab2groupComSet.Controls.Add(ComControlArray[i].SelectPathBT);
             Tab2groupComSet.Controls.Add(ComControlArray[i].DataforSendLabel);
         }
@@ -1098,9 +1098,9 @@ namespace WindowsFormsApplication1
         private bool Tab2_add_log(int file_index, string logmess, LogMsgType type)
         {
             Add_logs(logmess, type, TabNum.Tab2);
-            if (fout[file_index] != null)
+            if (FileOut[file_index] != null)
             {
-                Write_log_file(fout[file_index], logmess, LogMsgType.Outgoing);
+                Write_log_file(FileOut[file_index], logmess, LogMsgType.Outgoing);
             }
             else
             {
@@ -1124,7 +1124,7 @@ namespace WindowsFormsApplication1
             log_mess = "/*****************************************************************************************************************\n";
             log_mess += " * $File Name        : " + file_name + "\n";
             log_mess += " * $Device           : " + ComControlArray[index].DeviceNameText.Text + "\n";
-            log_mess += " * $Default setting  : " + Tab2SetBaudrate.Text + ":" + Tab2SetDataBit.Text + ":" + Tab2SetParity.Text + ":" + Tab2SetStopBit.Text + "\n";
+            log_mess += " * $Default setting  : " + Tab2SetBaudrate.Text + ":" + Tab2SetDataBit.Text + ":" + Tab2SetStopBit.Text + ":" + Tab2SetParity.Text + "\n";
             log_mess += " * $Date             : " + time_stamp.ToString("dd/MM/yyyy-HH:mm:ss") + "\n";
             log_mess += " *****************************************************************************************************************/\n";
             Tab2_add_log(index, log_mess, LogMsgType.Outgoing); 
