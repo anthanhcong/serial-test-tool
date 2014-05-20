@@ -1,0 +1,66 @@
+; Change Baudrate & get Release Message
+%COM:BAD:115200
+%DLY:2:s
+$!\x0D
+%DLY:500:ms
+
+; Restore Default 
+$S\x0D
+%DLY:500:ms
+$Ar\x0D
+%DLY:5:s
+
+%LBL1
+; Change Mode
+$S\x0D
+%DLY:500:ms
+$cSTCP\x0D
+%DLY:500:ms
+$CSTCP03,Ar\x0D
+%DLY:5:s
+
+
+; View Code ID
+$S\x0D
+%DLY:500:ms
+$cHRID\x0D
+%DLY:500:ms
+
+$cC9ID\x0D
+%DLY:500:ms
+
+$cC8ID\x0D
+%DLY:500:ms
+
+$cU8ID\x0D
+%DLY:500:ms
+$s\x0D
+%DLY:500:ms
+
+; Change Mode
+$S\x0D
+%DLY:500:ms
+$cSTCP\x0D
+%DLY:500:ms
+$CSTCP00,Ar\x0D
+%DLY:5:s
+
+
+; View Code ID
+$S\x0D
+%DLY:500:ms
+$cHRID\x0D
+%DLY:500:ms
+
+$cC9ID\x0D
+%DLY:500:ms
+
+$cC8ID\x0D
+%DLY:500:ms
+
+$cU8ID\x0D
+%DLY:500:ms
+$s\x0D
+%DLY:500:ms
+
+%GTO1

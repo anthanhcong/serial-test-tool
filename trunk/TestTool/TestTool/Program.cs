@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace WindowsFormsApplication1
 {
@@ -13,6 +14,7 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
+            ThreadPool.SetMinThreads(5, 5);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Test_Form());

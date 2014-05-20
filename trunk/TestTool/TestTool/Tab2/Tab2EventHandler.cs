@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
 {
     partial class Test_Form
     {
-        public StreamWriter[] fout;
+        public StreamWriter[] FileOut;
         public string[] Comlist;
 
         /*******************************************************
@@ -171,7 +171,7 @@ namespace WindowsFormsApplication1
                         ComControlArray[index].Timer_Start();
                         log_mess = ComControlArray[index].ComPort.PortName.ToString();
                         log_mess += " Delay:" + Delay_Value[index].ToString() + "ms\n";
-                        log_mess += "-----------------------------------------------\n\n";
+                        // log_mess += "-----------------------------------------------\n\n";
                         Tab2_add_log(index, log_mess, LogMsgType.Normal);
                         break;
                     case Tab2Stauts.Pause:
@@ -263,15 +263,21 @@ namespace WindowsFormsApplication1
                             folder_name = Tab2LogPathText.Text;
                             time_stamp = current_time.ToString("MMMdd_HH-mm");
                             file_name = folder_name + "\\" + ComControlArray[i].DeviceNameText.Text + "_" + Convert.ToString(ComControlArray[i].ComPort.PortName) + "_" + time_stamp + ".txt";
-                            try
+                            if (File.Exists(file_name) != true)
                             {
-                                fout[i] = File.CreateText(file_name);
+                                try
+                                {
+                                    FileOut[i] = File.CreateText(file_name);
+                                    FileOut[i].Close();
+                                }
+                                catch (IOException)
+                                {
+                                    MessageBox.Show("Can not create file: " + file_name);
+                                    return;
+                                }
                             }
-                            catch (IOException)
-                            {
-                                MessageBox.Show("Can not create file: " + file_name);
-                                return;
-                            }
+
+                            FileOut[i] = new StreamWriter(file_name, true);
 
                             // Write the Header Information to the file.
                             Write_Header_File(i, file_name);
@@ -294,13 +300,13 @@ namespace WindowsFormsApplication1
                             //                  + Do not create lod file
                             //                  + Do not run Timer
                             //                  + Uncheck for select COM Port
-                            fout[i] = null;
+                            FileOut[i] = null;
                             ComControlArray[i].ComCheckBox.Checked = false;
                         }
                     }
                     else
                     {
-                        fout[i] = null;
+                        FileOut[i] = null;
                     }
 
                     // Add comlist
@@ -363,7 +369,7 @@ namespace WindowsFormsApplication1
                     Write_Report(i);
                     Auto_save_RichText();
                     Tab2ReceiveData.Clear();
-                    fout[i].Close();
+                    FileOut[i].Close();
                     Tab2_ResetTimeCheck(i,curr_time);
 
                     // Reset check frame
@@ -396,7 +402,8 @@ namespace WindowsFormsApplication1
             {
                 if (ComControlArray[i].ComCheckBox.Checked == true)
                 {
-                    if (Tab2_Status[i] != Tab2Stauts.Pause){
+                    if (Tab2_Status[i] != Tab2Stauts.Pause)
+                    {
                         Tab2_Status[i] = Tab2Stauts.Pause;
                         log_mess = ComControlArray[i].ComPort.PortName.ToString();
                         log_mess  += ": Pause Click.\nKeep delay for check Wait & Expect Recevie.\n";
@@ -490,7 +497,6 @@ namespace WindowsFormsApplication1
                         ComControlArray[i].Timer_setDelay(Delay_Value[i]);
                         ComControlArray[i].Timer_Start();
                     }
-
                 }
             }
 

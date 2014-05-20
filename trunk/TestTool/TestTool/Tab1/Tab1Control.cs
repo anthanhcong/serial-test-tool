@@ -65,7 +65,6 @@ namespace WindowsFormsApplication1
 
             Receive_State = TAB1_STATE.NORMAL;
             
-
             Tab1SerOption.Checked = true;
             Tab1TextView.Checked = true;
             Tab1ReportRun.Checked = true;
@@ -399,13 +398,40 @@ namespace WindowsFormsApplication1
         private void Tab1DataReceiveLine_KeyDown(object sender, KeyEventArgs e)
         {
             string Text;
+            LogMsgType type = LogMsgType.Error;
             Text = Tab1DataReceiveLine.Text + "\n";
+            string outData;
 
             if (e.KeyCode == Keys.Enter)
             {
-                Add_logs(Text, LogMsgType.Incoming, TabNum.Tab1);
+                // Add_logs(Text, LogMsgType.Incoming, TabNum.Tab1);
+                // Tab1DataReceiveLine.Text = "";
+                
+                Reset_NotRead_Timer();
+                // Check for misread
+                Total_read++;
+                if (Is_new_Item(Text, Tab1_Expect_Data_List) == false)
+                {
+                    Right_num++;
+                    Add_Goodread_statistic(Text);
+                    type = LogMsgType.Incoming;
+                }
+                else
+                {
+                    Wrong_num++;
+                    Add_Misread_statistic(Text);
+                    type = LogMsgType.Error;
+                }
+                Update_Statistic();
+                outData = FormatData(Text, DataType.Receive, tab1_curr_receive, TabNum.Tab1, true);
+                if (type == LogMsgType.Error)
+                {
+                    Add_logs("Misread ", LogMsgType.Error, TabNum.Tab1);
+                }
+                Add_logs(outData, type, TabNum.Tab1);
                 Tab1DataReceiveLine.Text = "";
             }
+            Tab1DataReceiveLine.Focus();
         }
 
         private bool Is_new_Item (string text, ListBox list)
@@ -480,7 +506,25 @@ namespace WindowsFormsApplication1
 
             return true;
         }
-
+        private bool Reset_NotRead_Timer()
+        {
+            // Re-start timer for check can not read
+            Tab1_WaitNextLbl_Timer.Stop();
+            if (Tab1_CheckNotRead.Checked == true)
+            {
+                try
+                {
+                    Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
+                    Tab1_WaitNextLbl_Timer.Enabled = true;
+                    Tab1_WaitNextLbl_Timer.Start();
+                }
+                catch
+                {
+                    MessageBox.Show("Can not start Check Not Read.", "Error");
+                }
+            }
+            return true;
+        }
         
     }
 }

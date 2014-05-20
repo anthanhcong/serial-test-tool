@@ -6132,7 +6132,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test_Form";
-            this.Text = "Test Tool          Ver: 0.0.1.3";
+            this.Text = "Test Tool          Ver: 0.0.1.4";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_Form_FormClosing);
             this.ControlTab.ResumeLayout(false);

@@ -82,20 +82,7 @@ namespace WindowsFormsApplication1
                     Tab1DataReceiveLine.Invoke(new EventHandler(delegate
                     {
                         // Enable timer for check can not read
-                        Tab1_WaitNextLbl_Timer.Stop();
-                        if (Tab1_CheckNotRead.Checked == true)
-                        {
-                            try
-                            {
-                                Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
-                                Tab1_WaitNextLbl_Timer.Enabled = true;
-                                Tab1_WaitNextLbl_Timer.Start();
-                            }
-                            catch
-                            {
-                                MessageBox.Show("Can not start Check Not Read.", "Error");
-                            }
-                        }
+                        Reset_NotRead_Timer();
                         Tab1DataReceiveLine.Text = OutData;
                         Total_read++;
                         if (Is_new_Item(OutData, Tab1_Expect_Data_List) == false)
@@ -248,6 +235,18 @@ namespace WindowsFormsApplication1
                             // Report Run Time Check
                             Time_Report();
                             Update_Status_bar(1, false);
+                            // Stop timer for check can not read
+                            if (Tab1_CheckNotRead.Checked == true)
+                            {
+                                try
+                                {
+                                    Tab1_WaitNextLbl_Timer.Stop();
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Can not stop Check Not Read.", "Error");
+                                }
+                            }
                         }
                     }
                     else
@@ -264,8 +263,27 @@ namespace WindowsFormsApplication1
                         // Change status of "Run" button
                         Tab1RunBT.Text = "Stop";
                         Tab1_Enable_setting(false);
-                        promptMes = "Runnning in KDB Interface";
-                        Display_prompt(promptMes, LogMsgType.Normal);
+                        
+                        
+
+                        // Reset run time
+                        ResetTimeCheck();
+
+                        // Enable timer for check can not read
+                        if (Tab1_CheckNotRead.Checked == true)
+                        {
+                            try
+                            {
+                                Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
+                                Tab1_WaitNextLbl_Timer.Enabled = true;
+                                Tab1_WaitNextLbl_Timer.Start();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Can not start Check Not Read.", "Error");
+                            }
+                        }
+                        Update_Status_bar(1, false);
                     }
                     // Stop Click
                     else
@@ -275,16 +293,30 @@ namespace WindowsFormsApplication1
                         Tab1_Enable_setting(true);
                         promptMes = "Ready for Test";
                         Display_prompt(promptMes, LogMsgType.Normal);
+
+                        // Update Time Check
+                        tab1_stop = DateTime.Now;
+
+                        // Report Run Time Check
+                        Time_Report();
+                        Update_Status_bar(1, false);
+                        // Stop timer for check can not read
+                        if (Tab1_CheckNotRead.Checked == true)
+                        {
+                            try
+                            {
+                                Tab1_WaitNextLbl_Timer.Stop();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Can not stop Check Not Read.", "Error");
+                            }
+                        }
                     }
                     break;
                 default:
                     break;
             }
-            //Right_num = 0;
-            //Wrong_num = 0;
-            //NotRead_num = 0;
-            //Total_read = 0;
-            //Update_Statistic();
         }
 
         /// <summary>
@@ -549,26 +581,17 @@ namespace WindowsFormsApplication1
         private void Tab1_WaitNextLbl_Timer_Tick(object sender, EventArgs e)
         {
             // Enable timer for check can not read
-            Tab1_WaitNextLbl_Timer.Stop();
-            if (Tab1_CheckNotRead.Checked == true)
-            {
-                try
-                {
-                    Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
-                    Tab1_WaitNextLbl_Timer.Enabled = true;
-                    Tab1_WaitNextLbl_Timer.Start();
-                }
-                catch
-                {
-                    MessageBox.Show("Can not start Check Not Read.", "Error");
-                }
-            }
+            Reset_NotRead_Timer();
 
             Add_logs("Not read\n", LogMsgType.Error, TabNum.Tab1);
             NotRead_num ++;
             Total_read++;
 
             Update_Statistic();
+            if (Tab1InfStatus == Tab1Interface.Key)
+            {
+                Tab1DataReceiveLine.Focus();
+            }
         }
     }
 }

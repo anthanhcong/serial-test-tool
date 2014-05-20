@@ -24,7 +24,7 @@ public class Tab2ComPort
     public CheckBox ComCheckBox;
     public TextBox DeviceNameText;
     public TextBox DelayValueText;
-    public CheckBox FixTimeCheck;
+    // public CheckBox FixTimeCheck;
     public Button SelectPathBT;
     public Label DataforSendLabel;
     public ListBox Data4Send;
@@ -38,7 +38,7 @@ public class Tab2ComPort
         ComCheckBox = new CheckBox();
         DeviceNameText = new TextBox();
         DelayValueText = new TextBox();
-        FixTimeCheck = new CheckBox();
+        // FixTimeCheck = new CheckBox();
         SelectPathBT = new Button();
         DataforSendLabel = new Label();
         
@@ -199,7 +199,7 @@ public class Tab2ComPort
         ComCheckBox.Enabled = false;
         DeviceNameText.Enabled = false;
         DelayValueText.Enabled = false;
-        FixTimeCheck.Enabled = false;
+        // FixTimeCheck.Enabled = false;
         SelectPathBT.Enabled = false;
         DataforSendLabel.Enabled = false;
     }
@@ -212,7 +212,7 @@ public class Tab2ComPort
         ComCheckBox.Enabled = true;
         DeviceNameText.Enabled = true;
         DelayValueText.Enabled = true;
-        FixTimeCheck.Enabled = true;
+        // FixTimeCheck.Enabled = true;
         SelectPathBT.Enabled = true;
         DataforSendLabel.Enabled = true;
     }
