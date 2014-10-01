@@ -90,6 +90,8 @@ namespace WindowsFormsApplication1
                             Right_num++;
                             Add_Goodread_statistic(OutData);
                             type = LogMsgType.Incoming;
+
+                            Send_Click(null, null);
                         }
                         else
                         {
@@ -153,6 +155,8 @@ namespace WindowsFormsApplication1
             Wrong_num = 0;
             NotRead_num = 0;
             Total_read = 0;
+            //Misread_table.Rows.Clear();
+            //Goodread_table.Rows.Clear();
             Update_Statistic();
         }
 
@@ -503,6 +507,30 @@ namespace WindowsFormsApplication1
                 Tab1serialPort.Open();
             }
 
+        }
+
+        private void Send_Click(object sender, EventArgs e)
+        {
+            int num_bell = Convert.ToInt32(Tab1_BellNum.Text.ToString().Trim());
+            int delay_bell = Convert.ToInt32(Tab1_BellDelay.Text.ToString().Trim());
+            int i;
+            byte[] data_converted = new byte[1];
+            if (Tab1serialPort.IsOpen == true)
+            {
+                for (i = 0; i < num_bell; i++)
+                {
+                    if (BellBeep_Test1_Ena.Checked == true)
+                    {
+                        data_converted[0] = 1;
+                    }
+                    else if (BellBeep_TestB_Ena.Checked == true)
+                    {
+                        data_converted[0] = 0x42;   // 'B'
+                    }
+                    Tab1serialPort.Write(data_converted, 0, 1);
+                    Thread.Sleep(delay_bell);
+                }
+            }
         }
 
         /*******************************************************************

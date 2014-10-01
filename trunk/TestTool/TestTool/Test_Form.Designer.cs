@@ -33,6 +33,16 @@
             this.Tab1KeyOption = new System.Windows.Forms.RadioButton();
             this.ControlTab = new System.Windows.Forms.TabControl();
             this.CountPage = new System.Windows.Forms.TabPage();
+            this.groupBox42 = new System.Windows.Forms.GroupBox();
+            this.Tab1_BellDelay = new System.Windows.Forms.TextBox();
+            this.Tab1_BellNum = new System.Windows.Forms.ComboBox();
+            this.Send = new System.Windows.Forms.Button();
+            this.label114 = new System.Windows.Forms.Label();
+            this.label113 = new System.Windows.Forms.Label();
+            this.label112 = new System.Windows.Forms.Label();
+            this.label111 = new System.Windows.Forms.Label();
+            this.BellBeep_TestB_Ena = new System.Windows.Forms.CheckBox();
+            this.BellBeep_Test1_Ena = new System.Windows.Forms.CheckBox();
             this.groupBox38 = new System.Windows.Forms.GroupBox();
             this.Tab1LR = new System.Windows.Forms.CheckBox();
             this.Tab1groupDataView = new System.Windows.Forms.GroupBox();
@@ -59,6 +69,7 @@
             this.Tab1SetThresholdLabel = new System.Windows.Forms.Label();
             this.Tab1SetStopBitLabel = new System.Windows.Forms.Label();
             this.Tab1groupSerCount = new System.Windows.Forms.GroupBox();
+            this.richTextBox13 = new System.Windows.Forms.RichTextBox();
             this.Tab1_CheckNotRead = new System.Windows.Forms.CheckBox();
             this.Tab1_Remove_BT = new System.Windows.Forms.Button();
             this.Tab1_Load_DataCheck_BT = new System.Windows.Forms.Button();
@@ -555,6 +566,7 @@
             this.Tab1_WaitNextLbl_Timer = new System.Windows.Forms.Timer(this.components);
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
+            this.groupBox42.SuspendLayout();
             this.groupBox38.SuspendLayout();
             this.Tab1groupDataView.SuspendLayout();
             this.Tab1groupAppMode.SuspendLayout();
@@ -670,6 +682,7 @@
             // 
             // CountPage
             // 
+            this.CountPage.Controls.Add(this.groupBox42);
             this.CountPage.Controls.Add(this.groupBox38);
             this.CountPage.Controls.Add(this.Tab1groupDataView);
             this.CountPage.Controls.Add(this.Tab1PromptText);
@@ -687,6 +700,123 @@
             this.CountPage.TabIndex = 0;
             this.CountPage.Text = "Count Data";
             this.CountPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox42
+            // 
+            this.groupBox42.Controls.Add(this.Tab1_BellDelay);
+            this.groupBox42.Controls.Add(this.Tab1_BellNum);
+            this.groupBox42.Controls.Add(this.Send);
+            this.groupBox42.Controls.Add(this.label114);
+            this.groupBox42.Controls.Add(this.label113);
+            this.groupBox42.Controls.Add(this.label112);
+            this.groupBox42.Controls.Add(this.label111);
+            this.groupBox42.Controls.Add(this.BellBeep_TestB_Ena);
+            this.groupBox42.Controls.Add(this.BellBeep_Test1_Ena);
+            this.groupBox42.Location = new System.Drawing.Point(3, 557);
+            this.groupBox42.Name = "groupBox42";
+            this.groupBox42.Size = new System.Drawing.Size(492, 145);
+            this.groupBox42.TabIndex = 39;
+            this.groupBox42.TabStop = false;
+            this.groupBox42.Text = "Bell Beep Test";
+            // 
+            // Tab1_BellDelay
+            // 
+            this.Tab1_BellDelay.Location = new System.Drawing.Point(153, 111);
+            this.Tab1_BellDelay.Name = "Tab1_BellDelay";
+            this.Tab1_BellDelay.Size = new System.Drawing.Size(123, 20);
+            this.Tab1_BellDelay.TabIndex = 40;
+            this.Tab1_BellDelay.Text = "10";
+            // 
+            // Tab1_BellNum
+            // 
+            this.Tab1_BellNum.FormattingEnabled = true;
+            this.Tab1_BellNum.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"});
+            this.Tab1_BellNum.Location = new System.Drawing.Point(153, 87);
+            this.Tab1_BellNum.Name = "Tab1_BellNum";
+            this.Tab1_BellNum.Size = new System.Drawing.Size(121, 21);
+            this.Tab1_BellNum.TabIndex = 3;
+            this.Tab1_BellNum.Text = "1";
+            // 
+            // Send
+            // 
+            this.Send.Location = new System.Drawing.Point(411, 74);
+            this.Send.Name = "Send";
+            this.Send.Size = new System.Drawing.Size(75, 63);
+            this.Send.TabIndex = 2;
+            this.Send.Text = "Send Host Command";
+            this.Send.UseVisualStyleBackColor = true;
+            this.Send.Click += new System.EventHandler(this.Send_Click);
+            // 
+            // label114
+            // 
+            this.label114.AutoSize = true;
+            this.label114.Location = new System.Drawing.Point(9, 116);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(140, 13);
+            this.label114.TabIndex = 1;
+            this.label114.Text = "Delay Between Beeps (ms): ";
+            // 
+            // label113
+            // 
+            this.label113.AutoSize = true;
+            this.label113.Location = new System.Drawing.Point(72, 89);
+            this.label113.Name = "label113";
+            this.label113.Size = new System.Drawing.Size(55, 13);
+            this.label113.TabIndex = 1;
+            this.label113.Text = "Num Bell: ";
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.Location = new System.Drawing.Point(9, 35);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(368, 13);
+            this.label112.TabIndex = 1;
+            this.label112.Text = "Data feed back is sequence of \"\\x01\" or \"B\" with delay 10ms between them";
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(9, 18);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(318, 13);
+            this.label111.TabIndex = 1;
+            this.label111.Text = "When have good read, application will send feed back to scanner";
+            // 
+            // BellBeep_TestB_Ena
+            // 
+            this.BellBeep_TestB_Ena.AutoSize = true;
+            this.BellBeep_TestB_Ena.Location = new System.Drawing.Point(190, 61);
+            this.BellBeep_TestB_Ena.Name = "BellBeep_TestB_Ena";
+            this.BellBeep_TestB_Ena.Size = new System.Drawing.Size(137, 17);
+            this.BellBeep_TestB_Ena.TabIndex = 0;
+            this.BellBeep_TestB_Ena.Text = "Bell Beep Test with \"B\"";
+            this.BellBeep_TestB_Ena.UseVisualStyleBackColor = true;
+            // 
+            // BellBeep_Test1_Ena
+            // 
+            this.BellBeep_Test1_Ena.AutoSize = true;
+            this.BellBeep_Test1_Ena.Location = new System.Drawing.Point(12, 61);
+            this.BellBeep_Test1_Ena.Name = "BellBeep_Test1_Ena";
+            this.BellBeep_Test1_Ena.Size = new System.Drawing.Size(152, 17);
+            this.BellBeep_Test1_Ena.TabIndex = 0;
+            this.BellBeep_Test1_Ena.Text = "Bell Beep Test with \"\\x01\"";
+            this.BellBeep_Test1_Ena.UseVisualStyleBackColor = true;
             // 
             // groupBox38
             // 
@@ -973,6 +1103,7 @@
             // 
             // Tab1groupSerCount
             // 
+            this.Tab1groupSerCount.Controls.Add(this.richTextBox13);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_CheckNotRead);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Remove_BT);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Load_DataCheck_BT);
@@ -1005,10 +1136,19 @@
             this.Tab1groupSerCount.Controls.Add(this.Tab1NumWrong);
             this.Tab1groupSerCount.Location = new System.Drawing.Point(510, 6);
             this.Tab1groupSerCount.Name = "Tab1groupSerCount";
-            this.Tab1groupSerCount.Size = new System.Drawing.Size(331, 543);
+            this.Tab1groupSerCount.Size = new System.Drawing.Size(331, 698);
             this.Tab1groupSerCount.TabIndex = 29;
             this.Tab1groupSerCount.TabStop = false;
             this.Tab1groupSerCount.Text = "Data";
+            // 
+            // richTextBox13
+            // 
+            this.richTextBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.richTextBox13.Location = new System.Drawing.Point(6, 336);
+            this.richTextBox13.Name = "richTextBox13";
+            this.richTextBox13.Size = new System.Drawing.Size(309, 145);
+            this.richTextBox13.TabIndex = 39;
+            this.richTextBox13.Text = "";
             // 
             // Tab1_CheckNotRead
             // 
@@ -1060,7 +1200,7 @@
             // 
             // Tab1LogBT
             // 
-            this.Tab1LogBT.Location = new System.Drawing.Point(170, 502);
+            this.Tab1LogBT.Location = new System.Drawing.Point(160, 662);
             this.Tab1LogBT.Name = "Tab1LogBT";
             this.Tab1LogBT.Size = new System.Drawing.Size(63, 26);
             this.Tab1LogBT.TabIndex = 15;
@@ -1073,7 +1213,7 @@
             this.Tab1SendData.BackColor = System.Drawing.SystemColors.Info;
             this.Tab1SendData.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tab1SendData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Tab1SendData.Location = new System.Drawing.Point(16, 348);
+            this.Tab1SendData.Location = new System.Drawing.Point(6, 508);
             this.Tab1SendData.Name = "Tab1SendData";
             this.Tab1SendData.Size = new System.Drawing.Size(310, 112);
             this.Tab1SendData.TabIndex = 13;
@@ -1098,7 +1238,7 @@
             // 
             // Tab1SendBT
             // 
-            this.Tab1SendBT.Location = new System.Drawing.Point(262, 464);
+            this.Tab1SendBT.Location = new System.Drawing.Point(252, 624);
             this.Tab1SendBT.Name = "Tab1SendBT";
             this.Tab1SendBT.Size = new System.Drawing.Size(63, 26);
             this.Tab1SendBT.TabIndex = 35;
@@ -1109,7 +1249,7 @@
             // Tab1SendDataLabel
             // 
             this.Tab1SendDataLabel.AutoSize = true;
-            this.Tab1SendDataLabel.Location = new System.Drawing.Point(18, 330);
+            this.Tab1SendDataLabel.Location = new System.Drawing.Point(8, 490);
             this.Tab1SendDataLabel.Name = "Tab1SendDataLabel";
             this.Tab1SendDataLabel.Size = new System.Drawing.Size(73, 13);
             this.Tab1SendDataLabel.TabIndex = 10;
@@ -1134,7 +1274,7 @@
             // 
             // Tab1_StatisticBT
             // 
-            this.Tab1_StatisticBT.Location = new System.Drawing.Point(88, 467);
+            this.Tab1_StatisticBT.Location = new System.Drawing.Point(78, 627);
             this.Tab1_StatisticBT.Name = "Tab1_StatisticBT";
             this.Tab1_StatisticBT.Size = new System.Drawing.Size(63, 27);
             this.Tab1_StatisticBT.TabIndex = 18;
@@ -1153,7 +1293,7 @@
             // 
             // button50
             // 
-            this.button50.Location = new System.Drawing.Point(88, 502);
+            this.button50.Location = new System.Drawing.Point(78, 662);
             this.button50.Name = "button50";
             this.button50.Size = new System.Drawing.Size(63, 27);
             this.button50.TabIndex = 18;
@@ -1163,7 +1303,7 @@
             // 
             // Tab1ClearBT
             // 
-            this.Tab1ClearBT.Location = new System.Drawing.Point(16, 467);
+            this.Tab1ClearBT.Location = new System.Drawing.Point(6, 627);
             this.Tab1ClearBT.Name = "Tab1ClearBT";
             this.Tab1ClearBT.Size = new System.Drawing.Size(63, 27);
             this.Tab1ClearBT.TabIndex = 18;
@@ -1173,7 +1313,7 @@
             // 
             // Tab1RunBT
             // 
-            this.Tab1RunBT.Location = new System.Drawing.Point(16, 503);
+            this.Tab1RunBT.Location = new System.Drawing.Point(6, 663);
             this.Tab1RunBT.Name = "Tab1RunBT";
             this.Tab1RunBT.Size = new System.Drawing.Size(63, 28);
             this.Tab1RunBT.TabIndex = 13;
@@ -3031,37 +3171,37 @@
             this.loadConfigToolStripMenuItem,
             this.saveConfigToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             // 
             // saveConfigToolStripMenuItem
             // 
             this.saveConfigToolStripMenuItem.Name = "saveConfigToolStripMenuItem";
-            this.saveConfigToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.saveConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.saveConfigToolStripMenuItem.Text = "Save Config";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // toolToolStripMenuItem
             // 
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.toolToolStripMenuItem.Text = "Tool";
             // 
             // helpToolStripMenuItem
@@ -3072,39 +3212,39 @@
             this.tab3ToolStripMenuItem,
             this.tab4ToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // tab1ToolStripMenuItem
             // 
             this.tab1ToolStripMenuItem.Name = "tab1ToolStripMenuItem";
-            this.tab1ToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.tab1ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.tab1ToolStripMenuItem.Text = "Tab1";
             this.tab1ToolStripMenuItem.Click += new System.EventHandler(this.tab1ToolStripMenuItem_Click);
             // 
             // tab2ToolStripMenuItem
             // 
             this.tab2ToolStripMenuItem.Name = "tab2ToolStripMenuItem";
-            this.tab2ToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.tab2ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.tab2ToolStripMenuItem.Text = "Tab2";
             this.tab2ToolStripMenuItem.Click += new System.EventHandler(this.tab2ToolStripMenuItem_Click);
             // 
             // tab3ToolStripMenuItem
             // 
             this.tab3ToolStripMenuItem.Name = "tab3ToolStripMenuItem";
-            this.tab3ToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.tab3ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.tab3ToolStripMenuItem.Text = "Tab3";
             // 
             // tab4ToolStripMenuItem
             // 
             this.tab4ToolStripMenuItem.Name = "tab4ToolStripMenuItem";
-            this.tab4ToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.tab4ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.tab4ToolStripMenuItem.Text = "Tab4";
             // 
             // abboutToolStripMenuItem
             // 
             this.abboutToolStripMenuItem.Name = "abboutToolStripMenuItem";
-            this.abboutToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.abboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.abboutToolStripMenuItem.Text = "About";
             this.abboutToolStripMenuItem.Click += new System.EventHandler(this.abboutToolStripMenuItem_Click);
             // 
@@ -3132,7 +3272,7 @@
             this.PortSelectStatus.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.PortSelectStatus.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.PortSelectStatus.Name = "PortSelectStatus";
-            this.PortSelectStatus.Size = new System.Drawing.Size(100, 17);
+            this.PortSelectStatus.Size = new System.Drawing.Size(113, 17);
             this.PortSelectStatus.Text = "No Port Connecting";
             this.PortSelectStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -6132,12 +6272,14 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test_Form";
-            this.Text = "Test Tool          Ver: 0.0.1.4";
+            this.Text = "Test Tool          Ver: 0.0.1.7";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_Form_FormClosing);
             this.ControlTab.ResumeLayout(false);
             this.CountPage.ResumeLayout(false);
             this.CountPage.PerformLayout();
+            this.groupBox42.ResumeLayout(false);
+            this.groupBox42.PerformLayout();
             this.groupBox38.ResumeLayout(false);
             this.groupBox38.PerformLayout();
             this.Tab1groupDataView.ResumeLayout(false);
@@ -6796,6 +6938,17 @@
         private System.Windows.Forms.Button button50;
         private System.Windows.Forms.Button Tab1_StatisticBT;
         private System.Windows.Forms.Button Tab1_Load_DataCheck_BT;
+        private System.Windows.Forms.GroupBox groupBox42;
+        private System.Windows.Forms.CheckBox BellBeep_Test1_Ena;
+        private System.Windows.Forms.Label label112;
+        private System.Windows.Forms.Label label111;
+        private System.Windows.Forms.CheckBox BellBeep_TestB_Ena;
+        private System.Windows.Forms.RichTextBox richTextBox13;
+        private System.Windows.Forms.ComboBox Tab1_BellNum;
+        private System.Windows.Forms.Button Send;
+        private System.Windows.Forms.Label label113;
+        private System.Windows.Forms.TextBox Tab1_BellDelay;
+        private System.Windows.Forms.Label label114;
 
     }
 }
