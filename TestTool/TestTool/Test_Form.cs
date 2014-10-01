@@ -82,7 +82,7 @@ namespace WindowsFormsApplication1
                 try
                 {
                     Tab1serialPort.PortName = portName;
-                    Tab1serialPort.Open();
+                    // Tab1serialPort.Open();
 
                     // Init for Tab1 & Tab3
                     Tab1ComPortSelect.Items.Add(portName);
@@ -93,7 +93,7 @@ namespace WindowsFormsApplication1
                     Tab2ComPortInit(ComControlArray, index, portName);
                     totalPort++;
                     index++;
-                    Tab1serialPort.Close();
+                    // Tab1serialPort.Close();
                 }
                 catch {
                     Add_logs(portName + ": Not available \n", LogMsgType.Error, TabNum.Tab1);
@@ -180,7 +180,6 @@ namespace WindowsFormsApplication1
             MessageBox.Show(log_mess, "About");
         }
 
-
-
+        
     }
 }
