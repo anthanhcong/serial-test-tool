@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -35,9 +36,12 @@ namespace WindowsFormsApplication1
         public bool Tab1_wait_receive;
         public TAB1_STATE Receive_State = TAB1_STATE.NORMAL;
         
-
         DataTable Misread_table;
         DataTable Goodread_table;
+
+        StreamWriter Tab1_LogFile;
+        string Tab1_LogFile_Path = "";
+
         #endregion
 
         /***************************************************************
@@ -133,7 +137,10 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                Tab1serialPort.Close();
+                if (Tab1serialPort.IsOpen == true)
+                {
+                    Tab1serialPort.Close();
+                }
             }
             catch
             {
@@ -308,6 +315,11 @@ namespace WindowsFormsApplication1
                         break;
                 }
                 currentBox.AppendText(text);
+
+                if (tabNum == TabNum.Tab1)
+                {
+                    Tab_WriteLog(text);
+                }
             }
         }
 

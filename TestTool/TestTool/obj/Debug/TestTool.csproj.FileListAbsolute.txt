@@ -40,3 +40,5 @@ D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\ResolveAssemblyRe
 D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\WindowsFormsApplication1.Test_Form.resources
 D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 D:\DVP\TestTool\SerialTestTool_SVN\TestTool\TestTool\obj\Debug\TestTool.csproj.GenerateResource.Cache
+G:\DVP_Git\SerialTestTool\SerialTestTool\TestTool\TestTool\obj\Debug\TestTool.exe
+G:\DVP_Git\SerialTestTool\SerialTestTool\TestTool\TestTool\obj\Debug\TestTool.pdb

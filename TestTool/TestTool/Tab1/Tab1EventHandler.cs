@@ -3,6 +3,7 @@ using System.Linq;
 using System.Data;
 using System.Text;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -160,7 +161,6 @@ namespace WindowsFormsApplication1
             Update_Statistic();
         }
 
-
         private void Tab1RestoreBT_Click(object sender, EventArgs e)
         {
             Tab1ComPortSelect.SelectedIndex = 0;
@@ -194,33 +194,39 @@ namespace WindowsFormsApplication1
                         {
                             // Get Setting & Open Comport
                             GetTab1SerialConfig();
-                            OpenComTab1();
-
-                            // Change status of "Run" button
-                            Tab1RunBT.Text = "Stop";
-                            promptMes = Tab1serialPort.PortName + " is Opened";
-                            Display_prompt(promptMes, LogMsgType.Normal);
-
-                            // Reset run time
-                            ResetTimeCheck();
-                            Update_Status_bar(1, true);
-                            Tab1_wait_receive = true;
-
-                            // Enable timer for check can not read
-                            if (Tab1_CheckNotRead.Checked == true)
+                            // OpenComTab1();
+                            if (OpenComTab1() == false)
                             {
-                                try
+                                break;
+                            }
+                            else
+                            {
+
+                                // Change status of "Run" button
+                                Tab1RunBT.Text = "Stop";
+                                promptMes = Tab1serialPort.PortName + " is Opened";
+                                Display_prompt(promptMes, LogMsgType.Normal);
+
+                                // Reset run time
+                                ResetTimeCheck();
+                                Update_Status_bar(1, true);
+                                Tab1_wait_receive = true;
+
+                                // Enable timer for check can not read
+                                if (Tab1_CheckNotRead.Checked == true)
                                 {
-                                    Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
-                                    Tab1_WaitNextLbl_Timer.Enabled = true;
-                                    Tab1_WaitNextLbl_Timer.Start();
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Can not start Check Not Read.", "Error");
+                                    try
+                                    {
+                                        Tab1_WaitNextLbl_Timer.Interval = Convert.ToInt32(Tab1_CircleRead.Text.Trim());
+                                        Tab1_WaitNextLbl_Timer.Enabled = true;
+                                        Tab1_WaitNextLbl_Timer.Start();
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Can not start Check Not Read.", "Error");
+                                    }
                                 }
                             }
-                            
                         }
                         // Stop Click
                         else
@@ -267,9 +273,6 @@ namespace WindowsFormsApplication1
                         // Change status of "Run" button
                         Tab1RunBT.Text = "Stop";
                         Tab1_Enable_setting(false);
-                        
-                        
-
                         // Reset run time
                         ResetTimeCheck();
 
@@ -321,6 +324,84 @@ namespace WindowsFormsApplication1
                 default:
                     break;
             }
+
+            if (Tab1RunBT.Text != "Run")
+            {
+                Tab1_LogFile = Tab1_OpenLogFile();
+                if (Tab1InfStatus == Tab1Interface.Ser)
+                {
+                    Tab1DataReceiveLine.Invoke(new EventHandler(delegate
+                    {
+                        Tab1_StatisticBT_Click(null, null);
+                    }));
+                }
+            }
+            else {
+                if (Tab1InfStatus == Tab1Interface.Ser)
+                {
+                    Tab1DataReceiveLine.Invoke(new EventHandler(delegate
+                    {
+                        Tab1_StatisticBT_Click(null, null);
+                    }));
+                }
+                Tab1_Close_LogFile();
+            }
+        }
+
+        private StreamWriter Tab1_OpenLogFile()
+        {
+            string folder_name = Tab1_FolderName.Text.Trim();
+            string tester = Tab1_Tester.Text.Trim();
+            string platform = Tab1_PlatForm.Text.Trim();
+            string interface_str = Tab1_Interface.Text.Trim();
+            string readmode = Tab1_ReadMode.Text.Trim();
+            string more = Tab1_More.Text.Trim();
+
+            string filename = tester + "_" + platform + "_" + interface_str + "_" + readmode + "_" + more+ ".txt";
+
+            if (Directory.Exists(folder_name) == false)
+            {
+                Directory.CreateDirectory(folder_name);
+            }
+
+            if (filename == "____.txt")
+            {
+                filename = "DefaultLog.txt";
+            }
+            if (File.Exists(filename) == false)
+            {
+                File.Create(filename);
+            }
+            Tab1_LogFile_Path = folder_name + @"\" + filename;
+            Tab1_LogFile = File.AppendText(Tab1_LogFile_Path);
+            return Tab1_LogFile;
+        }
+
+        private void Tab1_Close_LogFile()
+        {
+            if (Tab1_LogFile != null)
+            {
+                if (Tab1_LogFile.BaseStream != null)
+                {
+                    Tab1_LogFile.Close();
+                }
+            }
+        }
+
+        private bool Tab_WriteLog(string Log)
+        {
+            try
+            {
+                Tab1_LogFile.Write(Log);
+                return true;
+            }
+            catch (Exception e)
+            {
+                // MessageBox.Show(e.ToString().Trim(), "Error");
+                MessageBox.Show("Log File is not Open", "Error");
+                
+                return false;
+            }
         }
 
         /// <summary>
@@ -336,8 +417,6 @@ namespace WindowsFormsApplication1
             string senddata;
             byte[] data_converted;
             int len;
-            
-
             if (Tab1InfStatus == Tab1Interface.Ser)
             {
                 senddata = Tab1SendData.Text;
@@ -427,7 +506,7 @@ namespace WindowsFormsApplication1
             string statistic_mess;
             DateTime currTime = DateTime.Now;
             TimeSpan duration = currTime - tab1_start;
-            string TimeStamp = currTime.ToString("HH:mm:ss.fff");
+            string TimeStamp = currTime.ToString("dd MMM yyyy HH:mm:ss.fff");
             bool last_com_isOpen = true;
             int last_baud;
            
@@ -485,12 +564,24 @@ namespace WindowsFormsApplication1
             Tab1serialPort.Write("$!\r");
             Thread.Sleep(300);
             Application.DoEvents();
+            Add_logs("ResetLog:\n", LogMsgType.Warning, TabNum.Tab1);
             Tab1serialPort.Write("$L00,L01,L02,L03,L04,L05,L06,L07,L08,L09\r");
             Thread.Sleep(300);
             Application.DoEvents();
             Tab1serialPort.Write("$t00,t01,t02,t03\r");
             Thread.Sleep(300);
             Application.DoEvents();
+
+            Add_logs("Get All Configure:\n", LogMsgType.Warning, TabNum.Tab1);
+            Tab1serialPort.Write("$a\r");
+            Thread.Sleep(3000);
+            Application.DoEvents();
+
+            Add_logs("Erase:\n", LogMsgType.Warning, TabNum.Tab1);
+            Tab1serialPort.Write("$AR\r");
+            Thread.Sleep(300);
+            Application.DoEvents();
+
             Receive_State = TAB1_STATE.EXIT_SERVICE;
 
             statistic_mess = "Scanner information: \n" + Scan_info_Buf;

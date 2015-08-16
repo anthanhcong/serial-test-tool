@@ -46,6 +46,8 @@ namespace WindowsFormsApplication1
         private bool[] Collect_Frame;
         public byte[,] Tab2_Frame_Receive;
         public int[] Tab2_FReceive_Len;
+        // public bool[] Tab2_XMODEM_Enable;
+        public XMODEM[] Tab2_XMODEM;
         public byte[][] Tab2_Receive_Buf;
         public int[] Tab2_Receive_index;
         private int[] Pream_Cnt;
@@ -154,6 +156,14 @@ namespace WindowsFormsApplication1
             Check_Frame_Ena = new bool[totalPort];
             Collect_Frame = new bool[totalPort];
             Pream_Cnt = new int[totalPort];
+            Tab2_XMODEM = new XMODEM[totalPort];
+            // init global value 
+            for (i = 0; i < totalPort; i++)
+            {
+                Tab2_XMODEM[i] = new XMODEM();
+                Tab2_XMODEM[i].X_Timer.Tag = i;
+                Tab2_XMODEM[i].X_Timer.Tick += new EventHandler(XMODEM_Timer_ISR);
+            }
 
 
             // Goto Function
@@ -227,9 +237,6 @@ namespace WindowsFormsApplication1
             ComControlArray[i].ComPort.PortName = PortName;
             ComControlArray[i].DelayValueText.Text = "500";
 
-            // Event Handle
-            // ComControlArray[i].ComCheckBox.CheckStateChanged += new System.EventHandler(ComCheck_eventhandler);
-            // ComControlArray[i].DeviceNameText.TextChanged += new System.EventHandler(DeviceName_evenhandler);
             ComControlArray[i].SelectPathBT.Click += new EventHandler(SelectPathBT_Click);
             ComControlArray[i].ComPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(Tab2SerialPort_ISR);
             ComControlArray[i].ComTimer.Tick += new System.EventHandler(Timer_ISR);
@@ -239,7 +246,6 @@ namespace WindowsFormsApplication1
             Tab2groupComSet.Controls.Add(ComControlArray[i].ComCheckBox);
             Tab2groupComSet.Controls.Add(ComControlArray[i].DeviceNameText);
             Tab2groupComSet.Controls.Add(ComControlArray[i].DelayValueText);
-            // Tab2groupComSet.Controls.Add(ComControlArray[i].FixTimeCheck);
             Tab2groupComSet.Controls.Add(ComControlArray[i].SelectPathBT);
             Tab2groupComSet.Controls.Add(ComControlArray[i].DataforSendLabel);
         }
@@ -600,13 +606,30 @@ namespace WindowsFormsApplication1
                             Pass_Cnt[index]++;
 
                             Respond_Action(index, Tab2_Wait_Send[index, i]);
+
+                            // Goto next code
+                            Goto_Next_Code_Line(index);
+
                             break;
                         }
                     }
                 }
             }
             return true;
-        }  
+        }
+
+        public void Goto_Next_Code_Line(int index)
+        {
+            Tab1DataReceiveLine.Invoke(new EventHandler(delegate
+            {
+                ComControlArray[index].ComTimer.Stop();
+                ComControlArray[index].ComTimer.Interval = 100;
+                ComControlArray[index].ComTimer.Start();
+                ComControlArray[index].Enable();
+                ComControlArray[index].ComTimer.Enabled = true;
+            }));
+        }
+
         
         /// <summary>
         /// 
@@ -816,10 +839,10 @@ namespace WindowsFormsApplication1
                 }
             }
             // For "%GTO" function
-            else if ((action.Length == 5) && (action.Substring(0, 4) == "%GTO") &&
-                        ((action[4] >= '1') && (action[4] <= '6'))) 
+            else if ((action.Length == 6) && (action.Substring(0, 4) == "%GTO") &&
+                        ((action[5] >= '1') && (action[5] <= '6'))) 
             {
-                Data_index[index] = Tab2_LBL[index, action[4] - '1'];
+                Data_index[index] = Tab2_LBL[index, action[5] - '1'];
                 ret_var = true;
             }
             else

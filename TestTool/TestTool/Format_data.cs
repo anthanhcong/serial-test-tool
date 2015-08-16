@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1
 
 
             // Add Time Stamp
-            TimeStamp = CurrTime.ToString("HH:mm:ss.fff");
+            TimeStamp = CurrTime.ToString("dd MMM HH:mm:ss.fff");
 
             // Get Current data view mode
             switch (tabNum)

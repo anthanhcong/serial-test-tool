@@ -112,6 +112,8 @@ namespace WindowsFormsApplication1
 
         private bool App_close()
         {
+            CloseComTab1();
+            Tab1_Close_LogFile();
             Tab2Stop_Click(null, null);
             return true;
         }
@@ -180,6 +182,23 @@ namespace WindowsFormsApplication1
             MessageBox.Show(log_mess, "About");
         }
 
-        
+        private void Tab1_log_BT_Click(object sender, EventArgs e)
+        {
+            string folder_name;
+
+            // Set Initial Directory
+            folder_name = "C:\\";
+            if (folder_name != null)
+            {
+                folderBrowserDialog1.SelectedPath = folder_name;
+            }
+
+            // Open Dialog
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                folder_name = folderBrowserDialog1.SelectedPath.ToString();
+                Tab1_FolderName.Text = folder_name;
+            }
+        }
     }
 }

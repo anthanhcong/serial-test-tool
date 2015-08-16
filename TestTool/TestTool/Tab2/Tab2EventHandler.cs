@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
         {
             string portName;
             string Indatastring, OutData;
-            byte[] indata = new byte[BUF_LEN];
+            byte[] indata; // = new byte[BUF_LEN];
             int len;
             int i,index;
             bool end_frame = false;
@@ -59,9 +59,18 @@ namespace WindowsFormsApplication1
             // @TODO (Kien #2#DONE): Add receive data to buffer and check for "Wait Respond"
             if (i < totalPort){
                 // Read Data and store to buffer
-                len = thisCom.BytesToRead >= BUF_LEN ? BUF_LEN : thisCom.BytesToRead;
+                len = thisCom.BytesToRead; // >= BUF_LEN ? BUF_LEN : thisCom.BytesToRead;
+                if (len >= BUF_LEN) len = BUF_LEN;
+                indata = new byte[len+1];
                 thisCom.Read(indata, 0, len);       // Read Data from COMPORT
-               
+
+                //@NOTE (Kien##): Implement feature for Support receive data in X_MODEM 1K protocol. 
+                if (Tab2_XMODEM[index].Enable == true)
+                {
+                    Process_XMODEL_Data(index, indata, len);
+                    return;
+                }
+
                 // Add to buffer
                 for (i = 0; i < len; i++)
                 {
@@ -82,8 +91,6 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                
-
                 // Update Time Check
                 Tab2_RCT[index] = DateTime.Now;
                 Tab2_Curr_Receive[index] = DateTime.Now;
@@ -102,9 +109,6 @@ namespace WindowsFormsApplication1
                 First_Receive[index] = false;       // Set Wait Receive 
 
                 //Chek Receive Frame
-#if false
-                Tab2_RxFrame(index, indata, len);
-#else
                 if (Check_Frame_Ena[index] == true)
                 {
                     Tab2_RxFrame(index, indata, len);
@@ -118,7 +122,6 @@ namespace WindowsFormsApplication1
                         Reset_Buffer(index);
                     }
                 }
-#endif
                 
             }else{
                 MessageBox.Show("Can not find log file for " + portName, "Error");
@@ -143,11 +146,20 @@ namespace WindowsFormsApplication1
             byte [] data_write = new byte[BUF_LEN];
             string log_mess = "";
 
+            
+
             // get index
             Timer CurrTimer = (Timer)sender;
             index = Convert.ToByte(CurrTimer.Tag);
             if (Has_data[index] == true)
             {
+                if (Tab2_XMODEM[index].Enable == true)
+                {
+                    ComControlArray[index].Timer_Stop();
+                    ComControlArray[index].Timer_Start();
+                    return;
+                }
+
                 ComControlArray[index].Timer_Stop();
                 switch (Tab2_Status[index])
                 {
@@ -167,6 +179,7 @@ namespace WindowsFormsApplication1
                         {
                             WriteCom(index, data_write, write_len);
                         }
+                        
                         ComControlArray[index].Timer_setDelay(Delay_Value[index]);
                         ComControlArray[index].Timer_Start();
                         log_mess = ComControlArray[index].ComPort.PortName.ToString();
@@ -191,6 +204,7 @@ namespace WindowsFormsApplication1
                             {
                                 WriteCom(index, data_write, write_len);
                             }
+
 
                             ComControlArray[index].Timer_setDelay(Delay_Value[index]);
                             ComControlArray[index].Timer_Start();
@@ -355,7 +369,6 @@ namespace WindowsFormsApplication1
 
             for (i = 0; i < totalPort; i++)
             {
-               
                 if ((ComControlArray[i].ComCheckBox.Checked == true) && (Tab2Running == true))
                 {
                     ComControlArray[i].ClosePort();
@@ -554,11 +567,11 @@ namespace WindowsFormsApplication1
                 {
                     buffer = buffer.Trim();
                     ComControlArray[index].Data4Send.Items.Add(buffer);
-                    if (buffer.Length == 5)
+                    if (buffer.Length == 6)
                     {
-                        if ((buffer.Substring(0, 4) == "%LBL") && (buffer[4] >= '1') && (buffer[4] <= '6'))
+                        if ((buffer.Substring(0, 4) == "%LBL") && (buffer[5] >= '1') && (buffer[5] <= '6'))
                         {
-                            Tab2_LBL[index, buffer[4] - '1'] = ComControlArray[index].Data4Send.Items.Count - 1;
+                            Tab2_LBL[index, buffer[5] - '1'] = ComControlArray[index].Data4Send.Items.Count - 1;
                         }
                     }
                 }

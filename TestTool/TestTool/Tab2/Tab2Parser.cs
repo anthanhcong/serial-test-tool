@@ -23,46 +23,59 @@ namespace WindowsFormsApplication1
         private bool Parser_command(int index, string command_str)
         {
             string command = "";
+            string next_part = "";
             bool ret_var = false;
-            int len = command_str.Length;
+            int len = command_str.Trim().Length;
+            string[] parser;
+            int command_len;
 
             if (len < 3) return false;
-            else command = command_str.Substring(0, 3);
+            else
+            {
+                // command = command_str.Substring(0, 3);
+                parser = command_str.Split(':');
+                command = parser[0].Trim();
+                command_len = command.Length;
+                if (len != command_len)
+                {
+                    next_part = command_str.Substring(command_len, len - command_len);
+                }
+            }
 
             switch (command)
             {
                 case "EXP":
-                    ret_var = Set_Expect_Receive(index, command_str.Substring(3, len - 3));
+                    ret_var = Set_Expect_Receive(index, next_part);
                     break;
                 case "WAT":
-                    ret_var = Set_Wait_Receive(index, command_str.Substring(3, len - 3));
+                    ret_var = Set_Wait_Receive(index, next_part);
                     break;
                 case "DLY":
-                    ret_var = Set_Delay_Value(index, command_str.Substring(3, len - 3));
+                    ret_var = Set_Delay_Value(index, next_part);
                     break;
                 case "COM":
-                    ret_var = Config_Comport(index, command_str.Substring(3, len - 3));
+                    ret_var = Config_Comport(index, next_part);
                     break;
                 case "STR":
-                    ret_var = Store_Time_Value(index, command_str.Substring(3, len - 3));
+                    ret_var = Store_Time_Value(index, next_part);
                     break;
                 case "SST":
-                    ret_var = Store_String(index, command_str.Substring(3, len - 3));
+                    ret_var = Store_String(index, next_part);
                     break;
                 case "CAT":
-                    ret_var = Concat_String(index, command_str.Substring(3, len - 3));
+                    ret_var = Concat_String(index, next_part);
                     break;
                 case "DTA":
-                    ret_var = Compute_Delta_Time(index, command_str.Substring(3, len - 3));
+                    ret_var = Compute_Delta_Time(index, next_part);
                     break;
                 case "PRN":
-                    ret_var = Print_String(index, command_str.Substring(3, len - 3));
+                    ret_var = Print_String(index, next_part);
                     break;
                 case "RPT":
                     ret_var = Report_Pass_Fail(index);
                     break;
                 case "PIC":
-                    ret_var = Display_Pic(index, command_str.Substring(3, len - 3));
+                    ret_var = Display_Pic(index, next_part);
                     break;
 
                 // @Note (Kien ##): Check Frame Command
@@ -78,16 +91,36 @@ namespace WindowsFormsApplication1
                     Frame_Expect_Cnt[index] = 0;
                     ret_var = true;
                     break;
-                //End @Note
+                //End Kien
+
+                // @Note (Kien ##): support for X_MODEM Receive
+                case "XMODEM":
+                    ret_var = XMODEL_Function(index, next_part);
+                    break;
+                //End Kien
 
                 // @Note (Kien ##): For GoTo Function
                 case "LBL":
                     // Ignore this command
                     ret_var = true;
+                    if ((next_part[1] >= '1') && (next_part[1] <= '6'))
+                    {
+                        Tab2_LBL[index, next_part[1] - '1'] = Data_index[index] - 1;
+                    }
+                    else
+                    {
+                        ret_var = false;
+                    }
                     break;
                 case "GTO":
-                    if ((command_str[3] >= '1') && (command_str[3] <= '6')){
-                        Data_index[index] = Tab2_LBL[index, command_str[3] - '1'];
+                    if ((next_part[1] >= '1') && (next_part[1] <= '6'))
+                    {
+                        Data_index[index] = Tab2_LBL[index, next_part[1] - '1'];
+                        Tab2_add_log(index, "\nGOTO Label: " + command_str[3] + "\n", LogMsgType.Coment);
+                    }
+                    else
+                    {
+                        ret_var = false;
                     }
                     ret_var = true;
                     break;
@@ -180,10 +213,12 @@ namespace WindowsFormsApplication1
                         return false;
                     }
                 }
-                else if (tag.Length == 2)
+                else if (tag.Length >= 2)
                 {
                     Tab2_Wait_Respond[index, Expect_Cnt[index]] = tag[0].Trim();
-                    Tab2_Wait_Send[index, Expect_Cnt[index]] = tag[1].Trim();
+                    len = tag[0].Trim().Length;
+                    // Tab2_Wait_Send[index, Expect_Cnt[index]] = tag[1].Trim();
+                    Tab2_Wait_Send[index, Expect_Cnt[index]] = cmd.Substring(len + 1, cmd.Length - len - 1 );
                     Wait_Cnt[index]++;
                 }
                 else
@@ -332,9 +367,9 @@ namespace WindowsFormsApplication1
                 switch (tag[0])
                 {
                     case "BAD":
-                        if ((value == "9600") || (value == "19200") ||
-                            (value == "38400") || (value == "57600") ||
-                            (value == "115200"))
+                        if ((value == "9600")   || (value == "19200") ||
+                            (value == "38400")  || (value == "57600") ||
+                            (value == "115200") || (value == "230400"))
                         {
                             if (ComControlArray[index].ComPort.IsOpen == true)
                             {

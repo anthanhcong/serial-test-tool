@@ -147,6 +147,9 @@
     <Compile Include="Tab2\Tab2EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="XMODEL_Protocol\XMODEM.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

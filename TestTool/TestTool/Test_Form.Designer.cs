@@ -69,7 +69,20 @@
             this.Tab1SetThresholdLabel = new System.Windows.Forms.Label();
             this.Tab1SetStopBitLabel = new System.Windows.Forms.Label();
             this.Tab1groupSerCount = new System.Windows.Forms.GroupBox();
-            this.richTextBox13 = new System.Windows.Forms.RichTextBox();
+            this.groupBox43 = new System.Windows.Forms.GroupBox();
+            this.Tab1_FolderName = new System.Windows.Forms.Label();
+            this.label125 = new System.Windows.Forms.Label();
+            this.Tab1_log_BT = new System.Windows.Forms.Button();
+            this.Tab1_More = new System.Windows.Forms.TextBox();
+            this.label124 = new System.Windows.Forms.Label();
+            this.Tab1_ReadMode = new System.Windows.Forms.TextBox();
+            this.label123 = new System.Windows.Forms.Label();
+            this.Tab1_Interface = new System.Windows.Forms.TextBox();
+            this.label122 = new System.Windows.Forms.Label();
+            this.Tab1_PlatForm = new System.Windows.Forms.TextBox();
+            this.label121 = new System.Windows.Forms.Label();
+            this.Tab1_Tester = new System.Windows.Forms.TextBox();
+            this.label120 = new System.Windows.Forms.Label();
             this.Tab1_CheckNotRead = new System.Windows.Forms.CheckBox();
             this.Tab1_Remove_BT = new System.Windows.Forms.Button();
             this.Tab1_Load_DataCheck_BT = new System.Windows.Forms.Button();
@@ -146,6 +159,19 @@
             this.ListDeviceLabel = new System.Windows.Forms.Label();
             this.ListComLabel = new System.Windows.Forms.Label();
             this.Tab2ReceiveData = new System.Windows.Forms.RichTextBox();
+            this.ImageCapture_Tab = new System.Windows.Forms.TabPage();
+            this.Image_PortSetting_Grp = new System.Windows.Forms.GroupBox();
+            this.label115 = new System.Windows.Forms.Label();
+            this.button51 = new System.Windows.Forms.Button();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.label116 = new System.Windows.Forms.Label();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.label117 = new System.Windows.Forms.Label();
+            this.comboBox27 = new System.Windows.Forms.ComboBox();
+            this.label118 = new System.Windows.Forms.Label();
+            this.label119 = new System.Windows.Forms.Label();
+            this.comboBox47 = new System.Windows.Forms.ComboBox();
             this.PrescanDemoPage = new System.Windows.Forms.TabPage();
             this.Tab3LR = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -564,6 +590,17 @@
             this.SnifPort = new System.IO.Ports.SerialPort(this.components);
             this.SnifTimer_1 = new System.Windows.Forms.Timer(this.components);
             this.Tab1_WaitNextLbl_Timer = new System.Windows.Forms.Timer(this.components);
+            this.label135 = new System.Windows.Forms.Label();
+            this.button55 = new System.Windows.Forms.Button();
+            this.comboBox63 = new System.Windows.Forms.ComboBox();
+            this.comboBox64 = new System.Windows.Forms.ComboBox();
+            this.label136 = new System.Windows.Forms.Label();
+            this.comboBox65 = new System.Windows.Forms.ComboBox();
+            this.label137 = new System.Windows.Forms.Label();
+            this.comboBox66 = new System.Windows.Forms.ComboBox();
+            this.label138 = new System.Windows.Forms.Label();
+            this.label139 = new System.Windows.Forms.Label();
+            this.comboBox67 = new System.Windows.Forms.ComboBox();
             this.ControlTab.SuspendLayout();
             this.CountPage.SuspendLayout();
             this.groupBox42.SuspendLayout();
@@ -572,6 +609,7 @@
             this.Tab1groupAppMode.SuspendLayout();
             this.Tab1groupSerSetting.SuspendLayout();
             this.Tab1groupSerCount.SuspendLayout();
+            this.groupBox43.SuspendLayout();
             this.InOutPage.SuspendLayout();
             this.Report.SuspendLayout();
             this.groupBox37.SuspendLayout();
@@ -579,6 +617,8 @@
             this.Tab2DataView.SuspendLayout();
             this.Tab2groupSetting.SuspendLayout();
             this.Tab2groupComSet.SuspendLayout();
+            this.ImageCapture_Tab.SuspendLayout();
+            this.Image_PortSetting_Grp.SuspendLayout();
             this.PrescanDemoPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Tab3_Timeout.SuspendLayout();
@@ -670,6 +710,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.ControlTab.Controls.Add(this.CountPage);
             this.ControlTab.Controls.Add(this.InOutPage);
+            this.ControlTab.Controls.Add(this.ImageCapture_Tab);
             this.ControlTab.Controls.Add(this.PrescanDemoPage);
             this.ControlTab.Controls.Add(this.RF_Snif_Tab);
             this.ControlTab.Controls.Add(this.LostDataCheck);
@@ -1103,7 +1144,7 @@
             // 
             // Tab1groupSerCount
             // 
-            this.Tab1groupSerCount.Controls.Add(this.richTextBox13);
+            this.Tab1groupSerCount.Controls.Add(this.groupBox43);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_CheckNotRead);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Remove_BT);
             this.Tab1groupSerCount.Controls.Add(this.Tab1_Load_DataCheck_BT);
@@ -1141,19 +1182,140 @@
             this.Tab1groupSerCount.TabStop = false;
             this.Tab1groupSerCount.Text = "Data";
             // 
-            // richTextBox13
+            // groupBox43
             // 
-            this.richTextBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.richTextBox13.Location = new System.Drawing.Point(6, 336);
-            this.richTextBox13.Name = "richTextBox13";
-            this.richTextBox13.Size = new System.Drawing.Size(309, 145);
-            this.richTextBox13.TabIndex = 39;
-            this.richTextBox13.Text = "";
+            this.groupBox43.Controls.Add(this.Tab1_FolderName);
+            this.groupBox43.Controls.Add(this.label125);
+            this.groupBox43.Controls.Add(this.Tab1_log_BT);
+            this.groupBox43.Controls.Add(this.Tab1_More);
+            this.groupBox43.Controls.Add(this.label124);
+            this.groupBox43.Controls.Add(this.Tab1_ReadMode);
+            this.groupBox43.Controls.Add(this.label123);
+            this.groupBox43.Controls.Add(this.Tab1_Interface);
+            this.groupBox43.Controls.Add(this.label122);
+            this.groupBox43.Controls.Add(this.Tab1_PlatForm);
+            this.groupBox43.Controls.Add(this.label121);
+            this.groupBox43.Controls.Add(this.Tab1_Tester);
+            this.groupBox43.Controls.Add(this.label120);
+            this.groupBox43.Location = new System.Drawing.Point(7, 15);
+            this.groupBox43.Name = "groupBox43";
+            this.groupBox43.Size = new System.Drawing.Size(317, 159);
+            this.groupBox43.TabIndex = 39;
+            this.groupBox43.TabStop = false;
+            this.groupBox43.Text = "Tester Information";
+            // 
+            // Tab1_FolderName
+            // 
+            this.Tab1_FolderName.AutoSize = true;
+            this.Tab1_FolderName.Location = new System.Drawing.Point(68, 125);
+            this.Tab1_FolderName.Name = "Tab1_FolderName";
+            this.Tab1_FolderName.Size = new System.Drawing.Size(40, 13);
+            this.Tab1_FolderName.TabIndex = 4;
+            this.Tab1_FolderName.Text = "C:\\Log";
+            // 
+            // label125
+            // 
+            this.label125.AutoSize = true;
+            this.label125.Location = new System.Drawing.Point(8, 125);
+            this.label125.Name = "label125";
+            this.label125.Size = new System.Drawing.Size(60, 13);
+            this.label125.TabIndex = 3;
+            this.label125.Text = "Log Folder:";
+            // 
+            // Tab1_log_BT
+            // 
+            this.Tab1_log_BT.Location = new System.Drawing.Point(281, 120);
+            this.Tab1_log_BT.Name = "Tab1_log_BT";
+            this.Tab1_log_BT.Size = new System.Drawing.Size(25, 23);
+            this.Tab1_log_BT.TabIndex = 2;
+            this.Tab1_log_BT.Text = "...";
+            this.Tab1_log_BT.UseVisualStyleBackColor = true;
+            this.Tab1_log_BT.Click += new System.EventHandler(this.Tab1_log_BT_Click);
+            // 
+            // Tab1_More
+            // 
+            this.Tab1_More.Location = new System.Drawing.Point(71, 94);
+            this.Tab1_More.Name = "Tab1_More";
+            this.Tab1_More.Size = new System.Drawing.Size(235, 20);
+            this.Tab1_More.TabIndex = 1;
+            // 
+            // label124
+            // 
+            this.label124.AutoSize = true;
+            this.label124.Location = new System.Drawing.Point(8, 97);
+            this.label124.Name = "label124";
+            this.label124.Size = new System.Drawing.Size(43, 13);
+            this.label124.TabIndex = 0;
+            this.label124.Text = "More ...";
+            // 
+            // Tab1_ReadMode
+            // 
+            this.Tab1_ReadMode.Location = new System.Drawing.Point(71, 68);
+            this.Tab1_ReadMode.Name = "Tab1_ReadMode";
+            this.Tab1_ReadMode.Size = new System.Drawing.Size(91, 20);
+            this.Tab1_ReadMode.TabIndex = 1;
+            // 
+            // label123
+            // 
+            this.label123.AutoSize = true;
+            this.label123.Location = new System.Drawing.Point(8, 71);
+            this.label123.Name = "label123";
+            this.label123.Size = new System.Drawing.Size(63, 13);
+            this.label123.TabIndex = 0;
+            this.label123.Text = "Read Mode";
+            // 
+            // Tab1_Interface
+            // 
+            this.Tab1_Interface.Location = new System.Drawing.Point(233, 42);
+            this.Tab1_Interface.Name = "Tab1_Interface";
+            this.Tab1_Interface.Size = new System.Drawing.Size(73, 20);
+            this.Tab1_Interface.TabIndex = 1;
+            // 
+            // label122
+            // 
+            this.label122.AutoSize = true;
+            this.label122.Location = new System.Drawing.Point(168, 45);
+            this.label122.Name = "label122";
+            this.label122.Size = new System.Drawing.Size(49, 13);
+            this.label122.TabIndex = 0;
+            this.label122.Text = "Interface";
+            // 
+            // Tab1_PlatForm
+            // 
+            this.Tab1_PlatForm.Location = new System.Drawing.Point(71, 42);
+            this.Tab1_PlatForm.Name = "Tab1_PlatForm";
+            this.Tab1_PlatForm.Size = new System.Drawing.Size(91, 20);
+            this.Tab1_PlatForm.TabIndex = 1;
+            // 
+            // label121
+            // 
+            this.label121.AutoSize = true;
+            this.label121.Location = new System.Drawing.Point(8, 45);
+            this.label121.Name = "label121";
+            this.label121.Size = new System.Drawing.Size(45, 13);
+            this.label121.TabIndex = 0;
+            this.label121.Text = "Platform";
+            // 
+            // Tab1_Tester
+            // 
+            this.Tab1_Tester.Location = new System.Drawing.Point(71, 18);
+            this.Tab1_Tester.Name = "Tab1_Tester";
+            this.Tab1_Tester.Size = new System.Drawing.Size(235, 20);
+            this.Tab1_Tester.TabIndex = 1;
+            // 
+            // label120
+            // 
+            this.label120.AutoSize = true;
+            this.label120.Location = new System.Drawing.Point(8, 21);
+            this.label120.Name = "label120";
+            this.label120.Size = new System.Drawing.Size(37, 13);
+            this.label120.TabIndex = 0;
+            this.label120.Text = "Tester";
             // 
             // Tab1_CheckNotRead
             // 
             this.Tab1_CheckNotRead.AutoSize = true;
-            this.Tab1_CheckNotRead.Location = new System.Drawing.Point(197, 172);
+            this.Tab1_CheckNotRead.Location = new System.Drawing.Point(193, 328);
             this.Tab1_CheckNotRead.Name = "Tab1_CheckNotRead";
             this.Tab1_CheckNotRead.Size = new System.Drawing.Size(128, 17);
             this.Tab1_CheckNotRead.TabIndex = 38;
@@ -1162,7 +1324,7 @@
             // 
             // Tab1_Remove_BT
             // 
-            this.Tab1_Remove_BT.Location = new System.Drawing.Point(251, 92);
+            this.Tab1_Remove_BT.Location = new System.Drawing.Point(247, 248);
             this.Tab1_Remove_BT.Name = "Tab1_Remove_BT";
             this.Tab1_Remove_BT.Size = new System.Drawing.Size(75, 23);
             this.Tab1_Remove_BT.TabIndex = 37;
@@ -1172,7 +1334,7 @@
             // 
             // Tab1_Load_DataCheck_BT
             // 
-            this.Tab1_Load_DataCheck_BT.Location = new System.Drawing.Point(250, 63);
+            this.Tab1_Load_DataCheck_BT.Location = new System.Drawing.Point(246, 219);
             this.Tab1_Load_DataCheck_BT.Name = "Tab1_Load_DataCheck_BT";
             this.Tab1_Load_DataCheck_BT.Size = new System.Drawing.Size(75, 23);
             this.Tab1_Load_DataCheck_BT.TabIndex = 37;
@@ -1182,7 +1344,7 @@
             // 
             // Tab1_Add_BT
             // 
-            this.Tab1_Add_BT.Location = new System.Drawing.Point(250, 34);
+            this.Tab1_Add_BT.Location = new System.Drawing.Point(246, 190);
             this.Tab1_Add_BT.Name = "Tab1_Add_BT";
             this.Tab1_Add_BT.Size = new System.Drawing.Size(75, 23);
             this.Tab1_Add_BT.TabIndex = 37;
@@ -1193,7 +1355,7 @@
             // Tab1_Expect_Data_List
             // 
             this.Tab1_Expect_Data_List.FormattingEnabled = true;
-            this.Tab1_Expect_Data_List.Location = new System.Drawing.Point(15, 63);
+            this.Tab1_Expect_Data_List.Location = new System.Drawing.Point(11, 219);
             this.Tab1_Expect_Data_List.Name = "Tab1_Expect_Data_List";
             this.Tab1_Expect_Data_List.Size = new System.Drawing.Size(229, 95);
             this.Tab1_Expect_Data_List.TabIndex = 36;
@@ -1221,7 +1383,7 @@
             // 
             // Tab1DataReceiveLine
             // 
-            this.Tab1DataReceiveLine.Location = new System.Drawing.Point(15, 214);
+            this.Tab1DataReceiveLine.Location = new System.Drawing.Point(24, 362);
             this.Tab1DataReceiveLine.Name = "Tab1DataReceiveLine";
             this.Tab1DataReceiveLine.Size = new System.Drawing.Size(300, 20);
             this.Tab1DataReceiveLine.TabIndex = 12;
@@ -1230,7 +1392,7 @@
             // Tab1DataReveiceLabel
             // 
             this.Tab1DataReveiceLabel.AutoSize = true;
-            this.Tab1DataReveiceLabel.Location = new System.Drawing.Point(12, 198);
+            this.Tab1DataReveiceLabel.Location = new System.Drawing.Point(21, 346);
             this.Tab1DataReveiceLabel.Name = "Tab1DataReveiceLabel";
             this.Tab1DataReveiceLabel.Size = new System.Drawing.Size(73, 13);
             this.Tab1DataReveiceLabel.TabIndex = 11;
@@ -1257,7 +1419,7 @@
             // 
             // Tab1Data4Check
             // 
-            this.Tab1Data4Check.Location = new System.Drawing.Point(15, 37);
+            this.Tab1Data4Check.Location = new System.Drawing.Point(11, 193);
             this.Tab1Data4Check.Multiline = true;
             this.Tab1Data4Check.Name = "Tab1Data4Check";
             this.Tab1Data4Check.Size = new System.Drawing.Size(229, 20);
@@ -1266,7 +1428,7 @@
             // Tab1CorrectLabel
             // 
             this.Tab1CorrectLabel.AutoSize = true;
-            this.Tab1CorrectLabel.Location = new System.Drawing.Point(16, 278);
+            this.Tab1CorrectLabel.Location = new System.Drawing.Point(25, 426);
             this.Tab1CorrectLabel.Name = "Tab1CorrectLabel";
             this.Tab1CorrectLabel.Size = new System.Drawing.Size(78, 13);
             this.Tab1CorrectLabel.TabIndex = 3;
@@ -1285,7 +1447,7 @@
             // label107
             // 
             this.label107.AutoSize = true;
-            this.label107.Location = new System.Drawing.Point(183, 302);
+            this.label107.Location = new System.Drawing.Point(192, 450);
             this.label107.Name = "label107";
             this.label107.Size = new System.Drawing.Size(60, 13);
             this.label107.TabIndex = 4;
@@ -1324,7 +1486,7 @@
             // label110
             // 
             this.label110.AutoSize = true;
-            this.label110.Location = new System.Drawing.Point(159, 255);
+            this.label110.Location = new System.Drawing.Point(168, 403);
             this.label110.Name = "label110";
             this.label110.Size = new System.Drawing.Size(33, 13);
             this.label110.TabIndex = 4;
@@ -1333,7 +1495,7 @@
             // label109
             // 
             this.label109.AutoSize = true;
-            this.label109.Location = new System.Drawing.Point(18, 255);
+            this.label109.Location = new System.Drawing.Point(27, 403);
             this.label109.Name = "label109";
             this.label109.Size = new System.Drawing.Size(70, 13);
             this.label109.TabIndex = 4;
@@ -1342,7 +1504,7 @@
             // label108
             // 
             this.label108.AutoSize = true;
-            this.label108.Location = new System.Drawing.Point(15, 173);
+            this.label108.Location = new System.Drawing.Point(11, 329);
             this.label108.Name = "label108";
             this.label108.Size = new System.Drawing.Size(84, 13);
             this.label108.TabIndex = 4;
@@ -1351,7 +1513,7 @@
             // label106
             // 
             this.label106.AutoSize = true;
-            this.label106.Location = new System.Drawing.Point(183, 278);
+            this.label106.Location = new System.Drawing.Point(192, 426);
             this.label106.Name = "label106";
             this.label106.Size = new System.Drawing.Size(53, 13);
             this.label106.TabIndex = 4;
@@ -1360,7 +1522,7 @@
             // Tab1WrongLabel
             // 
             this.Tab1WrongLabel.AutoSize = true;
-            this.Tab1WrongLabel.Location = new System.Drawing.Point(16, 304);
+            this.Tab1WrongLabel.Location = new System.Drawing.Point(25, 452);
             this.Tab1WrongLabel.Name = "Tab1WrongLabel";
             this.Tab1WrongLabel.Size = new System.Drawing.Size(76, 13);
             this.Tab1WrongLabel.TabIndex = 4;
@@ -1369,7 +1531,7 @@
             // Tab1Data4CheckLabel
             // 
             this.Tab1Data4CheckLabel.AutoSize = true;
-            this.Tab1Data4CheckLabel.Location = new System.Drawing.Point(12, 21);
+            this.Tab1Data4CheckLabel.Location = new System.Drawing.Point(8, 177);
             this.Tab1Data4CheckLabel.Name = "Tab1Data4CheckLabel";
             this.Tab1Data4CheckLabel.Size = new System.Drawing.Size(82, 13);
             this.Tab1Data4CheckLabel.TabIndex = 6;
@@ -1378,7 +1540,7 @@
             // Tab1_TotalRead
             // 
             this.Tab1_TotalRead.Enabled = false;
-            this.Tab1_TotalRead.Location = new System.Drawing.Point(263, 301);
+            this.Tab1_TotalRead.Location = new System.Drawing.Point(272, 449);
             this.Tab1_TotalRead.Name = "Tab1_TotalRead";
             this.Tab1_TotalRead.Size = new System.Drawing.Size(52, 20);
             this.Tab1_TotalRead.TabIndex = 8;
@@ -1386,14 +1548,14 @@
             // Tab1_ReadSpeed
             // 
             this.Tab1_ReadSpeed.Enabled = false;
-            this.Tab1_ReadSpeed.Location = new System.Drawing.Point(101, 250);
+            this.Tab1_ReadSpeed.Location = new System.Drawing.Point(110, 398);
             this.Tab1_ReadSpeed.Name = "Tab1_ReadSpeed";
             this.Tab1_ReadSpeed.Size = new System.Drawing.Size(52, 20);
             this.Tab1_ReadSpeed.TabIndex = 8;
             // 
             // Tab1_CircleRead
             // 
-            this.Tab1_CircleRead.Location = new System.Drawing.Point(101, 171);
+            this.Tab1_CircleRead.Location = new System.Drawing.Point(97, 327);
             this.Tab1_CircleRead.Name = "Tab1_CircleRead";
             this.Tab1_CircleRead.Size = new System.Drawing.Size(83, 20);
             this.Tab1_CircleRead.TabIndex = 8;
@@ -1401,7 +1563,7 @@
             // Tab1_NotRead
             // 
             this.Tab1_NotRead.Enabled = false;
-            this.Tab1_NotRead.Location = new System.Drawing.Point(263, 275);
+            this.Tab1_NotRead.Location = new System.Drawing.Point(272, 423);
             this.Tab1_NotRead.Name = "Tab1_NotRead";
             this.Tab1_NotRead.Size = new System.Drawing.Size(52, 20);
             this.Tab1_NotRead.TabIndex = 8;
@@ -1409,7 +1571,7 @@
             // Tab1NumCorrect
             // 
             this.Tab1NumCorrect.Enabled = false;
-            this.Tab1NumCorrect.Location = new System.Drawing.Point(101, 275);
+            this.Tab1NumCorrect.Location = new System.Drawing.Point(110, 423);
             this.Tab1NumCorrect.Name = "Tab1NumCorrect";
             this.Tab1NumCorrect.Size = new System.Drawing.Size(52, 20);
             this.Tab1NumCorrect.TabIndex = 7;
@@ -1417,7 +1579,7 @@
             // Tab1NumWrong
             // 
             this.Tab1NumWrong.Enabled = false;
-            this.Tab1NumWrong.Location = new System.Drawing.Point(101, 301);
+            this.Tab1NumWrong.Location = new System.Drawing.Point(110, 449);
             this.Tab1NumWrong.Name = "Tab1NumWrong";
             this.Tab1NumWrong.Size = new System.Drawing.Size(52, 20);
             this.Tab1NumWrong.TabIndex = 8;
@@ -1452,6 +1614,7 @@
             // 
             // Report
             // 
+            this.Report.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Report.Controls.Add(this.label94);
             this.Report.Controls.Add(this.Tab2_Total_Fail_Lbl);
             this.Report.Controls.Add(this.Tab2_Total_Pass_Lbl);
@@ -1501,6 +1664,7 @@
             // 
             // groupBox37
             // 
+            this.groupBox37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox37.Controls.Add(this.Tab2_HideResourceFunction);
             this.groupBox37.Controls.Add(this.Tab2_TimeStamp);
             this.groupBox37.Controls.Add(this.Tab2LR);
@@ -1576,6 +1740,7 @@
             // 
             // Tab2Delaygroup
             // 
+            this.Tab2Delaygroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Tab2Delaygroup.Controls.Add(this.Tab2_Step_Num);
             this.Tab2Delaygroup.Controls.Add(this.Tab2ForeverMode);
             this.Tab2Delaygroup.Controls.Add(this.Tab2RunOneTimeMode);
@@ -1674,6 +1839,7 @@
             // 
             // Tab2DataView
             // 
+            this.Tab2DataView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Tab2DataView.Controls.Add(this.Tab2LogPathText);
             this.Tab2DataView.Controls.Add(this.Tab2LogFolderLabel);
             this.Tab2DataView.Controls.Add(this.Tab2LogBT);
@@ -1739,6 +1905,7 @@
             // 
             // Tab2groupSetting
             // 
+            this.Tab2groupSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Tab2groupSetting.Controls.Add(this.Tab2ThresholdLabel);
             this.Tab2groupSetting.Controls.Add(this.Tab2RestoreDefaultBT);
             this.Tab2groupSetting.Controls.Add(this.Tab2setThreshold);
@@ -1891,6 +2058,8 @@
             // 
             // Tab2groupComSet
             // 
+            this.Tab2groupComSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.Tab2groupComSet.Controls.Add(this.label3);
             this.Tab2groupComSet.Controls.Add(this.ListDeviceLabel);
             this.Tab2groupComSet.Controls.Add(this.ListComLabel);
@@ -1930,15 +2099,177 @@
             // 
             // Tab2ReceiveData
             // 
-            this.Tab2ReceiveData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.Tab2ReceiveData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.Tab2ReceiveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tab2ReceiveData.Location = new System.Drawing.Point(3, 475);
+            this.Tab2ReceiveData.Location = new System.Drawing.Point(3, 468);
             this.Tab2ReceiveData.Name = "Tab2ReceiveData";
             this.Tab2ReceiveData.Size = new System.Drawing.Size(641, 239);
             this.Tab2ReceiveData.TabIndex = 1;
             this.Tab2ReceiveData.Text = "";
             this.Tab2ReceiveData.TextChanged += new System.EventHandler(this.Tab2ReceiveData_TextChanged);
+            // 
+            // ImageCapture_Tab
+            // 
+            this.ImageCapture_Tab.Controls.Add(this.Image_PortSetting_Grp);
+            this.ImageCapture_Tab.Location = new System.Drawing.Point(4, 22);
+            this.ImageCapture_Tab.Name = "ImageCapture_Tab";
+            this.ImageCapture_Tab.Size = new System.Drawing.Size(855, 839);
+            this.ImageCapture_Tab.TabIndex = 6;
+            this.ImageCapture_Tab.Text = "Image_Capture";
+            this.ImageCapture_Tab.UseVisualStyleBackColor = true;
+            // 
+            // Image_PortSetting_Grp
+            // 
+            this.Image_PortSetting_Grp.Controls.Add(this.label115);
+            this.Image_PortSetting_Grp.Controls.Add(this.button51);
+            this.Image_PortSetting_Grp.Controls.Add(this.comboBox6);
+            this.Image_PortSetting_Grp.Controls.Add(this.comboBox7);
+            this.Image_PortSetting_Grp.Controls.Add(this.label116);
+            this.Image_PortSetting_Grp.Controls.Add(this.comboBox8);
+            this.Image_PortSetting_Grp.Controls.Add(this.label117);
+            this.Image_PortSetting_Grp.Controls.Add(this.comboBox27);
+            this.Image_PortSetting_Grp.Controls.Add(this.label118);
+            this.Image_PortSetting_Grp.Controls.Add(this.label119);
+            this.Image_PortSetting_Grp.Controls.Add(this.comboBox47);
+            this.Image_PortSetting_Grp.Location = new System.Drawing.Point(11, 14);
+            this.Image_PortSetting_Grp.Name = "Image_PortSetting_Grp";
+            this.Image_PortSetting_Grp.Size = new System.Drawing.Size(206, 189);
+            this.Image_PortSetting_Grp.TabIndex = 7;
+            this.Image_PortSetting_Grp.TabStop = false;
+            this.Image_PortSetting_Grp.Text = "Init Setting";
+            // 
+            // label115
+            // 
+            this.label115.AutoSize = true;
+            this.label115.Location = new System.Drawing.Point(17, 136);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(54, 13);
+            this.label115.TabIndex = 9;
+            this.label115.Text = "Threshold";
+            // 
+            // button51
+            // 
+            this.button51.Location = new System.Drawing.Point(20, 160);
+            this.button51.Name = "button51";
+            this.button51.Size = new System.Drawing.Size(151, 24);
+            this.button51.TabIndex = 8;
+            this.button51.Text = "Restore Defaults";
+            this.button51.UseVisualStyleBackColor = true;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.comboBox6.Location = new System.Drawing.Point(82, 133);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(89, 21);
+            this.comboBox6.TabIndex = 7;
+            this.comboBox6.Text = "1";
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Items.AddRange(new object[] {
+            "One",
+            "Two",
+            "OnePointFive"});
+            this.comboBox7.Location = new System.Drawing.Point(82, 103);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(89, 21);
+            this.comboBox7.TabIndex = 7;
+            this.comboBox7.Text = "One";
+            // 
+            // label116
+            // 
+            this.label116.AutoSize = true;
+            this.label116.Location = new System.Drawing.Point(17, 103);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(49, 13);
+            this.label116.TabIndex = 6;
+            this.label116.Text = "Stop Bits";
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.ItemHeight = 13;
+            this.comboBox8.Items.AddRange(new object[] {
+            "None",
+            "Even",
+            "Odd",
+            "Mark",
+            "Space"});
+            this.comboBox8.Location = new System.Drawing.Point(82, 73);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(89, 21);
+            this.comboBox8.TabIndex = 5;
+            this.comboBox8.Text = "None";
+            // 
+            // label117
+            // 
+            this.label117.AutoSize = true;
+            this.label117.Location = new System.Drawing.Point(17, 76);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(33, 13);
+            this.label117.TabIndex = 4;
+            this.label117.Text = "Parity";
+            // 
+            // comboBox27
+            // 
+            this.comboBox27.FormattingEnabled = true;
+            this.comboBox27.Items.AddRange(new object[] {
+            "8",
+            "7",
+            "6",
+            "5"});
+            this.comboBox27.Location = new System.Drawing.Point(82, 46);
+            this.comboBox27.Name = "comboBox27";
+            this.comboBox27.Size = new System.Drawing.Size(89, 21);
+            this.comboBox27.TabIndex = 3;
+            this.comboBox27.Text = "8";
+            // 
+            // label118
+            // 
+            this.label118.AutoSize = true;
+            this.label118.Location = new System.Drawing.Point(17, 49);
+            this.label118.Name = "label118";
+            this.label118.Size = new System.Drawing.Size(50, 13);
+            this.label118.TabIndex = 2;
+            this.label118.Text = "Data Bits";
+            // 
+            // label119
+            // 
+            this.label119.AutoSize = true;
+            this.label119.Location = new System.Drawing.Point(17, 22);
+            this.label119.Name = "label119";
+            this.label119.Size = new System.Drawing.Size(50, 13);
+            this.label119.TabIndex = 1;
+            this.label119.Text = "Baudrate";
+            // 
+            // comboBox47
+            // 
+            this.comboBox47.FormattingEnabled = true;
+            this.comboBox47.Items.AddRange(new object[] {
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.comboBox47.Location = new System.Drawing.Point(82, 19);
+            this.comboBox47.Name = "comboBox47";
+            this.comboBox47.Size = new System.Drawing.Size(89, 21);
+            this.comboBox47.TabIndex = 0;
+            this.comboBox47.Text = "9600";
             // 
             // PrescanDemoPage
             // 
@@ -2557,7 +2888,6 @@
             // 
             // groupBox39
             // 
-            this.groupBox39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox39.Controls.Add(this.SnifPort_Parity);
             this.groupBox39.Controls.Add(this.SnifPort_StopBit);
             this.groupBox39.Controls.Add(this.SnifPort_Threshold);
@@ -2767,6 +3097,8 @@
             // 
             // LostData_Group
             // 
+            this.LostData_Group.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.LostData_Group.Controls.Add(this.Check_Lost_Frame_log);
             this.LostData_Group.Controls.Add(this.textBox21);
             this.LostData_Group.Controls.Add(this.Lost_Tp_Cnt_Index_txt);
@@ -3064,6 +3396,7 @@
             // 
             // Control
             // 
+            this.Control.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Control.Controls.Add(this.Tab4_load_bt);
             this.Control.Controls.Add(this.Tab4_step_bt);
             this.Control.Controls.Add(this.Tab4_Code);
@@ -6261,18 +6594,149 @@
             // 
             this.Tab1_WaitNextLbl_Timer.Tick += new System.EventHandler(this.Tab1_WaitNextLbl_Timer_Tick);
             // 
+            // label135
+            // 
+            this.label135.AutoSize = true;
+            this.label135.Location = new System.Drawing.Point(17, 136);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(54, 13);
+            this.label135.TabIndex = 9;
+            this.label135.Text = "Threshold";
+            // 
+            // button55
+            // 
+            this.button55.Location = new System.Drawing.Point(20, 160);
+            this.button55.Name = "button55";
+            this.button55.Size = new System.Drawing.Size(151, 24);
+            this.button55.TabIndex = 8;
+            this.button55.Text = "Restore Defaults";
+            this.button55.UseVisualStyleBackColor = true;
+            // 
+            // comboBox63
+            // 
+            this.comboBox63.FormattingEnabled = true;
+            this.comboBox63.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.comboBox63.Location = new System.Drawing.Point(82, 133);
+            this.comboBox63.Name = "comboBox63";
+            this.comboBox63.Size = new System.Drawing.Size(89, 21);
+            this.comboBox63.TabIndex = 7;
+            this.comboBox63.Text = "1";
+            // 
+            // comboBox64
+            // 
+            this.comboBox64.FormattingEnabled = true;
+            this.comboBox64.Items.AddRange(new object[] {
+            "One",
+            "Two",
+            "OnePointFive"});
+            this.comboBox64.Location = new System.Drawing.Point(82, 103);
+            this.comboBox64.Name = "comboBox64";
+            this.comboBox64.Size = new System.Drawing.Size(89, 21);
+            this.comboBox64.TabIndex = 7;
+            this.comboBox64.Text = "One";
+            // 
+            // label136
+            // 
+            this.label136.AutoSize = true;
+            this.label136.Location = new System.Drawing.Point(17, 103);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(49, 13);
+            this.label136.TabIndex = 6;
+            this.label136.Text = "Stop Bits";
+            // 
+            // comboBox65
+            // 
+            this.comboBox65.FormattingEnabled = true;
+            this.comboBox65.ItemHeight = 13;
+            this.comboBox65.Items.AddRange(new object[] {
+            "None",
+            "Even",
+            "Odd",
+            "Mark",
+            "Space"});
+            this.comboBox65.Location = new System.Drawing.Point(82, 73);
+            this.comboBox65.Name = "comboBox65";
+            this.comboBox65.Size = new System.Drawing.Size(89, 21);
+            this.comboBox65.TabIndex = 5;
+            this.comboBox65.Text = "None";
+            // 
+            // label137
+            // 
+            this.label137.AutoSize = true;
+            this.label137.Location = new System.Drawing.Point(17, 76);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(33, 13);
+            this.label137.TabIndex = 4;
+            this.label137.Text = "Parity";
+            // 
+            // comboBox66
+            // 
+            this.comboBox66.FormattingEnabled = true;
+            this.comboBox66.Items.AddRange(new object[] {
+            "8",
+            "7",
+            "6",
+            "5"});
+            this.comboBox66.Location = new System.Drawing.Point(82, 46);
+            this.comboBox66.Name = "comboBox66";
+            this.comboBox66.Size = new System.Drawing.Size(89, 21);
+            this.comboBox66.TabIndex = 3;
+            this.comboBox66.Text = "8";
+            // 
+            // label138
+            // 
+            this.label138.AutoSize = true;
+            this.label138.Location = new System.Drawing.Point(17, 49);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(50, 13);
+            this.label138.TabIndex = 2;
+            this.label138.Text = "Data Bits";
+            // 
+            // label139
+            // 
+            this.label139.AutoSize = true;
+            this.label139.Location = new System.Drawing.Point(17, 22);
+            this.label139.Name = "label139";
+            this.label139.Size = new System.Drawing.Size(50, 13);
+            this.label139.TabIndex = 1;
+            this.label139.Text = "Baudrate";
+            // 
+            // comboBox67
+            // 
+            this.comboBox67.FormattingEnabled = true;
+            this.comboBox67.Items.AddRange(new object[] {
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.comboBox67.Location = new System.Drawing.Point(82, 19);
+            this.comboBox67.Name = "comboBox67";
+            this.comboBox67.Size = new System.Drawing.Size(89, 21);
+            this.comboBox67.TabIndex = 0;
+            this.comboBox67.Text = "9600";
+            // 
             // Test_Form
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(863, 788);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ControlTab);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test_Form";
-            this.Text = "Test Tool          Ver: 0.0.1.7";
+            this.Text = "Test Tool          Ver: 0.0.1.10";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Test_Form_FormClosing);
             this.ControlTab.ResumeLayout(false);
@@ -6290,6 +6754,8 @@
             this.Tab1groupSerSetting.PerformLayout();
             this.Tab1groupSerCount.ResumeLayout(false);
             this.Tab1groupSerCount.PerformLayout();
+            this.groupBox43.ResumeLayout(false);
+            this.groupBox43.PerformLayout();
             this.InOutPage.ResumeLayout(false);
             this.Report.ResumeLayout(false);
             this.Report.PerformLayout();
@@ -6303,6 +6769,9 @@
             this.Tab2groupSetting.PerformLayout();
             this.Tab2groupComSet.ResumeLayout(false);
             this.Tab2groupComSet.PerformLayout();
+            this.ImageCapture_Tab.ResumeLayout(false);
+            this.Image_PortSetting_Grp.ResumeLayout(false);
+            this.Image_PortSetting_Grp.PerformLayout();
             this.PrescanDemoPage.ResumeLayout(false);
             this.PrescanDemoPage.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -6934,7 +7403,6 @@
         private System.Windows.Forms.TextBox Tab1_ReadSpeed;
         private System.Windows.Forms.Label label110;
         private System.Windows.Forms.Timer Tab1_WaitNextLbl_Timer;
-        private System.Windows.Forms.CheckBox Tab1_CheckNotRead;
         private System.Windows.Forms.Button button50;
         private System.Windows.Forms.Button Tab1_StatisticBT;
         private System.Windows.Forms.Button Tab1_Load_DataCheck_BT;
@@ -6943,12 +7411,50 @@
         private System.Windows.Forms.Label label112;
         private System.Windows.Forms.Label label111;
         private System.Windows.Forms.CheckBox BellBeep_TestB_Ena;
-        private System.Windows.Forms.RichTextBox richTextBox13;
         private System.Windows.Forms.ComboBox Tab1_BellNum;
         private System.Windows.Forms.Button Send;
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.TextBox Tab1_BellDelay;
         private System.Windows.Forms.Label label114;
+        private System.Windows.Forms.TabPage ImageCapture_Tab;
+        private System.Windows.Forms.GroupBox Image_PortSetting_Grp;
+        private System.Windows.Forms.Label label115;
+        private System.Windows.Forms.Button button51;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.Label label116;
+        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.Label label117;
+        private System.Windows.Forms.ComboBox comboBox27;
+        private System.Windows.Forms.Label label118;
+        private System.Windows.Forms.Label label119;
+        private System.Windows.Forms.ComboBox comboBox47;
+        private System.Windows.Forms.Label label135;
+        private System.Windows.Forms.Button button55;
+        private System.Windows.Forms.ComboBox comboBox63;
+        private System.Windows.Forms.ComboBox comboBox64;
+        private System.Windows.Forms.Label label136;
+        private System.Windows.Forms.ComboBox comboBox65;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.ComboBox comboBox66;
+        private System.Windows.Forms.Label label138;
+        private System.Windows.Forms.Label label139;
+        private System.Windows.Forms.ComboBox comboBox67;
+        private System.Windows.Forms.CheckBox Tab1_CheckNotRead;
+        private System.Windows.Forms.GroupBox groupBox43;
+        private System.Windows.Forms.Label label120;
+        private System.Windows.Forms.TextBox Tab1_More;
+        private System.Windows.Forms.Label label124;
+        private System.Windows.Forms.TextBox Tab1_ReadMode;
+        private System.Windows.Forms.Label label123;
+        private System.Windows.Forms.TextBox Tab1_Interface;
+        private System.Windows.Forms.Label label122;
+        private System.Windows.Forms.TextBox Tab1_PlatForm;
+        private System.Windows.Forms.Label label121;
+        private System.Windows.Forms.TextBox Tab1_Tester;
+        private System.Windows.Forms.Label label125;
+        private System.Windows.Forms.Button Tab1_log_BT;
+        private System.Windows.Forms.Label Tab1_FolderName;
 
     }
 }
