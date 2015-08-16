@@ -1,0 +1,8 @@
+%LBL1
+D
+%DLY:200:ms
+E
+%EXP:R123456
+%DLY:800:ms
+%RPT
+%GTO1

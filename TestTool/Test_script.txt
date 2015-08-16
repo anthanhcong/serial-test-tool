@@ -1,0 +1,35 @@
+123456
+%DLY
+Abc\x30ef
+%DLY:100
+;Text\x0D\x0a
+%EXP:T400000000091\x0d\x0a: datalogic
+%DLY:10:s
+
+%EXP:R400000000091
+%DLY:10:s
+
+%WAT:R400000000091:datalogic
+%DLY:10:s
+
+;Test for change comport: Open & Close
+%COM:ONP
+%DLY:2:s
+%COM:OFF
+%DLY:2:s
+%COM:ONP
+%DLY:2:s
+%COM:OFF
+%DLY:2:s
+%COM:BAD:38400
+%COM: DAT:7
+%DLY:2:s
+
+;Test string process
+%SST:$S1:DATALOGIC
+%SST:$S2:$RCV
+%DLY:10:s
+%SST:$S3:$S2
+%CAT:$S3:$S1
+%DLY:2:s
+%PRN:$S3

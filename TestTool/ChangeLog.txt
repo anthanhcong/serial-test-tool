@@ -1,0 +1,57 @@
+/*****************************************************************************************************************
+ * $Rev:: 2590                                                                         $ Revision
+ * $Author:: knguyen                                                                   $ Author of last commit
+ * $http://vnmsrv47.psc.pscnet.com/svn/PhuongHoang/branches/PreScan-TestTool/TestTool/ChangeLog.txt
+ *
+ * Copyright 2011-2012 Datalogic Scanning, Inc. ALL RIGHTS RESERVED
+ *
+ *****************************************************************************************************************/
+Change Log
+
+Oct 16, 2013
+    + Add for load list of check misread from text file
+    + Create feature for report statistic
+        - Hours scanner ran
+        - Total read: xxxx
+        - Total Label Read
+            Label 1st : Number of read 
+            Label 2nd: Number of read
+            ...
+        - All misread data:            xxx total 
+            <Misread data1>                        number of misread
+            <Misread data2>                        number of misread
+            ...
+        - Get Release Mesage & Reset Log
+
+Jul 01,2012
+    + Add Check for Miss Read
+    + Add Check Not Read
+    + Add Statistic Report
+==> Release 0.0.1.2 ==> Release to SW TEST
+
+Feb 09, 2012
+    + Change format of Report:
+    + Change Key word for Print function (%PRN) & Report Pass Fail (%RPT)
+    + SVN 1550: Release 05
+
+Feb 08, 2012: Release 05
+    + add seprate for reset frame
+
+Feb 08, 2012: 
+    + Add %GTO for respond action
+    + Change log format
+    + SVN1545: Release 04
+
+Feb 08, 2012: 
+    + Fix bug: auto save log file
+    + Change error message for check counter
+    + release 03
+
+Feb 07, 2012: 
+    + Add Check Frame feature
+    + Add %GTO function
+    + SVN1535: release 02
+
+Jan 18,2012: 
+    SVN 1530: First Release for Test
+    
